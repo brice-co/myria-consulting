@@ -1,0 +1,23 @@
+CREATE TABLE "voice_diagnostic_applications" (
+	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
+	"company_name" text NOT NULL,
+	"email" text NOT NULL,
+	"industry" text,
+	"org_size" text,
+	"contact_title" text,
+	"score" integer NOT NULL,
+	"recommended_path" text NOT NULL,
+	"use_case" text NOT NULL,
+	"channel" text,
+	"monthly_interactions" text,
+	"concurrent_sessions" text,
+	"infrastructure" text,
+	"realtime_infra" text,
+	"regulatory" text,
+	"pii_level" text,
+	"engineering_team" text,
+	"realtime_experience" text,
+	"budget_range" text NOT NULL,
+	"timeline" text,
+	"created_at" timestamp DEFAULT now()
+);

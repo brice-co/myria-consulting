@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="860" viewBox="0 0 1400 860">
+  <defs>
+    <style>
+      .title { font: 700 22px system-ui, -apple-system, Segoe UI, Roboto, Arial; fill: #ffffff; }
+      .sub { font: 500 14px system-ui, -apple-system, Segoe UI, Roboto, Arial; fill: #ffffff; }
+      .h { font: 700 15px system-ui, -apple-system, Segoe UI, Roboto, Arial; }
+      .t { font: 500 13px system-ui, -apple-system, Segoe UI, Roboto, Arial; opacity: .9; }
+      .box { fill: #ffffff; stroke: #eceef3; stroke-width: 2; rx: 16; }
+      .soft { fill: #f8fafc; stroke: #111827; stroke-width: 2; rx: 16; }
+      .accent { fill: #eef2ff; stroke: #4338ca; stroke-width: 2; rx: 16; }
+      .arrow { stroke: #2a52a8; stroke-width: 3; fill: none; marker-end: url(#m); }
+      .dash { stroke-dasharray: 7 7; }
+    </style>
+    <marker id="m" markerWidth="12" markerHeight="12" refX="10" refY="6" orient="auto">
+      <path d="M0,0 L12,6 L0,12 Z" fill="#2a52a8"/>
+    </marker>
+  </defs>
+
+  <text x="60" y="70" class="title">Myria Internal AI System — Technical Stack Architecture</text>
+  <text x="60" y="100" class="sub">Next.js + Drizzle + Postgres/pgvector + Orchestrator + Prompt Registry + KB ingestion + Workflow runs</text>
+
+  <!-- UI -->
+  <rect x="90" y="150" width="500" height="120" class="box"/>
+  <text x="120" y="185" class="h">Next.js Portal (UI)</text>
+  <text x="120" y="210" class="t">Dashboards • Editors • Asset viewer • Approvals</text>
+  <text x="120" y="234" class="t">Auth + RBAC guard • Audit visibility</text>
+
+  <!-- App services -->
+  <rect x="90" y="300" width="500" height="120" class="soft"/>
+  <text x="120" y="335" class="h">Application Services</text>
+  <text x="120" y="360" class="t">API routes / Server actions • Validation • Permissions</text>
+  <text x="120" y="384" class="t">Creates workflow runs, triggers background jobs</text>
+
+  <!-- Orchestrator -->
+  <rect x="90" y="450" width="500" height="165" class="accent"/>
+  <text x="120" y="485" class="h">AI Orchestrator</text>
+  <text x="120" y="510" class="t">Tool-calling loop • State • Guardrails</text>
+  <text x="120" y="534" class="t">Routes tools: KB search, proposal gen, content gen, brand check, cost sim</text>
+
+  <!-- Domain modules (right column) -->
+  <rect x="650" y="150" width="660" height="140" class="box"/>
+  <text x="680" y="185" class="h">Prompt Registry (Versioned)</text>
+  <text x="680" y="210" class="t">brandVoice.v1 • proposalGen.v1 • linkedinPost.v1 • outreach.v1 • securitySummary.v1</text>
+  <text x="680" y="234" class="t">Zod schemas • Active version selection • A/B experimentation (optional)</text>
+
+  <rect x="650" y="320" width="660" height="140" class="box"/>
+  <text x="680" y="355" class="h">Knowledge Base (RAG)</text>
+  <text x="680" y="380" class="t">Ingestion: files/URLs/manual • Chunking • Embedding • Semantic retrieval</text>
+  <text x="680" y="404" class="t">Returns citations + metadata filters (industry, compliance tier, doc type)</text>
+
+  <rect x="650" y="490" width="660" height="125" class="soft"/>
+  <text x="680" y="525" class="h">Workflow Engine</text>
+  <text x="680" y="550" class="t">Definitions: proposal workflow • LinkedIn workflow • KB ingest workflow</text>
+  <text x="680" y="574" class="t">Runner: status, retries, events, approvals</text>
+
+  <!-- Database -->
+  <rect x="90" y="650" width="1220" height="130" class="box"/>
+  <text x="120" y="685" class="h">PostgreSQL (Drizzle ORM) + pgvector</text>
+  <text x="120" y="710" class="t">Tables: kb_documents • kb_chunks • embeddings(vector) • prompt_versions • workflow_runs • assets • approvals • audit_logs</text>
+  <text x="120" y="734" class="t">Governance: versioning + trace IDs + cost metrics</text>
+
+  <!-- Provider adapter -->
+  <rect x="980" y="450" width="330" height="165" class="accent"/>
+  <text x="1010" y="485" class="h">Provider Adapter Layer</text>
+  <text x="1010" y="510" class="t">OpenAI (Responses/Embeddings)</text>
+  <text x="1010" y="534" class="t">ElevenLabs (TTS/Agents) • Deepgram/Azure (STT)</text>
+  <text x="1010" y="558" class="t">Swappable interfaces • Rate limits • Retries</text>
+
+  <!-- arrows -->
+  <path d="M340 270 L340 300" class="arrow"/>
+  <path d="M340 420 L340 450" class="arrow"/>
+  <path d="M340 615 L340 650" class="arrow"/>
+
+  <path d="M590 360 L650 360" class="arrow"/>
+  <path d="M590 520 L650 390" class="arrow"/>
+  <path d="M590 520 L650 550" class="arrow"/>
+
+  <path d="M590 540 L980 540" class="arrow"/>
+
+  <!-- dashed governance frame -->
+  <rect x="70" y="130" width="1270" height="675" fill="none" stroke="#111827" stroke-width="2" class="dash" rx="22"/>
+  <text x="95" y="825" class="sub">Governance boundary: RBAC + audit logging + prompt/version control + citations</text>
+</svg>
