@@ -25,7 +25,7 @@ export default function Home() {
       <main className="min-h-screen flex flex-col">
    
         <Hero />
-        <div className="w-full h-[60vh] md:h-screen z-0">
+        <div className="fixed top-0 left-0 w-full h-[400px] md:h-screen z-0">
           <Scene />
         </div>
         <div className="relative z-10">
