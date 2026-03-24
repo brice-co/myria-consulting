@@ -25,8 +25,8 @@ export default function Home() {
       <main className="min-h-screen flex flex-col">
    
         <Hero />
-        <div className="w-full h-75 md:h-125">
-           <Scene />
+        <div className="fixed inset-0 z-0">
+          <Scene />
         </div>
         <div className="relative z-10">
 
