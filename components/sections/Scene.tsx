@@ -1,9 +1,8 @@
-'use client';
-
 import React, { useRef, useMemo } from 'react';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { OrbitControls } from '@react-three/drei';
 import * as THREE from 'three';
+import { useIsMobile } from '@/hooks/use-mobile';
 
 const AnimatedCube = ({ position, size }: { position: [number, number, number]; size: number }) => {
   const ref = useRef<THREE.Mesh>(null);
@@ -17,27 +16,27 @@ const AnimatedCube = ({ position, size }: { position: [number, number, number]; 
   });
 
   return (
-    <mesh ref={ref} position={position}>
+    <mesh ref={ref} position={position} castShadow receiveShadow>
       <boxGeometry args={[size, size, size]} />
-      <meshStandardMaterial color="#ffffff" transparent opacity={0.8} />
+      <meshStandardMaterial color="#38bdf8" metalness={0.4} roughness={0.3} />
       <lineSegments>
         <edgesGeometry args={[new THREE.BoxGeometry(size, size, size)]} />
-        <lineBasicMaterial color="#8b5cf6" />
+        <lineBasicMaterial color="#0ea5e9" />
       </lineSegments>
     </mesh>
   );
 };
 
 export default function Scene() {
-  const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
+  const isMobile = useIsMobile();
 
-  const config = {
+  const config = useMemo(() => ({
     cubeCount: isMobile ? 8 : 20,
-    spread: isMobile ? 10 : 30,
-    cubeSize: isMobile ? 0.5 : 0.8,
-    cameraPosition: isMobile ? [5, 8, 10] : [10, 15, 20],
-    fov: isMobile ? 70 : 50,
-  };
+    spread: isMobile ? 8 : 30,
+    cubeSize: isMobile ? 0.4 : 0.8,
+    cameraPosition: (isMobile ? [4, 6, 8] : [10, 15, 20]) as [number, number, number],
+    fov: isMobile ? 75 : 50,
+  }), [isMobile]);
 
   const cubePositions = useMemo(() => (
     Array.from({ length: config.cubeCount }, () => ([
@@ -48,22 +47,23 @@ export default function Scene() {
   ), [config.cubeCount, config.spread]);
 
   return (
-    <Canvas camera={{ position: config.cameraPosition as [number, number, number], fov: config.fov }}>
-      <ambientLight intensity={0.5} />
-      <pointLight position={[10, 20, 10]} intensity={1} />
+    <div className="w-full h-full absolute inset-0">
+      <Canvas
+        shadows
+        camera={{ position: config.cameraPosition, fov: config.fov }}
+        style={{ background: 'transparent' }}
+      >
+        <ambientLight intensity={0.4} />
+        <directionalLight position={[5, 10, 5]} intensity={1} castShadow />
 
-      <OrbitControls
-        enableZoom={false}
-        enablePan={false}
-        autoRotate
-        autoRotateSpeed={isMobile ? 0.3 : 0.5}
-      />
+        <gridHelper args={[isMobile ? 12 : 40, isMobile ? 12 : 40, '#1e3a5f', '#0c1929']} />
 
-      <gridHelper args={[config.spread * 2, 20, '#444', '#444']} />
+        <OrbitControls enableZoom={false} enablePan={false} autoRotate autoRotateSpeed={0.5} />
 
-      {cubePositions.map((pos, i) => (
-        <AnimatedCube key={i} position={pos} size={config.cubeSize} />
-      ))}
-    </Canvas>
+        {cubePositions.map((pos, i) => (
+          <AnimatedCube key={i} position={pos} size={config.cubeSize} />
+        ))}
+      </Canvas>
+    </div>
   );
 }
