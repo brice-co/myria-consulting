@@ -22,6 +22,14 @@ interface AgentConfig {
 export type { TranscriptEntry, AgentConfig };
 
 const SILENCE_TIMEOUT_MS = 45_000;
+const NOISE_GATE_INTERVAL_MS = 50;
+
+// Tune these on device testing
+const NOISE_FLOOR = 7;
+const OPEN_GATE_GAIN = 1;
+const CLOSED_GATE_GAIN = 0.015;
+const ATTACK_STEP = 0.18;
+const RELEASE_STEP = 0.08;
 
 export function useRealtimeWebRTC() {
   const pcRef = useRef<RTCPeerConnection | null>(null);
@@ -30,6 +38,12 @@ export function useRealtimeWebRTC() {
   const micTrackRef = useRef<MediaStreamTrack | null>(null);
   const streamRef = useRef<MediaStream | null>(null);
   const silenceTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const audioContextRef = useRef<AudioContext | null>(null);
+  const processedStreamRef = useRef<MediaStream | null>(null);
+  const analyserRef = useRef<AnalyserNode | null>(null);
+  const noiseGateIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
+  const gateGainRef = useRef<GainNode | null>(null);
 
   const [isActive, setIsActive] = useState(false);
   const [isListening, setIsListening] = useState(false);
@@ -43,10 +57,34 @@ export function useRealtimeWebRTC() {
 
   const isActiveRef = useRef(false);
 
-  // Track pending function call argument buffers
-  const fnCallBuffers = useRef<
-    Record<string, { name: string; args: string; callId: string }>
-  >({});
+  const fnCallBuffers = useRef<Record<string, { name: string; args: string; callId: string }>>({});
+
+  const clearNoiseGateMonitor = useCallback(() => {
+    if (noiseGateIntervalRef.current) {
+      clearInterval(noiseGateIntervalRef.current);
+      noiseGateIntervalRef.current = null;
+    }
+  }, []);
+
+  const cleanupAudioProcessing = useCallback(async () => {
+    clearNoiseGateMonitor();
+
+    processedStreamRef.current?.getTracks().forEach((t) => t.stop());
+    processedStreamRef.current = null;
+
+    analyserRef.current = null;
+    gateGainRef.current = null;
+
+    if (audioContextRef.current && audioContextRef.current.state !== "closed") {
+      try {
+        await audioContextRef.current.close();
+      } catch {
+        // ignore
+      }
+    }
+
+    audioContextRef.current = null;
+  }, [clearNoiseGateMonitor]);
 
   const clearSilenceTimer = useCallback(() => {
     if (silenceTimerRef.current) {
@@ -55,50 +93,65 @@ export function useRealtimeWebRTC() {
     }
   }, []);
 
-  const endSession = useCallback((reason?: string) => {
-    clearSilenceTimer();
+  const endSession = useCallback(
+    (reason?: string) => {
+      clearSilenceTimer();
 
-    try {
-      if (dcRef.current?.readyState === "open") {
-        dcRef.current.send(JSON.stringify({ type: "response.cancel" }));
+      try {
+        if (dcRef.current?.readyState === "open") {
+          dcRef.current.send(JSON.stringify({ type: "response.cancel" }));
+        }
+      } catch {
+        // ignore
       }
-    } catch {
-      // ignore
-    }
 
-    dcRef.current?.close();
-    dcRef.current = null;
+      clearNoiseGateMonitor();
 
-    pcRef.current?.close();
-    pcRef.current = null;
+      dcRef.current?.close();
+      dcRef.current = null;
 
-    streamRef.current?.getTracks().forEach((t) => t.stop());
-    streamRef.current = null;
+      pcRef.current?.close();
+      pcRef.current = null;
 
-    if (audioRef.current) {
-      audioRef.current.pause();
-      audioRef.current.srcObject = null;
-      audioRef.current = null;
-    }
+      streamRef.current?.getTracks().forEach((t) => t.stop());
+      streamRef.current = null;
 
-    micTrackRef.current = null;
-    fnCallBuffers.current = {};
+      processedStreamRef.current?.getTracks().forEach((t) => t.stop());
+      processedStreamRef.current = null;
 
-    setIsActive(false);
-    setIsListening(false);
-    setIsSpeaking(false);
-    setIsProcessing(false);
-    setIsMuted(false);
-    setOnHold(false);
-    setCurrentAgent(null);
-    setInterimTranscript("");
+      if (audioRef.current) {
+        audioRef.current.pause();
+        audioRef.current.srcObject = null;
+        audioRef.current = null;
+      }
 
-    if (reason) {
-      toast.info(reason);
-    } else {
-      toast.info("Voice session ended");
-    }
-  }, [clearSilenceTimer]);
+      if (audioContextRef.current && audioContextRef.current.state !== "closed") {
+        void audioContextRef.current.close().catch(() => {});
+      }
+      audioContextRef.current = null;
+      analyserRef.current = null;
+      gateGainRef.current = null;
+
+      micTrackRef.current = null;
+      fnCallBuffers.current = {};
+
+      setIsActive(false);
+      setIsListening(false);
+      setIsSpeaking(false);
+      setIsProcessing(false);
+      setIsMuted(false);
+      setOnHold(false);
+      setCurrentAgent(null);
+      setInterimTranscript("");
+
+      if (reason) {
+        toast.info(reason);
+      } else {
+        toast.info("Voice session ended");
+      }
+    },
+    [clearNoiseGateMonitor, clearSilenceTimer],
+  );
 
   const resetSilenceTimer = useCallback(() => {
     clearSilenceTimer();
@@ -116,6 +169,7 @@ export function useRealtimeWebRTC() {
   const handleToolResult = useCallback(
     async (callId: string, toolName: string, argsStr: string) => {
       let args: Record<string, unknown>;
+
       try {
         args = JSON.parse(argsStr);
       } catch {
@@ -310,25 +364,24 @@ export function useRealtimeWebRTC() {
           resetSilenceTimer();
         };
 
-        const stream = await navigator.mediaDevices.getUserMedia({
+        const rawStream = await navigator.mediaDevices.getUserMedia({
           audio: {
-            echoCancellation: true,
-            noiseSuppression: true,
-            autoGainControl: true,
-            channelCount: 1,
-            sampleRate: 48000,
+            echoCancellation: { ideal: true },
+            noiseSuppression: { ideal: true },
+            autoGainControl: { ideal: true },
+            channelCount: { ideal: 1 },
+            sampleRate: { ideal: 48000 },
+            sampleSize: { ideal: 16 },
           },
           video: false,
         });
 
-        streamRef.current = stream;
+        streamRef.current = rawStream;
 
-        const micTrack = stream.getAudioTracks()[0];
-        micTrackRef.current = micTrack;
+        const rawMicTrack = rawStream.getAudioTracks()[0];
 
-        // Re-apply strong constraints when supported by the browser
         try {
-          await micTrack.applyConstraints({
+          await rawMicTrack.applyConstraints({
             echoCancellation: true,
             noiseSuppression: true,
             autoGainControl: true,
@@ -339,7 +392,89 @@ export function useRealtimeWebRTC() {
           console.warn("Mic constraints partially unsupported:", err);
         }
 
-        pc.addTrack(micTrack, stream);
+        const AudioContextClass =
+          window.AudioContext ||
+          (window as Window & {
+            webkitAudioContext?: typeof AudioContext;
+          }).webkitAudioContext;
+
+        if (!AudioContextClass) {
+          throw new Error("Web Audio API is not supported in this browser");
+        }
+
+        const audioContext = new AudioContextClass();
+        audioContextRef.current = audioContext;
+
+        if (audioContext.state === "suspended") {
+          await audioContext.resume();
+        }
+
+        const source = audioContext.createMediaStreamSource(rawStream);
+
+        const highpass = audioContext.createBiquadFilter();
+        highpass.type = "highpass";
+        highpass.frequency.value = 120;
+        highpass.Q.value = 0.7;
+
+        const lowpass = audioContext.createBiquadFilter();
+        lowpass.type = "lowpass";
+        lowpass.frequency.value = 4200;
+        lowpass.Q.value = 0.7;
+
+        const compressor = audioContext.createDynamicsCompressor();
+        compressor.threshold.value = -45;
+        compressor.knee.value = 18;
+        compressor.ratio.value = 10;
+        compressor.attack.value = 0.003;
+        compressor.release.value = 0.2;
+
+        const gateGain = audioContext.createGain();
+        gateGain.gain.value = 1;
+        gateGainRef.current = gateGain;
+
+        const analyser = audioContext.createAnalyser();
+        analyser.fftSize = 1024;
+        analyser.smoothingTimeConstant = 0.85;
+        analyserRef.current = analyser;
+
+        const destination = audioContext.createMediaStreamDestination();
+
+        source.connect(highpass);
+        highpass.connect(lowpass);
+        lowpass.connect(compressor);
+        compressor.connect(gateGain);
+        gateGain.connect(analyser);
+        gateGain.connect(destination);
+
+        const processedStream = destination.stream;
+        processedStreamRef.current = processedStream;
+
+        const processedMicTrack = processedStream.getAudioTracks()[0];
+        micTrackRef.current = processedMicTrack;
+
+        pc.addTrack(processedMicTrack, processedStream);
+
+        const dataArray = new Uint8Array(analyser.frequencyBinCount);
+
+        clearNoiseGateMonitor();
+        noiseGateIntervalRef.current = setInterval(() => {
+          analyser.getByteFrequencyData(dataArray);
+
+          let sum = 0;
+          for (let i = 0; i < dataArray.length; i++) {
+            sum += dataArray[i];
+          }
+
+          const avg = sum / dataArray.length;
+          const targetGain = avg > NOISE_FLOOR ? OPEN_GATE_GAIN : CLOSED_GATE_GAIN;
+          const currentGain = gateGain.gain.value;
+
+          if (targetGain > currentGain) {
+            gateGain.gain.value = Math.min(OPEN_GATE_GAIN, currentGain + ATTACK_STEP);
+          } else {
+            gateGain.gain.value = Math.max(CLOSED_GATE_GAIN, currentGain - RELEASE_STEP);
+          }
+        }, NOISE_GATE_INTERVAL_MS);
 
         const dc = pc.createDataChannel("oai-events");
         dcRef.current = dc;
@@ -388,17 +523,14 @@ export function useRealtimeWebRTC() {
         const offer = await pc.createOffer();
         await pc.setLocalDescription(offer);
 
-        const sdpRes = await fetch(
-          "https://api.openai.com/v1/realtime?model=gpt-realtime-mini",
-          {
-            method: "POST",
-            headers: {
-              Authorization: `Bearer ${data.token}`,
-              "Content-Type": "application/sdp",
-            },
-            body: offer.sdp,
+        const sdpRes = await fetch("https://api.openai.com/v1/realtime?model=gpt-realtime-mini", {
+          method: "POST",
+          headers: {
+            Authorization: `Bearer ${data.token}`,
+            "Content-Type": "application/sdp",
           },
-        );
+          body: offer.sdp,
+        });
 
         if (!sdpRes.ok) {
           throw new Error(`SDP exchange failed: ${sdpRes.status}`);
@@ -413,20 +545,22 @@ export function useRealtimeWebRTC() {
       } catch (error) {
         console.error("Error starting session:", error);
         setIsProcessing(false);
+        void cleanupAudioProcessing();
         toast.error("Failed to start voice session");
         throw error;
       }
     },
-    [handleRealtimeEvent, resetSilenceTimer, endSession],
+    [cleanupAudioProcessing, clearNoiseGateMonitor, endSession, handleRealtimeEvent, resetSilenceTimer],
   );
 
   const toggleMute = useCallback(() => {
     if (!micTrackRef.current) return;
 
-    micTrackRef.current.enabled = !micTrackRef.current.enabled;
-    setIsMuted(!micTrackRef.current.enabled);
+    const nextEnabled = !micTrackRef.current.enabled;
+    micTrackRef.current.enabled = nextEnabled;
+    setIsMuted(!nextEnabled);
 
-    if (micTrackRef.current.enabled) {
+    if (nextEnabled) {
       resetSilenceTimer();
     }
   }, [resetSilenceTimer]);
@@ -461,10 +595,7 @@ export function useRealtimeWebRTC() {
     (text: string) => {
       if (!dcRef.current || !isActive) return;
 
-      setTranscript((prev) => [
-        ...prev,
-        { speaker: "You", text, timestamp: Date.now() },
-      ]);
+      setTranscript((prev) => [...prev, { speaker: "You", text, timestamp: Date.now() }]);
 
       dcRef.current.send(
         JSON.stringify({
@@ -529,7 +660,6 @@ export function useRealtimeWebRTC() {
     setInterimTranscript("");
   }, []);
 
-  // Stop session if user leaves page / hides tab / component unmounts
   useEffect(() => {
     const handleVisibilityChange = () => {
       if (document.visibilityState === "hidden" && isActiveRef.current) {
@@ -558,13 +688,15 @@ export function useRealtimeWebRTC() {
       window.removeEventListener("pagehide", handlePageHide);
       window.removeEventListener("beforeunload", handleBeforeUnload);
 
+      void cleanupAudioProcessing();
+
       if (isActiveRef.current) {
         endSession();
       } else {
         clearSilenceTimer();
       }
     };
-  }, [endSession, clearSilenceTimer]);
+  }, [cleanupAudioProcessing, endSession, clearSilenceTimer]);
 
   return {
     isActive,

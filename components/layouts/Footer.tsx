@@ -150,10 +150,21 @@ function FooterColumn({
           <li key={link.href}>
             <Link
               href={link.href}
-              className="text-sm text-white/70 transition hover:text-white"
-            >
+                className="
+                  relative inline-block
+                  text-sm text-white/70
+                  transition-colors duration-300 hover:text-white
+
+                  after:absolute after:left-0 after:-bottom-1
+                  after:h-px after:w-0
+                 after:bg-white/60
+                after:transition-all after:duration-300 after:ease-out
+
+              hover:after:w-full
+         "
+          >
               {link.label}
-            </Link>
+          </Link>
           </li>
         ))}
       </ul>
