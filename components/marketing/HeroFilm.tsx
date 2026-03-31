@@ -6,11 +6,11 @@ import { AnimatedNetwork } from "@/components/marketing/AnimatedNetwork";
 import Image from "next/image";
 
 const LINES = [
-  "AI is moving from tools to interfaces.",
-  "Voice is becoming the new enterprise surface.",
-  "Fragmented AI creates risk.",
-  "AI must be architected. Not installed.",
-  "Designing the Voice-First Enterprise.",
+  "Most AI systems look functional.",
+  "Few are actually under control.",
+  "Without governance, AI becomes unpredictable.",
+  "What works today breaks at scale.",
+  "AI isn’t a tool. It’s a system.",
 ];
 
 export function HeroFilm() {
@@ -58,23 +58,25 @@ export function HeroFilm() {
           </div>
 
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-white/70">
-            Voice-first AI systems designed for governance, integration, and measurable impact.
+            Most companies deploy AI without structure, evaluation, or control layers.  
+            We help you identify the gaps — and fix them before they scale.
           </p>
 
           <div className="mt-10 flex flex-col gap-3 sm:flex-row">
             <a
-              href="/voice-strategy-assessment"
-              className="inline-flex items-center justify-center rounded-xl bg-cyan-700 px-6 py-3 font-medium text-white hover:bg-blue-400 transition"
-            >
-              Start with a Voice Strategy Assessment
-            </a>
-            <a
-              href="/deliverable"
-              className="inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-6 py-3 font-medium text-white hover:bg-white/10 transition"
-            >
-              Sample Deliverable
-            </a>
-          </div>
+              href="/start-assessment"
+              className="inline-flex items-center justify-center rounded-xl bg-cyan-600 px-6 py-3 font-medium text-white hover:bg-cyan-500 transition"
+          >
+            Get Your AI Governance Score
+        </a>
+
+          <a
+            href="/ai-system"
+            className="inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/5 px-6 py-3 font-medium text-white hover:bg-white/10 transition"
+    > 
+            Explore AI Systems
+        </a>
+        </div>
         </div>
       </div>
     </section>

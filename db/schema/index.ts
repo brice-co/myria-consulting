@@ -6,43 +6,64 @@ import {
   integer,
 } from "drizzle-orm/pg-core";
 
-export const voiceDiagnosticApplications = pgTable(
-  "voice_diagnostic_applications",
+export const aiArchitectureDiagnosticApplications = pgTable(
+  "ai_architecture_diagnostic_applications", // ✅ NEW TABLE NAME (recommended)
   {
     id: uuid("id").defaultRandom().primaryKey(),
 
-    // --- Organization ---
+    // ─────────────────────────────────────────────
+    // ORGANIZATION
+    // ─────────────────────────────────────────────
     companyName: text("company_name").notNull(),
     email: text("email").notNull(),
     industry: text("industry"),
     orgSize: text("org_size"),
     contactTitle: text("contact_title"),
-    // ✅ add these
+
+    // ─────────────────────────────────────────────
+    // AI QUALIFICATION
+    // ─────────────────────────────────────────────
     score: integer("score").notNull(),
+    priority: text("priority"), // 🔥 used in API
     recommendedPath: text("recommended_path").notNull(),
+    reasoning: text("reasoning"), // JSON string
 
-    // --- Use Case ---
+    // ─────────────────────────────────────────────
+    // AI SYSTEM CONTEXT (UPDATED)
+    // ─────────────────────────────────────────────
     useCase: text("use_case").notNull(),
-    channel: text("channel"),
-    monthlyInteractions: text("monthly_interactions"),
-    concurrentSessions: text("concurrent_sessions"),
+    aiScope: text("ai_scope"), // ✅ NEW (form uses this)
+    users: text("users"), // ✅ NEW
+    systems: text("systems"), // ✅ NEW
 
-    // --- Technical ---
+    // ─────────────────────────────────────────────
+    // ARCHITECTURE
+    // ─────────────────────────────────────────────
     infrastructure: text("infrastructure"),
-    realtimeInfra: text("realtime_infra"),
+    architectureMaturity: text("architecture_maturity"), // ✅ NEW
 
-    // --- Governance ---
+    // ─────────────────────────────────────────────
+    // GOVERNANCE
+    // ─────────────────────────────────────────────
     regulatory: text("regulatory"),
     piiLevel: text("pii_level"),
 
-    // --- Internal Capability ---
+    // ─────────────────────────────────────────────
+    // CAPABILITY
+    // ─────────────────────────────────────────────
     engineeringTeam: text("engineering_team"),
-    realtimeExperience: text("realtime_experience"),
+    aiExperience: text("ai_experience"), // ✅ UPDATED (was realtimeExperience)
 
-    // --- Budget ---
+    // ─────────────────────────────────────────────
+    // INVESTMENT
+    // ─────────────────────────────────────────────
     budgetRange: text("budget_range").notNull(),
     timeline: text("timeline"),
 
+    // ─────────────────────────────────────────────
+    // META
+    // ─────────────────────────────────────────────
+    status: text("status").default("new"),
     createdAt: timestamp("created_at").defaultNow(),
   }
 );

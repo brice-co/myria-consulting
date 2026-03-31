@@ -1,100 +1,126 @@
 import {
-  Zap,
+  AlertTriangle,
   Cpu,
   Shield,
   Globe,
-  Headphones,
-  Code,
+  Activity,
+  Layers,
   Sparkles,
   Badge,
-  
 } from "lucide-react";
+
+import { Button } from "@/components/ui/button";
+import Link from "next/link";
 
 const features = [
   {
-    icon: Headphones,
-    title: "Voice-First Design",
+    icon: AlertTriangle,
+    title: "No Governance Layer",
     description:
-      "We design conversations, latency paths, and interruption handling specifically for voice — not adapted from chat.",
+      "Most AI systems operate without structured oversight, making them unpredictable, risky, and difficult to control.",
   },
   {
-    icon: Zap,
-    title: "Low-Latency Architectures",
+    icon: Activity,
+    title: "No Evaluation or Feedback Loop",
     description:
-      "From browser-based voice to realtime WebRTC pipelines, we choose the right stack to match performance and budget.",
+      "Without continuous evaluation, AI systems drift over time — producing inconsistent and unreliable outputs.",
   },
   {
     icon: Cpu,
-    title: "Best-in-Class AI Models",
+    title: "Model-Centric Thinking",
     description:
-      "Provider-agnostic expertise across OpenAI Realtime, OpenAI STT/TTS, ElevenLabs, Deepgram, and hybrid stacks.",
+      "Teams focus on models, not systems — ignoring orchestration, memory, and real-world execution layers.",
   },
   {
-    icon: Code,
-    title: "Custom-Built, Not Generic",
+    icon: Layers,
+    title: "Fragmented Architecture",
     description:
-      "Every voice agent is tailored to your workflows, systems, and business logic — no black-box platforms.",
+      "Disconnected tools, APIs, and workflows create brittle systems that break under real usage.",
   },
   {
     icon: Shield,
-    title: "Production & Enterprise Ready",
+    title: "Hidden Risk & Compliance Gaps",
     description:
-      "Security, isolation, logging, and compliance are built in from day one — not added later.",
+      "Security, auditability, and governance are often added too late — increasing exposure and technical debt.",
   },
   {
     icon: Globe,
-    title: "Designed to Scale with You",
+    title: "Not Designed to Scale",
     description:
-      "Start with a focused use case, evolve into a broader voice strategy as adoption and trust grow.",
+      "What works in a prototype often fails in production due to missing infrastructure and system design.",
   },
 ];
 
-
 const Features = () => {
   return (
-    <section id="features" className="py-24 relative bg-background overflow-x-hidden">
+    <section
+      id="features"
+      className="py-24 relative bg-background overflow-x-hidden"
+    >
       {/* Background Effects */}
-        <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent" />
-        <div className="absolute top-1/4 left-1/4 w-48 h-48 md:w-96 md:h-96 bg-violet-500/10 rounded-full blur-3xl" />
-        <div className="absolute top-1/3 right-1/4 w-48 h-48 md:w-96 md:h-96 bg-cyan-500/10 rounded-full blur-3xl" />
-        
-        <div className="max-w-7xl mx-auto relative">
-          <div className="text-center max-w-4xl mx-auto">
-            <Badge className="mb-6 px-4 py-2 text-sm font-medium">
-              <Sparkles className="w-4 h-4 mr-2 inline" />
-              Custom AI Solutions
-            </Badge>
-            
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold mb-6">
-              <span className="text-foreground">Voice-First AI </span>
-              <span className="bg-gradient-to-r from-violet-500 via-cyan-500 to-emerald-500 bg-clip-text text-transparent">
-                Solutions
-              </span>
-            </h1>
-            
-            <p className="text-xl text-muted-foreground mb-8 leading-relaxed">
-              We design and build production-grade voice systems — from first prototype to real-world deployment.
-            </p>
-            
-          </div>
+      <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent" />
+      <div className="absolute top-1/4 left-1/4 w-48 h-48 md:w-96 md:h-96 bg-violet-500/10 rounded-full blur-3xl" />
+      <div className="absolute top-1/3 right-1/4 w-48 h-48 md:w-96 md:h-96 bg-cyan-500/10 rounded-full blur-3xl" />
+
+      <div className="max-w-7xl mx-auto relative px-6">
+        {/* 🔥 Header */}
+        <div className="text-center max-w-4xl mx-auto mb-16">
+          <Badge className="mb-6 px-4 py-2 text-sm font-medium">
+            <Sparkles className="w-4 h-4 mr-2 inline" />
+            Why Most AI Systems Fail
+          </Badge>
+
+          <h2 className="text-4xl sm:text-5xl font-bold mb-6">
+            Your AI Stack Isn’t the Problem.
+            <br />
+            <span className="text-cyan-400">Your System Design Is.</span>
+          </h2>
+
+          <p className="text-xl text-muted-foreground leading-relaxed">
+            Most teams focus on models and tools — but the real issue is missing
+            structure, governance, and system architecture.
+          </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* 🔍 Problem Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
           {features.map((feature, idx) => (
             <div
               key={idx}
-              className="group p-8 rounded-xl bg-card border border-border hover:border-primary/50 transition-all duration-300 animate-fade-in"
-              style={{ animationDelay: `${idx * 0.1}s` }}
+              className="group p-8 rounded-xl bg-card border border-border hover:border-primary/50 transition-all duration-300"
             >
               <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
                 <feature.icon className="text-primary" size={24} />
               </div>
-              <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
-              <p className="text-muted-foreground">{feature.description}</p>
+
+              <h3 className="text-xl font-semibold mb-3">
+                {feature.title}
+              </h3>
+
+              <p className="text-muted-foreground">
+                {feature.description}
+              </p>
             </div>
           ))}
         </div>
-      
+
+        {/* 🚀 CTA BLOCK (CRITICAL) */}
+        <div className="text-center max-w-2xl mx-auto">
+          <p className="text-lg text-muted-foreground mb-6">
+            Most companies don’t realize these gaps until it’s too late.
+          </p>
+
+          <Link href="/start-assessment">
+            <Button size="lg" className="px-8 py-6 text-base">
+              Find Your AI Governance Gaps
+            </Button>
+          </Link>
+
+          <p className="text-sm text-muted-foreground mt-4">
+            Takes 2 minutes • Get your score + recommendations
+          </p>
+        </div>
+      </div>
     </section>
   );
 };

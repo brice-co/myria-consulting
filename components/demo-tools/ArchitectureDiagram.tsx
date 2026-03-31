@@ -6,12 +6,12 @@ import { Mic, Brain, MessageSquare, Zap, Database, Share2 } from "lucide-react";
 import { AgentNode } from "./AgentNode";
 
 const nodes = [
-  { id: "voice", icon: Mic, label: "Voice Input", description: "Speech recognition" },
-  { id: "brain", icon: Brain, label: "AI Agent", description: "Processing & reasoning" },
-  { id: "tools", icon: Zap, label: "Tools/MCP", description: "External integrations" },
-  { id: "memory", icon: Database, label: "Memory", description: "Context storage" },
-  { id: "multi", icon: Share2, label: "Multi-Agent", description: "Orchestration" },
-  { id: "output", icon: MessageSquare, label: "Response", description: "Voice synthesis" },
+  { id: "input", icon: Mic, label: "Input Layer", description: "Voice, text, APIs" },
+  { id: "brain", icon: Brain, label: "AI Agent", description: "Reasoning & decisions" },
+  { id: "tools", icon: Zap, label: "Tools", description: "APIs, actions, workflows" },
+  { id: "memory", icon: Database, label: "Memory", description: "Context & history" },
+  { id: "multi", icon: Share2, label: "Orchestration", description: "Multi-agent coordination" },
+  { id: "output", icon: MessageSquare, label: "Output Layer", description: "Responses & actions" },
 ];
 
 export const ArchitectureDiagram = () => {
@@ -30,8 +30,23 @@ export const ArchitectureDiagram = () => {
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-125 h-125 bg-primary/5 rounded-full blur-3xl" />
       </div>
       
-      <h3 className="text-lg font-semibold mb-6 text-center">Voice Agent Architecture</h3>
-      
+      <h3 className="text-lg font-semibold mb-6 text-center">
+        What a Real AI System Looks Like</h3>
+
+      <div className="text-center max-w-3xl mx-auto mb-12">
+        <p className="text-sm text-cyan-400 mb-2">
+          Most teams never design this
+       </p>
+
+      <h2 className="text-3xl md:text-4xl font-bold mb-4">
+        AI Isn’t a Model. It’s a System.
+      </h2>
+
+      <p className="text-muted-foreground text-lg">
+        Real AI systems require orchestration, memory, tools, and control layers.
+        Without this, they break, drift, and fail at scale.
+    </p>
+</div>
       <div className="relative">
         {/* Center connection hub */}
         <svg className="absolute inset-0 w-full h-full pointer-events-none" style={{ zIndex: 0 }}>
@@ -52,21 +67,27 @@ export const ArchitectureDiagram = () => {
             const y = centerY + radius * Math.sin(angle);
             
             return (
-              <motion.line
-                key={i}
-                x1={`${centerX}%`}
-                y1={`${centerY}%`}
-                x2={`${x}%`}
-                y2={`${y}%`}
-                stroke="url(#connectionGradient)"
-                strokeWidth="1"
-                initial={{ opacity: 0.2 }}
-                animate={{ 
-                  opacity: activeIndex === i ? 0.8 : 0.2,
-                  strokeWidth: activeIndex === i ? 2 : 1
-                }}
-                transition={{ duration: 0.3 }}
-              />
+             <motion.line
+  key={i}
+  x1={`${centerX}%`}
+  y1={`${centerY}%`}
+  x2={`${x}%`}
+  y2={`${y}%`}
+  stroke="#00f5c4"
+  strokeWidth="1"
+  strokeOpacity={activeIndex === i ? 0.9 : 0.25}
+  initial={{ opacity: 0.2 }}
+  animate={{
+    opacity: activeIndex === i ? 0.9 : 0.25,
+    strokeWidth: activeIndex === i ? 2.5 : 1,
+  }}
+  transition={{ duration: 0.3 }}
+  style={{
+    filter: activeIndex === i
+      ? "drop-shadow(0 0 6px #00f5c4) drop-shadow(0 0 12px #00d4ff)"
+      : "drop-shadow(0 0 2px #00f5c4)",
+  }}
+/>
             );
           })}
         </svg>
@@ -114,6 +135,18 @@ export const ArchitectureDiagram = () => {
           ))}
         </div>
       </div>
+      <div className="text-center mt-10">
+    <a
+      href="/start-assessment"
+      className="inline-flex items-center justify-center rounded-xl bg-cyan-600 px-8 py-4 font-medium text-white hover:bg-cyan-500 transition"
+    >
+      See Where Your System Breaks
+    </a>
+
+    <p className="text-sm text-muted-foreground mt-3">
+    Get your AI Governance Score in 2 minutes
+   </p>
+</div>
     </div>
   );
 };

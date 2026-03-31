@@ -8,41 +8,40 @@ import {
   Shield,
   Workflow,
   ArrowRight,
-  PhoneCallIcon,
+ 
 } from "lucide-react";
 import Link from "next/link";
-import ChatWidget from "@/components/ChatWidget/ChatWidget";
-import { PAGE_AGENTS } from "@/config/agentConfigs";
+
 
 const solutions = [
   {
-    title: "AI Sales Infrastructure",
+    title: "AI Revenue Systems",
     description:
-      "Voice agents that qualify, route, and book — fully integrated with your CRM and revenue workflows.",
+      "Intelligent systems that qualify, route, and convert — integrated with your CRM, workflows, and revenue operations.",
   },
   {
-    title: "AI Customer Support Systems",
+    title: "AI Support & Operations",
     description:
-      "Production-grade voice systems that resolve, escalate, and continuously improve with structured intent logging.",
+      "AI systems that resolve, escalate, and continuously improve with structured feedback loops and operational visibility.",
   },
   {
-    title: "Internal AI Operations",
+    title: "Internal AI Automation",
     description:
-      "Voice-triggered workflows and tool execution across your internal systems with full auditability.",
+      "Secure AI-driven workflows that execute tasks across your internal tools with full traceability and control.",
   },
   {
     title: "Enterprise AI Platforms",
     description:
-      "Multi-tenant AI foundations with governance, observability, and long-term architectural stability.",
+      "Multi-tenant AI systems with governance, observability, and architecture designed for long-term scalability.",
   },
 ];
 
 const capabilities = [
   {
     icon: Mic,
-    title: "Voice Architecture",
+    title: "Real-Time Interfaces",
     description:
-      "Realtime & async voice pipelines with barge-in handling, recovery logic, and deterministic fallback paths.",
+      "Realtime and asynchronous interaction layers including voice, streaming, and event-driven systems with deterministic control paths.",
   },
   {
     icon: Workflow,
@@ -67,6 +66,34 @@ const capabilities = [
     title: "Enterprise Readiness",
     description:
       "SOC2 mindset, audit logs, secure credential handling, and production monitoring from day one.",
+  },
+];
+
+const systemLayers = [
+  {
+    title: "Users & Operators",
+    description:
+      "Customers, sales teams, support agents, and internal stakeholders interacting via voice or dashboards.",
+  },
+  {
+    title: "Interface Layer (Voice, UI, APIs)",
+    description:
+      "Realtime interaction systems including voice, APIs, dashboards, and event-driven interfaces with strict latency and reliability constraints. Realtime audio streaming, transcription, synthesis, interruption handling, and latency control.",
+  },
+  {
+    title: "Agent Orchestration Layer",
+    description:
+      "Intent detection, memory boundaries, role-based agents, routing logic, and deterministic fallbacks.",
+  },
+  {
+    title: "Business Systems & Tools",
+    description:
+      "CRM, ticketing, scheduling, billing, knowledge bases, and secure server-side tool execution.",
+  },
+  {
+    title: "Infrastructure & Governance",
+    description:
+      "RBAC, audit logging, monitoring, provider abstraction, tenant isolation, and compliance safeguards.",
   },
 ];
 
@@ -98,9 +125,9 @@ export default function WhatWeBuildPage() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="mt-8 max-w-3xl text-lg text-white/60"
         >
-          We design and implement production-grade AI systems — starting with
-          voice, extending into multi-agent orchestration, and grounded in
-          enterprise architecture principles.
+          We design and implement production-grade AI systems — combining
+          real-time interfaces, multi-agent orchestration, and governance-driven
+          architecture to operate reliably at scale.
         </motion.p>
       </section>
 
@@ -120,9 +147,7 @@ export default function WhatWeBuildPage() {
               transition={{ duration: 0.5 }}
               className="border-t border-white/10 pt-10"
             >
-              <h3 className="text-2xl font-medium">
-                {solution.title}
-              </h3>
+              <h3 className="text-2xl font-medium">{solution.title}</h3>
               <p className="mt-4 max-w-3xl text-white/60 text-lg">
                 {solution.description}
               </p>
@@ -147,14 +172,12 @@ export default function WhatWeBuildPage() {
               transition={{ duration: 0.5, delay: index * 0.05 }}
             >
               <div className="flex items-start gap-5">
-                <div className="mt-1 h-10 w-10 flex items-center justify-center rounded-lg bg-white/5">
+                <div className="mt-1 flex h-10 w-10 items-center justify-center rounded-lg bg-white/5">
                   <item.icon className="h-5 w-5 text-emerald-400" />
                 </div>
 
                 <div>
-                  <h3 className="text-xl font-medium">
-                    {item.title}
-                  </h3>
+                  <h3 className="text-xl font-medium">{item.title}</h3>
                   <p className="mt-3 text-white/60 leading-relaxed">
                     {item.description}
                   </p>
@@ -166,79 +189,55 @@ export default function WhatWeBuildPage() {
       </section>
 
       {/* SYSTEM MAP */}
-<section className="max-w-6xl mx-auto px-6 pb-40">
-  <div className="border-t border-white/10 pt-20">
-    <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
-      Enterprise AI System Map
-    </h2>
+      <section className="max-w-6xl mx-auto px-6 pb-40">
+        <div className="border-t border-white/10 pt-20">
+          <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
+            Enterprise AI System Map
+          </h2>
 
-    <p className="mt-6 max-w-3xl text-white/60 text-lg leading-relaxed">
-      Our systems are designed in layers — separating interface, intelligence,
-      execution, and governance to ensure reliability at scale.
-    </p>
+          <p className="mt-6 max-w-3xl text-white/60 text-lg leading-relaxed">
+            Our systems are designed in layers — separating interface,
+            intelligence, execution, and governance to ensure reliability at
+            scale.
+          </p>
 
-    <div className="mt-20 relative">
+          <div className="mt-20 relative">
+            {/* Vertical connector line */}
+            <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-white/10 md:-translate-x-1/2" />
 
-      {/* Vertical connector line */}
-      <div className="absolute left-1/2 top-0 bottom-0 w-px bg-white/10 -translate-x-1/2 hidden md:block" />
+            <div className="space-y-16">
+              {systemLayers.map((layer, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 40 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.5 }}
+                  className="relative"
+                >
+                  {/* Spine marker */}
+                  <div className="absolute left-6 top-2 h-4 w-4 rounded-full border border-emerald-400/30 bg-emerald-400/20 md:left-1/2 md:-translate-x-1/2" />
 
-      <div className="space-y-16">
+                  {/* Content */}
+                  <div className="pl-16 md:pl-0 md:max-w-3xl md:mx-auto md:text-center">
+                    <div className="inline-block rounded-full border border-white/10 bg-white/[0.03] px-4 py-1 text-xs uppercase tracking-wider text-white/40 mb-4">
+                      Layer {index + 1}
+                    </div>
 
-        {[
-          {
-            title: "Users & Operators",
-            description:
-              "Customers, sales teams, support agents, and internal stakeholders interacting via voice or dashboards.",
-          },
-          {
-            title: "Voice Interface Layer",
-            description:
-              "Realtime audio streaming, transcription, synthesis, interruption handling, and latency control.",
-          },
-          {
-            title: "Agent Orchestration Layer",
-            description:
-              "Intent detection, memory boundaries, role-based agents, routing logic, and deterministic fallbacks.",
-          },
-          {
-            title: "Business Systems & Tools",
-            description:
-              "CRM, ticketing, scheduling, billing, knowledge bases, and secure server-side tool execution.",
-          },
-          {
-            title: "Infrastructure & Governance",
-            description:
-              "RBAC, audit logging, monitoring, provider abstraction, tenant isolation, and compliance safeguards.",
-          },
-        ].map((layer, index) => (
-          <motion.div
-            key={index}
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.5 }}
-            className="relative flex justify-center"
-          >
-            <div className="max-w-3xl text-center md:text-left md:ml-20">
-              <div className="inline-block rounded-full border border-white/10 bg-white/[0.03] px-4 py-1 text-xs uppercase tracking-wider text-white/40 mb-4">
-                Layer {index + 1}
-              </div>
+                    <h3 className="text-xl md:text-2xl font-medium">
+                      {layer.title}
+                    </h3>
 
-              <h3 className="text-xl md:text-2xl font-medium">
-                {layer.title}
-              </h3>
-
-              <p className="mt-4 text-white/60 leading-relaxed">
-                {layer.description}
-              </p>
+                    <p className="mt-4 text-white/60 leading-relaxed">
+                      {layer.description}
+                    </p>
+                  </div>
+                </motion.div>
+              ))}
             </div>
-          </motion.div>
-        ))}
-      </div>
-    </div>
-  </div>
-</section>
-
+          </div>
+        </div>
+      </section>
 
       {/* ARCHITECTURE PHILOSOPHY */}
       <section className="max-w-6xl mx-auto px-6 pb-40">
@@ -248,37 +247,29 @@ export default function WhatWeBuildPage() {
           </h2>
 
           <p className="mt-6 max-w-3xl text-white/60 text-lg leading-relaxed">
-            Many organizations launch AI pilots.
-            Very few design systems that remain reliable under scale,
-            regulation, and operational complexity.
+            Many organizations launch AI pilots. Very few design systems that
+            remain reliable under scale, regulation, and operational complexity.
           </p>
 
           <p className="mt-6 max-w-3xl text-white/60 text-lg leading-relaxed">
             We build for long-term trust — with isolation boundaries,
-            deterministic fallbacks, observability, and governance embedded
-            into the system from day one.
+            deterministic fallbacks, observability, and governance embedded into
+            the system from day one.
           </p>
 
           <div className="mt-12">
             <Link
-              href="/work-with-us"
+              href="/ai-governance-assessment"
               className="inline-flex items-center gap-2 text-emerald-400 font-medium group"
             >
-              Discuss your architecture
-              <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition" />
+              Get Your AI Governance Score
+              <ArrowRight className="h-4 w-4 transition group-hover:translate-x-1" />
             </Link>
           </div>
         </div>
       </section>
-      <ChatWidget
-          title="Solution Advisor"
-          subtitle="Your AI companion for seamless communication and productivity."
-          accentColor="260 80% 60%"
-          icon={<PhoneCallIcon className="h-12 w-12" />}
-          voice="alloy"
-          systemPrompt={PAGE_AGENTS.whatWeBuild.systemPrompt}
-          allowedTools={PAGE_AGENTS.whatWeBuild.allowedTools}
-        />
+
+      
     </main>
   );
 }

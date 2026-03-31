@@ -1,158 +1,183 @@
 "use client";
 
 import { motion } from "framer-motion";
-import PageShell from "@/components/layouts/PageShell";
-import { Shield, Eye, Lock, AlertTriangle, CheckCircle2 } from "lucide-react";
+import { Shield, Lock, Database, Eye, GitBranch, ArrowRight } from "lucide-react";
+import Link from "next/link";
 
-const fadeUp = (delay = 0) => ({
-  initial: { opacity: 0, y: 20 },
-  animate: { opacity: 1, y: 0 },
-  transition: { duration: 0.5, delay },
-});
-
-const sections = [
+const GOVERNANCE_LAYERS = [
   {
     icon: Shield,
-    title: "Governance by Design",
-    color: "--tier-professional",
+    title: "Policy & Access Control",
     description:
-      "Rather than treating governance as a post-deployment control layer, Myria Consulting embeds governance considerations directly into the design of AI systems. This approach ensures that safety, observability, and operational accountability are built into the architecture itself.",
-    items: [
-      "Clear system boundaries for automated decision making",
-      "Human oversight mechanisms for critical interactions",
-      "Transparent system architecture and documentation",
-      "Operational monitoring of AI behavior and performance",
+      "Every AI system operates under defined permissions, role boundaries, and execution constraints.",
+    points: [
+      "Role-based access control (RBAC)",
+      "Tool-level permissioning",
+      "System boundary enforcement",
+      "Execution scoping per agent",
     ],
   },
   {
-    icon: Lock,
-    title: "Security & Compliance Mindset",
-    color: "--tier-essential",
+    icon: GitBranch,
+    title: "Model & System Versioning",
     description:
-      "AI systems increasingly operate within environments where regulatory and security expectations are critical. Myria Consulting designs architecture with a compliance-ready mindset, ensuring organizations can adapt to evolving governance requirements.",
-    items: [
-      "Privacy-aware system architecture",
-      "Secure infrastructure patterns aligned with SOC2 principles",
-      "Configurable data retention and access controls",
-      "Support for environments subject to GDPR or HIPAA requirements",
+      "AI systems evolve continuously — but every change is tracked, versioned, and reversible.",
+    points: [
+      "Model version control",
+      "Prompt + workflow versioning",
+      "Rollback mechanisms",
+      "Environment isolation (dev/staging/prod)",
+    ],
+  },
+  {
+    icon: Database,
+    title: "Data Governance & Memory Control",
+    description:
+      "We control what AI systems remember, store, and retrieve across time horizons.",
+    points: [
+      "Short-term vs long-term memory separation",
+      "PII filtering & data classification",
+      "Retrieval access policies",
+      "Data retention rules",
     ],
   },
   {
     icon: Eye,
-    title: "Operational Oversight",
-    color: "--tier-realtime",
+    title: "Observability & Auditability",
     description:
-      "Real-time AI systems require continuous operational monitoring. Myria Consulting encourages organizations to treat AI platforms as evolving infrastructure requiring structured oversight and ongoing performance review.",
-    items: [
-      "Conversation monitoring and analytics",
-      "Performance observability for AI agents",
-      "Operational dashboards for system health",
-      "Continuous improvement cycles based on system insights",
+      "Every decision, tool call, and system action is structured, traceable, and reviewable.",
+    points: [
+      "Full event logging",
+      "Conversation traceability",
+      "Tool execution auditing",
+      "Cost & latency tracking",
     ],
   },
   {
-    icon: AlertTriangle,
-    title: "Responsible AI Deployment",
-    color: "--tier-advanced",
+    icon: Lock,
+    title: "Risk & Compliance Layer",
     description:
-      "AI systems deployed in customer-facing environments must maintain trust and accountability. Myria Consulting works with organizations to ensure responsible deployment practices across the full lifecycle of AI systems.",
-    items: [
-      "Transparent AI system capabilities and limitations",
-      "Fallback mechanisms and escalation pathways",
-      "Risk assessment prior to production deployment",
-      "Human-in-the-loop safeguards for sensitive interactions",
+      "AI systems are continuously evaluated against operational, legal, and security risks.",
+    points: [
+      "Hallucination risk monitoring",
+      "Security constraint enforcement",
+      "Fallback & escalation logic",
+      "Compliance alignment (SOC2-ready patterns)",
     ],
   },
 ];
 
-export default function Governance() {
+export default function GovernancePage() {
   return (
-    <PageShell>
-      {/* Header */}
-    
-      <motion.header className="mb-16" {...fadeUp()}>
-        <span className="inline-block text-xs font-mono tracking-widest uppercase text-primary mb-4">
+    <main className="relative min-h-screen bg-black text-white overflow-hidden">
+
+      {/* Background */}
+      <div className="absolute inset-0 -z-10">
+        <div className="absolute top-[-200px] left-[-200px] h-[500px] w-[500px] rounded-full bg-emerald-500/10 blur-[160px]" />
+        <div className="absolute bottom-[-200px] right-[-200px] h-[500px] w-[500px] rounded-full bg-violet-500/10 blur-[160px]" />
+      </div>
+
+      {/* HERO */}
+      <section className="max-w-6xl mx-auto px-6 pt-40 pb-32">
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="text-5xl md:text-6xl font-semibold tracking-tight leading-[1.05]"
+        >
+          AI Governance
+          <br />
           Framework
-        </span>
-        <h1 className="text-4xl sm:text-5xl font-bold text-foreground mb-6 tracking-tight">
-          AI Governance Framework
-        </h1>
-        <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl">
-          Deploying real-time AI systems requires more than technical
-          implementation. Organizations must ensure that conversational
-          infrastructure, agentic systems, and automated decision processes
-          operate within clear governance boundaries.
-        </p>
-        <p className="text-lg text-muted-foreground leading-relaxed max-w-3xl mt-4">
-          Myria Consulting integrates governance principles directly into the
-          architecture and operational lifecycle of Voice-First AI systems,
-          enabling organizations to scale responsibly while maintaining
-          transparency, accountability, and operational resilience.
-        </p>
-      </motion.header>
+        </motion.h1>
 
-      {/* Sections */}
-      <div className="space-y-6">
-        {sections.map((s, i) => {
-          const Icon = s.icon;
-          const solidColor = `hsl(var(${s.color}))`;
-          const glowBg = `hsl(var(${s.color}) / 0.08)`;
+        <motion.p
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.1 }}
+          className="mt-8 max-w-3xl text-lg text-white/60"
+        >
+          AI systems without governance are unpredictable, unscalable, and
+          operationally risky. We design governance layers that make AI
+          systems safe to deploy inside real organizations.
+        </motion.p>
+      </section>
 
-          return (
-            <motion.section
-              key={s.title}
-              {...fadeUp(0.15 + i * 0.1)}
-              className="rounded-xl border border-border bg-card p-6 hover:border-primary/20 transition-colors"
-            >
-              <div className="flex items-start gap-5">
-                <div
-                  className="flex items-center justify-center w-11 h-11 rounded-lg shrink-0"
-                  style={{ backgroundColor: glowBg }}
-                >
-                  <Icon className="w-5 h-5" style={{ color: solidColor }} />
+      {/* LAYERS */}
+      <section className="max-w-6xl mx-auto px-6 pb-40 border-t border-white/10 pt-20">
+        <div className="space-y-28">
+
+          {GOVERNANCE_LAYERS.map((layer, index) => {
+            const Icon = layer.icon;
+
+            return (
+              <motion.div
+                key={index}
+                initial={{ opacity: 0, y: 40 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                className="grid md:grid-cols-2 gap-16 items-start"
+              >
+                {/* ICON */}
+                <div className="flex items-center gap-4 md:justify-end md:text-right">
+                  <div className="h-12 w-12 rounded-xl border border-white/20 flex items-center justify-center">
+                    <Icon className="h-5 w-5 text-emerald-400" />
+                  </div>
                 </div>
-                <div className="flex-1">
-                  <h2 className="text-xl font-semibold text-foreground mb-2">
-                    {s.title}
+
+                {/* CONTENT */}
+                <div>
+                  <h2 className="text-2xl md:text-3xl font-medium">
+                    {layer.title}
                   </h2>
-                  <p className="text-sm text-muted-foreground leading-relaxed mb-4">
-                    {s.description}
+
+                  <p className="mt-4 text-white/60 leading-relaxed">
+                    {layer.description}
                   </p>
-                  <ul className="space-y-2">
-                    {s.items.map((item) => (
-                      <li
-                        key={item}
-                        className="flex items-center gap-2 text-sm text-secondary-foreground"
-                      >
-                        <CheckCircle2
-                          className="w-3.5 h-3.5 shrink-0"
-                          style={{ color: solidColor }}
-                        />
-                        {item}
+
+                  <ul className="mt-6 space-y-3 text-white/50 text-sm">
+                    {layer.points.map((point, i) => (
+                      <li key={i} className="flex gap-3">
+                        <span className="mt-2 h-1.5 w-1.5 rounded-full bg-emerald-400 shrink-0" />
+                        <span>{point}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
-              </div>
-            </motion.section>
-          );
-        })}
-      </div>
+              </motion.div>
+            );
+          })}
 
-      {/* Closing */}
-      <motion.section
-        {...fadeUp(0.6)}
-        className="mt-16 rounded-xl border border-primary/20 bg-card p-8"
-      >
-        <p className="text-secondary-foreground leading-relaxed">
-          Governance is not a one-time exercise. As AI systems evolve,
-          organizations must continuously reassess operational policies,
-          technical safeguards, and oversight mechanisms. Myria Consulting helps
-          organizations establish governance foundations that support long-term
-          innovation while protecting users, organizations, and critical
-          infrastructure.
+        </div>
+      </section>
+
+      {/* PRINCIPLE SECTION */}
+      <section className="max-w-6xl mx-auto px-6 pb-32 border-t border-white/10 pt-20">
+        <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
+          Governance is Not a Layer — It is a System Property
+        </h2>
+
+        <p className="mt-8 max-w-3xl text-white/60 text-lg leading-relaxed">
+          Most AI systems treat governance as an afterthought — logs, policies,
+          and controls added after deployment.
         </p>
-      </motion.section>
-    </PageShell>
+
+        <p className="mt-6 max-w-3xl text-white/60 text-lg leading-relaxed">
+          At Myria, governance is embedded into architecture, execution, and
+          memory systems from day one — ensuring AI remains safe, observable,
+          and controllable at scale.
+        </p>
+      </section>
+
+      {/* CTA */}
+      <section className="max-w-6xl mx-auto px-6 pb-40 border-t border-white/10 pt-20">
+        <Link
+          href="/work-with-us"
+          className="inline-flex items-center gap-2 text-emerald-400 font-medium group"
+        >
+          Get a Governance Assessment
+          <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition" />
+        </Link>
+      </section>
+
+    </main>
   );
 }

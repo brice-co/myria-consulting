@@ -29,39 +29,31 @@ const Navbar = () => {
   }, []);
 
     const navLinks = [
+  { name: "Who We Are", href: "/who-we-are" },
 
-    { name: "Who We Are", href: "/who-we-are" },   
-      
-    {
-      name: "What We Build",
-      children: [        
-        { name: "Solutions", href: "/what-we-build" },        
-        { name: "Why Voice", href: "/why-voice-is-different" },
-        { name: "Use Cases", href: "/what-we-build/use-cases" },
-        ],
-    },
+  {
+    name: "AI Systems",
+    children: [
+      { name: "What We Build", href: "/what-we-build" },
+      { name: "Architecture", href: "/what-we-build/architecture" },
+    ],
+  },
 
-    {
-      name: "How We Build",
-      children: [        
-        { name: "How We Build", href: "/how-we-build" },
-        { name: "Architecture", href: "/what-we-build/architecture" },
-        { name: "Technology", href: "/technology" },        
-        { name: "Voice Capabilities", href: "/voice/capabilities" },
-      ],
-    },
+  {
+    name: "Approach",
+    children: [
+      { name: "How We Build", href: "/how-we-build" },
+      { name: "Governance Framework", href: "/governance" },
+    ],
+  },
 
-    {
-      name: "Consulting",
-      children: [        
-          { name: "Start Lean", href: "/start-lean" },
-          { name: "Voice Diagnostic", href: "/realtime-voice-diagnostic" },
-        
-      ],
-    },
-    
-    
-  ];
+  {
+    name: "Diagnostics & Labs",
+    children: [
+    { name: "AI Architecture Lab", href: "/ai-architecture-diagnostic" },
+    ],
+  },
+];
   
 
   return (

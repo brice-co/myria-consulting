@@ -6,65 +6,79 @@ import {
   DraftingCompass,
   Cpu,
   Rocket,
-  PhoneCallIcon,
   ArrowRight,
+  Shield,
 } from "lucide-react";
 import Link from "next/link";
 
 
 const phases = [
   {
-    icon: Search,
-    number: "01",
-    title: "Discovery & Strategic Framing",
-    description:
-      "We begin by defining the business outcome, operational constraints, and risk profile before selecting any technology.",
-    points: [
-      "Success metrics & ROI definition",
-      "Voice opportunity validation",
-      "User expectations & workflow mapping",
-      "Security, compliance & risk surface review",
-    ],
-  },
+  icon: Search,
+  number: "01",
+  title: "Discovery & Strategic Framing",
+  description:
+    "We define business outcomes, system boundaries, and governance requirements before selecting any technology.",
+  points: [
+    "Success metrics & ROI definition",
+    "AI opportunity identification & prioritization",
+    "Workflow & decision mapping",
+    "Risk, compliance & governance assessment",
+  ],
+},
   {
-    icon: DraftingCompass,
-    number: "02",
-    title: "System Architecture & Design",
-    description:
-      "Voice systems succeed or fail at the architecture layer. We design for scale, latency, and governance from day one.",
-    points: [
-      "Realtime vs async architecture decisions",
-      "Latency & interruption strategies",
-      "Provider abstraction & hybrid setups",
-      "System boundaries & ownership clarity",
-    ],
-  },
+  icon: DraftingCompass,
+  number: "02",
+  title: "System Architecture & Design",
+  description:
+    "AI systems succeed or fail at the architecture layer. We design systems with clear boundaries, governance controls, and long-term scalability.",
+  points: [
+    "System architecture & layer definition",
+    "Memory & context design",
+    "Model + rule hybrid strategies",
+    "Governance, ownership & control boundaries",
+  ],
+},
   {
-    icon: Cpu,
-    number: "03",
-    title: "Production Build & Integration",
-    description:
-      "We build operating systems — not demos — integrated directly into your business infrastructure.",
-    points: [
-      "Custom agents & orchestration logic",
-      "Secure server-side tool execution",
-      "Observability & structured logging",
-      "CRM, ticketing & internal system integration",
-    ],
-  },
+  icon: Cpu,
+  number: "03",
+  title: "Production Build & Integration",
+  description:
+  "We build production-grade AI systems integrated into your business infrastructure with full observability and control.",
+  points: [
+    "Agent orchestration & execution logic",
+    "Secure tool integration (CRM, APIs, DBs)",
+    "Memory systems (short + long term)",
+    "Audit logging & system observability",
+  ],
+},
   {
-    icon: Rocket,
-    number: "04",
-    title: "Controlled Launch & Evolution",
-    description:
-      "Deployment is structured, measured, and continuously improved — with long-term scalability in mind.",
-    points: [
-      "Staged rollout & monitoring",
-      "Conversation quality analysis",
-      "Reliability & performance tuning",
-      "Foundation for multi-agent expansion",
-    ],
-  },
+  icon: Rocket,
+  number: "04",
+  title: "Controlled Deployment & Evolution",
+  description:
+    "AI systems are deployed gradually, measured continuously, and improved through structured feedback loops.",
+  points: [
+    "Staged rollout & performance monitoring",
+    "Quality evaluation & system tuning",
+    "Cost & latency optimization",
+    "Continuous learning & system evolution",
+  ],
+},
+
+{
+  icon: Shield,
+  number: "05",
+  title: "Governance & System Control",
+  description:
+    "We ensure AI systems remain secure, auditable, and aligned with organizational policies over time.",
+  points: [
+    "Access control & permissions (RBAC)",
+    "Audit trails & traceability",
+    "Model/version governance",
+    "Risk monitoring & compliance alignment",
+  ],
+}
 ];
 
 export default function HowWeBuildPage() {
@@ -96,9 +110,11 @@ export default function HowWeBuildPage() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="mt-8 max-w-3xl text-lg text-white/60"
         >
-          Building voice systems isn’t about assembling APIs.
-          It’s about deliberate architecture, risk reduction,
-          and long-term operational stability.
+          Building AI systems isn’t about connecting models or APIs.
+
+          It requires structured architecture, governance controls,
+          and deliberate system design — so intelligence can operate
+          reliably inside real organizations.
         </motion.p>
       </section>
 
@@ -110,46 +126,60 @@ export default function HowWeBuildPage() {
           <div className="absolute left-6 md:left-1/2 top-0 bottom-0 w-px bg-white/10 md:-translate-x-1/2" />
 
           <div className="space-y-24">
-            {phases.map((phase, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 40 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5 }}
-                className="relative grid md:grid-cols-2 gap-12 items-start"
-              >
-                {/* Phase Indicator */}
-                <div className="absolute left-0 md:left-1/2 -translate-x-1/2 flex items-center justify-center h-12 w-12 rounded-full bg-black border border-white/20 text-sm font-medium">
-                  {phase.number}
-                </div>
+            {phases.map((phase, index) => {
+            const isLeft = index % 2 === 0;
 
-                {/* Left Spacer */}
-                <div className={index % 2 === 0 ? "md:text-right md:pr-16" : "md:order-2 md:pl-16"}>
-                  <div className="mt-16 md:mt-0">
-                    <h2 className="text-2xl md:text-3xl font-medium">
-                      {phase.title}
-                    </h2>
+  return (
+    <motion.div
+      key={index}
+      initial={{ opacity: 0, y: 40 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      className="relative grid md:grid-cols-2 gap-12 items-start"
+    >
+      <div className="absolute left-6 md:left-1/2 md:-translate-x-1/2 flex items-center justify-center h-12 w-12 rounded-full bg-black border border-white/20 text-sm font-medium">
+        {phase.number}
+      </div>
 
-                    <p className="mt-4 text-white/60 leading-relaxed">
-                      {phase.description}
-                    </p>
+      {isLeft ? (
+        <>
+          <div className="mt-16 md:mt-0 md:pr-16 md:text-right">
+            <h2 className="text-2xl md:text-3xl font-medium">{phase.title}</h2>
+            <p className="mt-4 text-white/60 leading-relaxed">{phase.description}</p>
 
-                    <ul className="mt-6 space-y-3 text-white/50 text-sm">
-                      {phase.points.map((point, i) => (
-                        <li key={i} className="flex gap-3">
-                          <span className="mt-2 h-1.5 w-1.5 rounded-full bg-emerald-400 shrink-0" />
-                          <span>{point}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
+            <ul className="mt-6 space-y-3 text-white/50 text-sm">
+              {phase.points.map((point, i) => (
+                <li key={i} className="flex justify-end gap-3">
+                  <span>{point}</span>
+                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-emerald-400 shrink-0" />
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div />
+        </>
+      ) : (
+        <>
+          <div />
+          <div className="mt-16 md:mt-0 md:pl-16">
+            <h2 className="text-2xl md:text-3xl font-medium">{phase.title}</h2>
+            <p className="mt-4 text-white/60 leading-relaxed">{phase.description}</p>
 
-                {/* Empty column for alternating layout */}
-                <div className="hidden md:block" />
-              </motion.div>
-            ))}
+            <ul className="mt-6 space-y-3 text-white/50 text-sm">
+              {phase.points.map((point, i) => (
+                <li key={i} className="flex gap-3">
+                  <span className="mt-2 h-1.5 w-1.5 rounded-full bg-emerald-400 shrink-0" />
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </>
+      )}
+    </motion.div>
+  );
+})}
           </div>
         </div>
       </section>
@@ -157,20 +187,18 @@ export default function HowWeBuildPage() {
       {/* RISK & GOVERNANCE SECTION */}
       <section className="max-w-6xl mx-auto px-6 pb-40 border-t border-white/10 pt-20">
         <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
-          Designed to Reduce Risk
+         Governance is Built In — Not Added Later
         </h2>
 
         <p className="mt-6 max-w-3xl text-white/60 text-lg leading-relaxed">
-          Voice systems operate at the edge of your organization —
-          interacting directly with customers and internal teams.
-          That requires architectural discipline.
+          AI systems introduce new operational, security, and compliance risks.
+          Without governance, they become unpredictable and difficult to control.
         </p>
 
         <p className="mt-6 max-w-3xl text-white/60 text-lg leading-relaxed">
-          Our methodology prioritizes isolation boundaries,
-          deterministic fallbacks, structured logging,
-          and governance controls from the outset —
-          ensuring your AI systems remain stable under scale.
+          Our methodology embeds governance into every layer —
+          from architecture and execution to monitoring and evolution —
+          ensuring your systems remain reliable, auditable, and aligned with your business.
         </p>
 
         <div className="mt-12">

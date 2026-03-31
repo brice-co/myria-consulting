@@ -7,63 +7,76 @@ import Link from "next/link";
 const ARCHITECTURE_FLOW = [
   {
     number: "01",
-    title: "User Interface Layer",
+    title: "Interface Layer",
     description:
-      "Voice entry begins at the edge — browser, phone, embedded device, or application interface.",
+            "User interaction layer across voice, chat, dashboards, or APIs — acting as the entry point into the AI system.",
     points: [
-      "WebRTC or telephony integration",
-      "Speech-to-Text processing",
-      "Interrupt & barge-in handling",
-      "Session state initialization",
-    ],
+            "Voice (WebRTC, telephony)",
+  "         Chat interfaces & copilots",
+            "Internal dashboards",
+            "API-based system triggers",
+  ],
   },
   {
     number: "02",
     title: "Orchestration Layer",
     description:
-      "The orchestration layer coordinates conversation state, intent routing, and system boundaries.",
+           "Coordinates system behavior, routing requests, managing context, and enforcing execution boundaries.",
     points: [
-      "Conversation memory management",
-      "Intent classification & routing",
-      "Workflow trigger mapping",
-      "Fallback & guardrail logic",
-    ],
+           "Conversation & session state",
+           "Intent classification & routing",
+           "Workflow triggering",
+           "Guardrails and fallback logic",
+  ],
   },
   {
     number: "03",
-    title: "Reasoning & Intelligence Layer",
+    title: "Intelligence Layer",
     description:
-      "LLM-based reasoning augmented with structured business logic and deterministic controls.",
+            "Combines AI reasoning with structured business logic to enable reliable and explainable decisions.",
     points: [
-      "Prompt engineering & context injection",
-      "Tool selection & validation",
-      "Hybrid rule-based + AI logic",
-      "Confidence scoring & escalation rules",
-    ],
+            "LLM reasoning & prompt design",
+            "Context injection & memory use",
+            "Hybrid AI + rule-based logic",
+            "Confidence scoring & escalation",
+  ],
   },
+
   {
-    number: "04",
-    title: "Secure Tool Execution Layer",
-    description:
-      "All external actions execute server-side with validation, logging, and permission boundaries.",
-    points: [
-      "CRM & database access",
-      "Calendar & scheduling systems",
-      "Internal APIs & microservices",
-      "Structured audit logging",
-    ],
-  },
+  number: "04",
+  title: "Memory Layer",
+  description:
+    "Manages short-term and long-term context to enable continuity, personalization, and learning.",
+  points: [
+    "Session memory (short-term)",
+    "Persistent knowledge storage",
+    "Vector search / retrieval (RAG)",
+    "Feedback loops & system learning",
+  ],
+},
   {
     number: "05",
-    title: "Observability & Governance Layer",
+    title: "Execution Layer",
     description:
-      "Continuous monitoring ensures reliability, compliance, and long-term scalability.",
+           "Handles all system actions through controlled, server-side execution with validation and auditability.",
     points: [
-      "Structured event logging",
-      "Latency & performance tracking",
-      "Conversation quality analysis",
-      "Versioning & deployment control",
-    ],
+           "CRM & database operations",
+           "Scheduling & transactions",
+           "Internal APIs & services",
+           "Permission validation & logging",
+  ],                           
+  },
+  {
+    number: "06",
+    title: "Governance & Observability Layer",
+    description:
+    "Ensures systems remain secure, compliant, and measurable as they scale across the organization.",
+    points: [
+    "Audit logging & traceability",
+    "Cost monitoring & control",
+    "Latency & performance tracking",
+    "Model/version governance",
+  ],
   },
 ];
 
@@ -96,9 +109,11 @@ export default function Architecture() {
           transition={{ duration: 0.6, delay: 0.1 }}
           className="mt-8 max-w-3xl text-lg text-white/60"
         >
-          Voice systems fail when architecture is an afterthought.
-          We design layered AI systems with clear boundaries,
-          secure execution paths, and long-term governance in mind.
+          AI systems fail when architecture is an afterthought.
+
+          We design layered AI systems with clear boundaries, 
+          governance controls, and production-grade execution paths — 
+          so they remain reliable, auditable, and scalable over time. 
         </motion.p>
       </section>
 
@@ -159,20 +174,18 @@ export default function Architecture() {
       {/* SYSTEM PRINCIPLES */}
       <section className="max-w-6xl mx-auto px-6 pb-32 border-t border-white/10 pt-20">
         <h2 className="text-3xl md:text-4xl font-semibold tracking-tight">
-          Built for Stability Under Scale
-        </h2>
+         Designed for Governed AI Systems
+      </h2>
 
         <p className="mt-8 max-w-3xl text-white/60 text-lg leading-relaxed">
-          Every layer is intentionally isolated.
-          Execution is server-side.
-          Observability is structured.
-          Governance is embedded — not bolted on.
-        </p>
+          AI systems must be observable, controllable, and auditable.
+          Without governance, they introduce risk instead of value.
+      </p>
 
         <p className="mt-6 max-w-3xl text-white/60 text-lg leading-relaxed">
-          This ensures voice agents remain predictable,
-          auditable, and adaptable as your organization grows.
-        </p>
+          We design systems where every interaction, decision, and execution
+          can be traced, measured, and improved over time.
+      </p>
       </section>
 
       {/* CTA */}

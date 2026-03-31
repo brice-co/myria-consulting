@@ -4,15 +4,10 @@ import Hero from "@/components/landing/Hero";
 import Features from "@/components/landing/Features";
 import { HeroFilm } from "@/components/marketing/HeroFilm";
 import VideoSection from "@/components/sections/VideoSection";
-import { VoiceAgentDemo } from "@/components/demo-tools/VoiceAgentDemo";
-import { MultiAgentFlow } from "@/components/demo-tools/MultiAgentFlow";
 import { ArchitectureDiagram } from "@/components/demo-tools/ArchitectureDiagram";
 import FAQ from "@/components/landing/FAQ";
 import ChatWidget from "@/components/ChatWidget/ChatWidget";
 import { PAGE_AGENTS } from "@/config/agentConfigs";
-
-import Marquee from "@/components/sections/Marquee";
-
 import dynamic from "next/dynamic";
 import { Bot, Phone } from "lucide-react";
 
@@ -32,24 +27,13 @@ export default function Home() {
 
           <Features/>          
           <HeroFilm/>
-          <VideoSection />
-          <VoiceAgentDemo /> 
-          <MultiAgentFlow />  
+          <VideoSection />                  
           <ArchitectureDiagram />      
           
           
           <div className="bg-background pt-10">
-            <div className="container mx-auto px-4 md:px-6 ">
-              <h2 className="text-3xl md:text-4xl font-bold text-center mb-8">
-                Our Technology Stack
-              </h2>
-              <p className="text-muted-foreground text-lg text-center mb-8">
-                We leverage the latest technologies to deliver a seamless experience.
-              </p>
-            </div>
-            <div className="container mx-auto px-4 md:px-6">
-              <Marquee />
-            </div>  
+            
+            
             <FAQ />
           </div>      
          

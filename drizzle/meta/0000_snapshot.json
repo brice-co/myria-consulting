@@ -1,11 +1,11 @@
 {
-  "id": "e6345121-599c-4842-a9f9-1f7d1d58f86c",
+  "id": "4d04c20c-3b6e-4f01-88a2-b4e62f3f5360",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
   "tables": {
-    "public.voice_diagnostic_applications": {
-      "name": "voice_diagnostic_applications",
+    "public.ai_architecture_diagnostic_applications": {
+      "name": "ai_architecture_diagnostic_applications",
       "schema": "",
       "columns": {
         "id": {
@@ -51,11 +51,23 @@
           "primaryKey": false,
           "notNull": true
         },
+        "priority": {
+          "name": "priority",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
+        },
         "recommended_path": {
           "name": "recommended_path",
           "type": "text",
           "primaryKey": false,
           "notNull": true
+        },
+        "reasoning": {
+          "name": "reasoning",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false
         },
         "use_case": {
           "name": "use_case",
@@ -63,20 +75,20 @@
           "primaryKey": false,
           "notNull": true
         },
-        "channel": {
-          "name": "channel",
+        "ai_scope": {
+          "name": "ai_scope",
           "type": "text",
           "primaryKey": false,
           "notNull": false
         },
-        "monthly_interactions": {
-          "name": "monthly_interactions",
+        "users": {
+          "name": "users",
           "type": "text",
           "primaryKey": false,
           "notNull": false
         },
-        "concurrent_sessions": {
-          "name": "concurrent_sessions",
+        "systems": {
+          "name": "systems",
           "type": "text",
           "primaryKey": false,
           "notNull": false
@@ -87,8 +99,8 @@
           "primaryKey": false,
           "notNull": false
         },
-        "realtime_infra": {
-          "name": "realtime_infra",
+        "architecture_maturity": {
+          "name": "architecture_maturity",
           "type": "text",
           "primaryKey": false,
           "notNull": false
@@ -111,8 +123,8 @@
           "primaryKey": false,
           "notNull": false
         },
-        "realtime_experience": {
-          "name": "realtime_experience",
+        "ai_experience": {
+          "name": "ai_experience",
           "type": "text",
           "primaryKey": false,
           "notNull": false
@@ -128,6 +140,13 @@
           "type": "text",
           "primaryKey": false,
           "notNull": false
+        },
+        "status": {
+          "name": "status",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": false,
+          "default": "'new'"
         },
         "created_at": {
           "name": "created_at",

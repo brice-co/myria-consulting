@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 
-export default function VoiceDiagnosticApplication() {
+export default function AIArchitectureDiagnosticLab() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -13,15 +13,15 @@ export default function VoiceDiagnosticApplication() {
     orgSize: "",
     contactTitle: "",
     useCase: "",
-    channel: "",
-    monthlyInteractions: "",
-    concurrentSessions: "",
+    aiScope: "",
+    users: "",
+    systems: "",
     infrastructure: "",
-    realtimeInfra: "",
+    architectureMaturity: "",
     regulatory: "",
     piiLevel: "",
     engineeringTeam: "",
-    realtimeExperience: "",
+    aiExperience: "",
     budgetRange: "",
     timeline: "",
   });
@@ -35,14 +35,17 @@ export default function VoiceDiagnosticApplication() {
 
   if (submitted) {
     return (
-      <main className="min-h-screen flex items-center justify-center bg-black text-white">
-        <div className="max-w-xl text-center">
-          <h1 className="text-3xl font-semibold mb-4">
+      <main className="min-h-screen flex items-center justify-center bg-black text-white px-6">
+        <div className="max-w-xl text-center space-y-6">
+          <h1 className="text-3xl font-semibold">
             Application Received
           </h1>
           <p className="text-neutral-400">
-            Our team will review your submission within 2–3 business days.
-            If aligned, you will receive a scheduling link for the diagnostic session.
+            Your submission is under review.
+            We assess fit based on system complexity, readiness, and alignment.
+          </p>
+          <p className="text-neutral-500 text-sm">
+            If selected, you will receive an invitation to the AI Architecture Diagnostic Lab.
           </p>
         </div>
       </main>
@@ -53,14 +56,20 @@ export default function VoiceDiagnosticApplication() {
     <main className="min-h-screen bg-black text-white px-6 py-32">
       <div className="max-w-3xl mx-auto">
 
-        {/* Header */}
-        <div className="text-center mb-16">
-          <h1 className="text-4xl font-semibold mb-6">
-            Voice Architecture Diagnostic Application
+        {/* HERO */}
+        <div className="text-center mb-16 space-y-6">
+          <h1 className="text-4xl font-semibold">
+            AI Architecture Diagnostic Lab
           </h1>
-          <p className="text-neutral-400">
-            This diagnostic is designed for organizations preparing to evaluate
-            or deploy realtime Voice AI infrastructure.
+
+          <p className="text-neutral-400 max-w-2xl mx-auto">
+            A structured assessment for organizations building or scaling AI systems.
+            We evaluate architecture, governance, and operational readiness — before costly decisions are made.
+          </p>
+
+          <p className="text-neutral-500 text-sm max-w-xl mx-auto">
+            This is not a generic workshop.  
+            It is a selective diagnostic designed for teams serious about deploying AI systems in production.
           </p>
         </div>
 
@@ -70,7 +79,7 @@ export default function VoiceDiagnosticApplication() {
             setLoading(true);
 
             try {
-              const res = await fetch("/api/voice-diagnostic", {
+              const res = await fetch("/api/ai-architecture-diagnostic", {
                 method: "POST",
                 headers: {
                   "Content-Type": "application/json",
@@ -78,9 +87,7 @@ export default function VoiceDiagnosticApplication() {
                 body: JSON.stringify(formData),
               });
 
-              if (!res.ok) {
-                throw new Error("Submission failed");
-              }
+              if (!res.ok) throw new Error("Submission failed");
 
               setSubmitted(true);
             } catch (err) {
@@ -93,103 +100,158 @@ export default function VoiceDiagnosticApplication() {
           className="space-y-12"
         >
 
-          {/* SECTION 1 */}
+          {/* ORGANIZATION */}
           <SectionTitle title="Organization Profile" />
 
           <Input label="Company Name" name="companyName" required updateField={updateField} />
           <Input label="Primary Contact Email" name="email" type="email" required updateField={updateField} />
           <Input label="Industry" name="industry" updateField={updateField} />
-          <Input label="Organization Size (Employees)" name="orgSize" updateField={updateField} />
-          <Input label="Primary Contact Title" name="contactTitle" updateField={updateField} />
+          <Input label="Organization Size" name="orgSize" updateField={updateField} />
+          <Input label="Primary Contact Role" name="contactTitle" updateField={updateField} />
 
-          {/* SECTION 2 */}
-          <SectionTitle title="Voice AI Use Case" />
+          {/* AI SYSTEM */}
+          <SectionTitle title="AI System Context" />
 
-          <Textarea label="Describe your intended Voice AI use case" name="useCase" required updateField={updateField} />
+          <Textarea
+            label="What are you trying to build or improve with AI?"
+            name="useCase"
+            required
+            updateField={updateField}
+          />
 
-          <Select label="Primary Channel" name="channel" updateField={updateField} options={[
-            "Web Browser Voice",
-            "Telephony (SIP / PSTN)",
-            "Mobile Application",
-            "Internal Operations",
-            "Multichannel Deployment"
-          ]} />
+          <Select
+            label="Scope of AI Initiative"
+            name="aiScope"
+            updateField={updateField}
+            options={[
+              "Single workflow automation",
+              "Customer-facing system",
+              "Internal operations",
+              "Multi-agent system",
+              "Enterprise-wide platform",
+            ]}
+          />
 
-          <Input label="Estimated Monthly Voice Interactions" name="monthlyInteractions" updateField={updateField} />
-          <Input label="Expected Peak Concurrent Sessions" name="concurrentSessions" updateField={updateField} />
+          <Input label="Estimated Users or Interactions per Month" name="users" updateField={updateField} />
 
-          {/* SECTION 3 */}
-          <SectionTitle title="Current Technical Environment" />
+          <Textarea
+            label="Core Systems Involved (CRM, APIs, Data Sources)"
+            name="systems"
+            updateField={updateField}
+          />
 
-          <Textarea label="Infrastructure Stack" name="infrastructure" updateField={updateField} />
+          {/* ARCHITECTURE */}
+          <SectionTitle title="Architecture & Infrastructure" />
 
-          <Select label="Existing Realtime Infrastructure" name="realtimeInfra" updateField={updateField} options={[
-            "None",
-            "WebSocket only",
-            "WebRTC experience",
-            "Telephony integration in place",
-            "Event-driven architecture implemented"
-          ]} />
+          <Textarea
+            label="Current Infrastructure Stack"
+            name="infrastructure"
+            updateField={updateField}
+          />
 
-          {/* SECTION 4 */}
-          <SectionTitle title="Governance & Compliance" />
+          <Select
+            label="Architecture Maturity"
+            name="architectureMaturity"
+            updateField={updateField}
+            options={[
+              "No formal architecture",
+              "Prototype / MVP",
+              "Partially structured",
+              "Production system",
+              "Scaled multi-system environment",
+            ]}
+          />
 
-          <Select label="Regulatory Environment" name="regulatory" updateField={updateField} options={[
-            "None",
-            "GDPR considerations",
-            "HIPAA exposure",
-            "SOC 2 required",
-            "Multiple regulatory constraints"
-          ]} />
+          {/* GOVERNANCE */}
+          <SectionTitle title="Governance & Risk" />
 
-          <Select label="PII Sensitivity Level" name="piiLevel" updateField={updateField} options={[
-            "Low",
-            "Moderate",
-            "High"
-          ]} />
+          <Select
+            label="Regulatory Environment"
+            name="regulatory"
+            updateField={updateField}
+            options={[
+              "None",
+              "GDPR",
+              "HIPAA",
+              "SOC2",
+              "Multiple regulatory constraints",
+            ]}
+          />
 
-          {/* SECTION 5 */}
+          <Select
+            label="PII / Data Sensitivity"
+            name="piiLevel"
+            updateField={updateField}
+            options={[
+              "Low",
+              "Moderate",
+              "High",
+            ]}
+          />
+
+          {/* CAPABILITY */}
           <SectionTitle title="Internal Capability" />
 
-          <Select label="Engineering Team" name="engineeringTeam" updateField={updateField} options={[
-            "None",
-            "<10",
-            "10–50",
-            "Enterprise"
-          ]} />
+          <Select
+            label="Engineering Team Size"
+            name="engineeringTeam"
+            updateField={updateField}
+            options={[
+              "None",
+              "<10",
+              "10–50",
+              "50+",
+            ]}
+          />
 
-          <Select label="Realtime Experience" name="realtimeExperience" updateField={updateField} options={[
-            "None",
-            "Limited",
-            "WebSocket",
-            "WebRTC"
-          ]} />
+          <Select
+            label="AI / Systems Experience"
+            name="aiExperience"
+            updateField={updateField}
+            options={[
+              "None",
+              "Early experimentation",
+              "Some production experience",
+              "Advanced systems experience",
+            ]}
+          />
 
-          {/* SECTION 6 */}
+          {/* INVESTMENT */}
           <SectionTitle title="Investment & Timeline" />
 
-          <Select label="Budget Range" name="budgetRange" required updateField={updateField} options={[
-            "<50k",
-            "50k–150k",
-            "150k–500k",
-            "500k+"
-          ]} />
+          <Select
+            label="Budget Range"
+            name="budgetRange"
+            required
+            updateField={updateField}
+            options={[
+              "<50k",
+              "50k–150k",
+              "150k–500k",
+              "500k+",
+            ]}
+          />
 
-          <Select label="Timeline" name="timeline" updateField={updateField} options={[
-            "3–6 months",
-            "1–3 months",
-            "Immediate"
-          ]} />
+          <Select
+            label="Timeline"
+            name="timeline"
+            updateField={updateField}
+            options={[
+              "Immediate",
+              "1–3 months",
+              "3–6 months",
+              "Exploration phase",
+            ]}
+          />
 
           {/* SUBMIT */}
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-chart-1 py-4 rounded-full font-medium"
+            className="w-full bg-emerald-500 text-black py-4 rounded-full font-medium hover:bg-emerald-400 transition"
           >
-            {loading ? "Submitting..." : "Submit Application"}
+            {loading ? "Submitting..." : "Apply for Diagnostic Lab"}
           </button>
-
         </form>
       </div>
     </main>
@@ -199,7 +261,11 @@ export default function VoiceDiagnosticApplication() {
 /* ---------- Components ---------- */
 
 function SectionTitle({ title }: { title: string }) {
-  return <h2 className="text-2xl font-semibold border-b border-neutral-800 pb-4">{title}</h2>;
+  return (
+    <h2 className="text-2xl font-semibold border-b border-neutral-800 pb-4">
+      {title}
+    </h2>
+  );
 }
 
 function Input({ label, name, updateField, ...props }: any) {
@@ -239,7 +305,9 @@ function Select({ label, name, options, updateField, ...props }: any) {
       >
         <option value="">Select</option>
         {options.map((o: string) => (
-          <option key={o} value={o}>{o}</option>
+          <option key={o} value={o}>
+            {o}
+          </option>
         ))}
       </select>
     </div>

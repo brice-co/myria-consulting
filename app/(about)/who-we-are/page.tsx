@@ -4,10 +4,6 @@ import { motion } from "framer-motion";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 import { Section } from "@/components/marketing/layout/Section";
-import ChatWidget from "@/components/ChatWidget/ChatWidget";
-import { PAGE_AGENTS } from "@/config/agentConfigs";
-import {  PhoneCallIcon } from "lucide-react";
-
 
 /* -------------------------------------------------
    Motion variants (LOCAL, SAFE, TS-CLEAN)
@@ -43,9 +39,9 @@ export default function WhoWeArePage() {
             We build AI systems people can trust.
           </h1>
           <p className="max-w-3xl text-lg text-muted-foreground">
-            Myria Consulting is a voice-first AI consulting firm focused on
-            designing and building intelligent systems that work inside real
-            organizations — not just impressive demos.
+            Myria Consulting is an AI systems and governance partner focused on
+            designing and building intelligent systems that operate reliably
+            inside real organizations — not just impressive demos.
           </p>
         </motion.div>
 
@@ -61,17 +57,18 @@ export default function WhoWeArePage() {
           <div className="space-y-4 text-muted-foreground">
             <p>
               Our mission is to help organizations move from AI experimentation
-              to AI systems that create measurable value.
+              to structured, production-grade AI systems that create measurable value.
             </p>
+
             <p>
-              We believe voice is the most natural interface for humans —
-              but only when it is designed with intent, governance,
-              and long-term scalability in mind.
+              We believe AI becomes powerful when it is governed, integrated,
+              and designed as part of a larger system — not as isolated features.
             </p>
+
             <p>
               We don’t sell platforms.  
-              We help teams design the right entry point into AI —
-              then build systems that evolve with them.
+              We help teams define the right entry point into AI —  
+              then design systems that evolve with them.
             </p>
           </div>
 
@@ -92,7 +89,8 @@ export default function WhoWeArePage() {
               but a living part of how organizations operate.
             </p>
             <p>
-              Voice agents will become the front door —
+              AI interfaces — including voice and real-time systems —
+              will become the front door —
               not because they are flashy,
               but because they reduce friction,
               accelerate decisions,
@@ -129,8 +127,9 @@ export default function WhoWeArePage() {
               <li>Built to evolve, not to impress</li>
             </ul>
             <p>
-              That’s why we start with voice —
-              but we always think in systems.
+              That’s why we design AI as systems —
+              where interfaces like voice are only one layer
+              of a larger, governed architecture.
             </p>
           </div>
 
@@ -186,7 +185,7 @@ export default function WhoWeArePage() {
               We aim to:
             </p>
             <ul className="list-disc pl-6 space-y-2">
-              <li>Deliver high-impact custom voice systems</li>
+              <li>Design and implement production-grade AI systems</li>
               <li>Help teams avoid costly AI missteps</li>
               <li>Lay the groundwork for scalable AI platforms</li>
             </ul>
@@ -207,28 +206,22 @@ export default function WhoWeArePage() {
           className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-6 pt-12 border-t border-border"
         >
           <p className="text-lg font-medium">
-            Want to explore how voice AI could work in your organization?
+            Want to understand how mature and scalable your AI systems are?
           </p>
           <Button
            asChild
            size="lg"
            className="bg-emerald-500 text-black hover:bg-emerald-400 transition-all duration-200"
             >
-            <Link href="/work-with-us">Work with us</Link>
+            <Link href="/ai-governance-assessment">
+              Get Your AI Governance Score
+            </Link>
           </Button>
 
         </motion.div>
 
       </div>
-      <ChatWidget
-          title="Myria Guide"
-          subtitle="Your AI companion for seamless communication and productivity."
-          accentColor="260 80% 60%"
-          icon={<PhoneCallIcon className="h-12 w-12" />}
-          voice="alloy"
-          systemPrompt={PAGE_AGENTS.whoWeAre.systemPrompt}
-          allowedTools={PAGE_AGENTS.whoWeAre.allowedTools}
-        />
+      
     </Section>
   );
 }

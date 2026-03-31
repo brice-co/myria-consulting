@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { Linkedin, Mail, ArrowUpRight } from "lucide-react";
 
 const navigation = {
@@ -9,18 +8,14 @@ const navigation = {
     { label: "Who We Are", href: "/who-we-are" },
     { label: "What We Build", href: "/what-we-build" },
     { label: "How We Build", href: "/how-we-build" },
-    { label: "Voice Capabilities", href: "/voice/tiers" },
+    
   ],
   solutions: [
-    { label: "Solutions", href: "/what-we-build" },
-    { label: "Why Voice", href: "/why-voice-is-different" },
-    { label: "Technology", href: "/technology" },
+    { label: "AI Systems", href: "/what-we-build" },
     { label: "Architecture", href: "/what-we-build/architecture" },
   ],
   advisory: [
-    { label: "Voice Strategy Assessment", href: "/voice-strategy-assessment" },
-    { label: "Voice Architecture Diagnostic", href: "/realtime-voice-diagnostic" },
-    { label: "Engagement Models", href: "/work-with-us/engagement-models" },
+    { label: "AI Architecture Diagnostic", href: "/ai-architecture-diagnostic" },
     { label: "Governance Framework", href: "/governance" },
   ],
 };
@@ -44,15 +39,17 @@ export default function Footer() {
               <div>
                 
                 <div className="text-md text-white/45">
-                  Voice-First AI
+                  AI Systems & Governance
                 </div>
               </div>
             
 
             <p className="mt-6 text-sm leading-7 text-white/65">
-              Voice-First AI Architecture & Implementation. Myria Consulting
-              designs real-time conversational systems that transform how
-              organizations interact with customers and operations.
+              Myria Consulting designs and implements production-grade AI systems
+              with a focus on governance, architecture, and scalability. <br />
+
+              We help organizations move from experimental AI to structured,
+              reliable, and controllable systems.
             </p>
 
             <div className="mt-6 rounded-2xl border border-white/10 bg-white/[0.03] px-4 py-4">
@@ -60,7 +57,7 @@ export default function Footer() {
                 Architecture Focus
               </p>
               <p className="mt-2 text-sm leading-6 text-white/70">
-                Realtime Systems • Agentic AI • Enterprise Integration
+                AI Systems • Governance • Architecture • Orchestration
               </p>
             </div>
           </div>
@@ -78,11 +75,11 @@ export default function Footer() {
         <div className="grid gap-8 md:grid-cols-[1fr_auto] md:items-end">
           <div>
             <p className="text-sm font-medium text-white">
-              Designing the infrastructure behind Voice-First AI.
+              Designing the infrastructure behind modern AI systems.
             </p>
             <p className="mt-2 max-w-2xl text-sm leading-6 text-white/55">
               Strategic AI transformation for organizations building governed,
-              scalable, real-time conversational systems.
+              scalable, and production-ready AI systems.
             </p>
           </div>
 
@@ -96,7 +93,7 @@ export default function Footer() {
             </a>
 
             <a
-              href="https://www.linkedin.com/in/datascientistconsultant/"
+              href="https://www.linkedin.com/company/myria-consulting/"
               target="_blank"
               rel="noreferrer"
               className="inline-flex items-center gap-2 text-sm text-white/75 transition hover:text-white"
@@ -150,21 +147,10 @@ function FooterColumn({
           <li key={link.href}>
             <Link
               href={link.href}
-                className="
-                  relative inline-block
-                  text-sm text-white/70
-                  transition-colors duration-300 hover:text-white
-
-                  after:absolute after:left-0 after:-bottom-1
-                  after:h-px after:w-0
-                 after:bg-white/60
-                after:transition-all after:duration-300 after:ease-out
-
-              hover:after:w-full
-         "
-          >
+              className="no-underline hover:opacity-80 transition text-sm text-white/75"
+            >
               {link.label}
-          </Link>
+            </Link>
           </li>
         ))}
       </ul>
