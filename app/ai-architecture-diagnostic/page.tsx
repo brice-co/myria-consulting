@@ -174,8 +174,8 @@ export default function AIDiagnosticLanding() {
           </div>
         </section>
 
-        <section className="mt-32 grid gap-6 lg:grid-cols-[1.1fr_0.9fr] lg:items-start">
-          <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-8">
+        <section className="mt-32 grid gap-6 ">
+          <div className="mx-auto max-w-2xl text-center">
             <h2 className="text-3xl font-semibold">What your team receives</h2>
             <div className="mt-8 space-y-5 text-white/65">
               <Deliverable text="AI maturity score with executive-level interpretation" />
@@ -187,22 +187,7 @@ export default function AIDiagnosticLanding() {
             </div>
           </div>
 
-          <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-8">
-                <h3 className="text-2xl font-semibold">
-                See the diagnostic in action
-                </h3>
-
-                <p className="mt-3 text-white/60">
-                A walkthrough of the diagnostic framework, dashboard outputs, and executive report.
-              </p>
-
-            <div className="mt-6 rounded-xl overflow-hidden border border-white/10">
-            {/* Replace with actual video embed */}
-            <div className="aspect-video bg-black flex items-center justify-center text-white/30 text-sm">
-            Video preview
-        </div>
-     </div>
-</div>
+          
         </section>
 
         <section className="mt-32 rounded-3xl border border-white/10 bg-white/[0.03] p-10 text-center">

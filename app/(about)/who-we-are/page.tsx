@@ -39,7 +39,7 @@ export default function WhoWeArePage() {
             We build AI systems people can trust.
           </h1>
           <p className="max-w-3xl text-lg text-muted-foreground">
-            Myria Consulting is an AI systems and governance partner focused on
+            Myria Consulting is your AI systems and governance partner focused on
             designing and building intelligent systems that operate reliably
             inside real organizations — not just impressive demos.
           </p>
