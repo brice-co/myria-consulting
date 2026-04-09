@@ -135,18 +135,18 @@ export const ArchitectureDiagram = () => {
           ))}
         </div>
       </div>
-      <div className="text-center mt-10">
-    <a
-      href="/start-assessment"
-      className="inline-flex items-center justify-center rounded-xl bg-cyan-600 px-8 py-4 font-medium text-white hover:bg-cyan-500 transition"
-    >
-      See Where Your System Breaks
-    </a>
+      <div className="mt-12 text-center">
+          <a
+            href="/voice-diagnostic/apply"
+            className="inline-flex items-center justify-center rounded-xl bg-cyan-600 px-8 py-4 font-medium text-white transition hover:bg-cyan-500"
+          >
+            Book an AI Architecture Lab
+          </a>
 
-    <p className="text-sm text-muted-foreground mt-3">
-    Get your AI Governance Score in 2 minutes
-   </p>
-</div>
+          <p className="mt-3 text-sm text-muted-foreground">
+            Paid advisory engagement · Typical duration: 2–4 weeks
+          </p>
+        </div>
     </div>
   );
 };

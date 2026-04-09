@@ -6,48 +6,48 @@ import {
   Activity,
   Layers,
   Sparkles,
-  Badge,
 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
+import { Badge } from "@/components/ui/badge";
 import Link from "next/link";
 
 const features = [
   {
     icon: AlertTriangle,
-    title: "No Governance Layer",
+    title: "Weak control boundaries",
     description:
-      "Most AI systems operate without structured oversight, making them unpredictable, risky, and difficult to control.",
+      "Many AI systems operate without clear oversight, escalation paths, or guardrails, making them harder to trust and govern.",
   },
   {
     icon: Activity,
-    title: "No Evaluation or Feedback Loop",
+    title: "Limited evaluation and visibility",
     description:
-      "Without continuous evaluation, AI systems drift over time — producing inconsistent and unreliable outputs.",
+      "Without structured monitoring, feedback loops, and performance review, AI systems drift and degrade over time.",
   },
   {
     icon: Cpu,
-    title: "Model-Centric Thinking",
+    title: "Model-first thinking",
     description:
-      "Teams focus on models, not systems — ignoring orchestration, memory, and real-world execution layers.",
+      "Teams often focus on model choice while overlooking orchestration, workflows, memory, and execution design.",
   },
   {
     icon: Layers,
-    title: "Fragmented Architecture",
+    title: "Fragmented architecture",
     description:
-      "Disconnected tools, APIs, and workflows create brittle systems that break under real usage.",
+      "Disconnected tools, APIs, and automations create brittle systems that become difficult to maintain as complexity grows.",
   },
   {
     icon: Shield,
-    title: "Hidden Risk & Compliance Gaps",
+    title: "Hidden governance and security gaps",
     description:
-      "Security, auditability, and governance are often added too late — increasing exposure and technical debt.",
+      "Risk, auditability, access control, and compliance concerns are often addressed too late, increasing exposure and operational debt.",
   },
   {
     icon: Globe,
-    title: "Not Designed to Scale",
+    title: "Not ready for production scale",
     description:
-      "What works in a prototype often fails in production due to missing infrastructure and system design.",
+      "What works in a pilot often struggles in production when reliability, resilience, and operating discipline become critical.",
   },
 ];
 
@@ -55,69 +55,63 @@ const Features = () => {
   return (
     <section
       id="features"
-      className="py-24 relative bg-background overflow-x-hidden"
+      className="relative overflow-x-hidden bg-background py-24"
     >
-      {/* Background Effects */}
       <div className="absolute inset-0 bg-gradient-to-b from-primary/5 via-transparent to-transparent" />
-      <div className="absolute top-1/4 left-1/4 w-48 h-48 md:w-96 md:h-96 bg-violet-500/10 rounded-full blur-3xl" />
-      <div className="absolute top-1/3 right-1/4 w-48 h-48 md:w-96 md:h-96 bg-cyan-500/10 rounded-full blur-3xl" />
+      <div className="absolute left-1/4 top-1/4 h-48 w-48 rounded-full bg-violet-500/10 blur-3xl md:h-96 md:w-96" />
+      <div className="absolute right-1/4 top-1/3 h-48 w-48 rounded-full bg-cyan-500/10 blur-3xl md:h-96 md:w-96" />
 
-      <div className="max-w-7xl mx-auto relative px-6">
-        {/* 🔥 Header */}
-        <div className="text-center max-w-4xl mx-auto mb-16">
+      <div className="relative mx-auto max-w-7xl px-6">
+        <div className="mx-auto mb-16 max-w-4xl text-center">
           <Badge className="mb-6 px-4 py-2 text-sm font-medium">
-            <Sparkles className="w-4 h-4 mr-2 inline" />
-            Why Most AI Systems Fail
+            <Sparkles className="mr-2 inline h-4 w-4" />
+            Why AI initiatives stall before scale
           </Badge>
 
-          <h2 className="text-4xl sm:text-5xl font-bold mb-6">
-            Your AI Stack Isn’t the Problem.
+          <h2 className="mb-6 text-4xl font-bold sm:text-5xl">
+            Most AI problems are not model problems.
             <br />
-            <span className="text-cyan-400">Your System Design Is.</span>
+            <span className="text-cyan-400">They are system problems.</span>
           </h2>
 
-          <p className="text-xl text-muted-foreground leading-relaxed">
-            Most teams focus on models and tools — but the real issue is missing
-            structure, governance, and system architecture.
+          <p className="text-xl leading-relaxed text-muted-foreground">
+            Many teams move quickly into AI, but the architecture, governance,
+            and operating model behind the system are not mature enough to
+            support real scale.
           </p>
         </div>
 
-        {/* 🔍 Problem Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-16">
+        <div className="mb-16 grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
           {features.map((feature, idx) => (
             <div
               key={idx}
-              className="group p-8 rounded-xl bg-card border border-border hover:border-primary/50 transition-all duration-300"
+              className="group rounded-xl border border-border bg-card p-8 transition-all duration-300 hover:border-primary/50"
             >
-              <div className="w-12 h-12 rounded-lg bg-primary/10 flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
+              <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 transition-colors group-hover:bg-primary/20">
                 <feature.icon className="text-primary" size={24} />
               </div>
 
-              <h3 className="text-xl font-semibold mb-3">
-                {feature.title}
-              </h3>
+              <h3 className="mb-3 text-xl font-semibold">{feature.title}</h3>
 
-              <p className="text-muted-foreground">
-                {feature.description}
-              </p>
+              <p className="text-muted-foreground">{feature.description}</p>
             </div>
           ))}
         </div>
 
-        {/* 🚀 CTA BLOCK (CRITICAL) */}
-        <div className="text-center max-w-2xl mx-auto">
-          <p className="text-lg text-muted-foreground mb-6">
-            Most companies don’t realize these gaps until it’s too late.
+        <div className="mx-auto max-w-2xl text-center">
+          <p className="mb-6 text-lg text-muted-foreground">
+            AI Architecture Labs helps you identify what is fragile, what is missing,
+            and what needs to happen before scaling further.
           </p>
 
-          <Link href="/start-assessment">
+          <Link href="/voice-diagnostic/apply">
             <Button size="lg" className="px-8 py-6 text-base">
-              Find Your AI Governance Gaps
+              Book an AI Architecture Lab
             </Button>
           </Link>
 
-          <p className="text-sm text-muted-foreground mt-4">
-            Takes 2 minutes • Get your score + recommendations
+          <p className="mt-4 text-sm text-muted-foreground">
+            Paid 2–4 week advisory engagement for architecture, risk, and readiness
           </p>
         </div>
       </div>

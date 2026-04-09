@@ -5,92 +5,89 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 
-
 export const faqItems = [
   {
     q: "What does Myria Consulting do?",
-    a: "Myria Consulting designs and implements production-grade AI systems with a strong focus on governance, architecture, and scalability. We help organizations move from experimental AI to structured, reliable, and controllable systems."
+    a: "Myria Consulting helps organizations design and implement production-grade AI systems with a strong focus on architecture, governance, scalability, and operational readiness. We help teams move from fragmented experimentation to structured, reliable, and controllable AI systems.",
   },
   {
-    q: "What is the AI Governance Assessment?",
-    a: "It’s a 2-minute diagnostic that evaluates how structured, controlled, and scalable your AI systems are. You receive a score, key risks, and actionable recommendations to improve your architecture."
+    q: "What is AI Architecture Labs?",
+    a: "AI Architecture Labs is a paid 2–4 week advisory engagement designed to assess how your AI system is structured, governed, secured, and operated. It helps you understand what is strong, what is fragile, and what needs to be addressed before scaling further.",
   },
   {
-    q: "What do I get after completing the assessment?",
-    a: "You get an AI Governance Score (0–100), a breakdown of system gaps, risk insights, and a clear roadmap to improve your AI systems, including governance and architecture recommendations."
+    q: "What do we receive as part of the engagement?",
+    a: "Depending on scope, clients receive structured findings, architecture and risk insights, a breakdown of key gaps, executive-ready outputs such as dashboard views and reports, and a prioritized roadmap for next steps.",
   },
   {
     q: "Is this relevant if we already use AI in production?",
-    a: "Yes — especially. Most AI issues appear after deployment: lack of control, system drift, scaling challenges, and hidden risks. The assessment helps identify and fix these gaps."
+    a: "Yes — especially. Many of the most important problems only appear after deployment, including governance gaps, system drift, operational fragility, scaling issues, and hidden risk. AI Architecture Labs helps surface those issues before they become larger operational problems.",
   },
   {
     q: "How is Myria different from other AI providers?",
-    a: "Most providers focus on building AI features. We design complete systems — including orchestration, memory, governance, and execution layers — to ensure long-term reliability and scalability."
+    a: "Many providers focus on building AI features or prototypes. Myria focuses on the full system: architecture, orchestration, governance, memory, control boundaries, observability, and execution layers. The goal is not just to make AI work, but to make it reliable and scalable in real-world environments.",
   },
   {
     q: "Do you only work on voice AI systems?",
-    a: "No. While we have deep expertise in real-time and voice systems, our core focus is AI system architecture and governance across use cases — including automation, copilots, and multi-agent workflows."
+    a: "No. While Myria has deep expertise in real-time and voice systems, the broader focus is AI system architecture across use cases, including copilots, automation, retrieval-based systems, and multi-agent workflows.",
   },
   {
-    q: "What happens after I get my score?",
-    a: "You can use the recommendations internally, or work with us to design and implement a structured AI system with proper governance, architecture, and scalability."
-  }
+    q: "Who is AI Architecture Labs for?",
+    a: "It is designed for organizations that are exploring, piloting, or already deploying AI and need more clarity before scaling further. It is especially valuable for teams facing growing complexity, governance concerns, reliability issues, or uncertainty around what to fix next.",
+  },
+  {
+    q: "What happens after the lab?",
+    a: "After the engagement, your team has a clearer view of system maturity, risk areas, and priorities. From there, you can use the findings internally or continue with Myria for deeper architecture, implementation, or governance support.",
+  },
 ];
-
 
 const FAQ = () => {
   return (
-    <section className="py-24 px-6">
-      <div className="max-w-4xl mx-auto">
-
-        {/* 🔥 HEADER */}
-        <div className="text-center mb-12">
-          <p className="text-sm text-cyan-400 mb-2">
+    <section className="px-6 py-24">
+      <div className="mx-auto max-w-4xl">
+        <div className="mb-12 text-center">
+          <p className="mb-2 text-sm text-cyan-400">
             Still have questions?
           </p>
 
-          <h2 className="text-4xl font-bold mb-4">
-            AI Systems & Governance FAQ
+          <h2 className="mb-4 text-4xl font-bold">
+            AI Architecture Labs FAQ
           </h2>
 
-          <p className="text-muted-foreground text-lg">
-            Answers to help you understand your AI maturity, risks, and next steps.
+          <p className="text-lg text-muted-foreground">
+            Answers to help you understand the engagement, the outcomes, and when it makes sense to bring Myria in.
           </p>
         </div>
 
-        {/* ❓ FAQ */}
         <Accordion type="single" collapsible className="space-y-3">
           {faqItems.map((item, index) => (
             <AccordionItem
               key={index}
               value={`item-${index}`}
-              className="border border-border/50 rounded-lg px-4 bg-muted/20"
+              className="rounded-lg border border-border/50 bg-muted/20 px-4"
             >
-              <AccordionTrigger className="text-left py-4">
+              <AccordionTrigger className="py-4 text-left">
                 {item.q}
               </AccordionTrigger>
 
-              <AccordionContent className="text-muted-foreground pb-4 leading-relaxed">
+              <AccordionContent className="pb-4 leading-relaxed text-muted-foreground">
                 {item.a}
               </AccordionContent>
             </AccordionItem>
           ))}
         </Accordion>
 
-        {/* 🚀 CTA */}
-        <div className="text-center mt-12">
+        <div className="mt-12 text-center">
           <a
-            href="/start-assessment"
-            className="inline-flex items-center justify-center rounded-xl bg-cyan-600 px-8 py-4 font-medium text-white hover:bg-cyan-500 transition"
+            href="/voice-diagnostic/apply"
+            className="inline-flex items-center justify-center rounded-xl bg-cyan-600 px-8 py-4 font-medium text-white transition hover:bg-cyan-500"
           >
-            Get Your AI Governance Score
+            Book an AI Architecture Lab
           </a>
 
-          <p className="text-sm text-muted-foreground mt-3">
-            Takes 2 minutes • Get your score and recommendations
+          <p className="mt-3 text-sm text-muted-foreground">
+            Paid advisory engagement · Typical duration: 2–4 weeks
           </p>
         </div>
-
       </div>
     </section>
   );

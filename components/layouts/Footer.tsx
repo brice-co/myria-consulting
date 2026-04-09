@@ -17,6 +17,7 @@ const navigation = {
   advisory: [
     { label: "AI Architecture Diagnostic", href: "/ai-architecture-diagnostic" },
     { label: "Governance Framework", href: "/governance" },
+    { label: "AI Security", href: "/ai-security" },
   ],
 };
 
