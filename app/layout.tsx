@@ -1,108 +1,66 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
-import Script from "next/script";
-import Navbar from "@/components/layouts/Navbar";
-import Footer from "@/components/layouts/Footer";
+import { Cormorant_Garamond, DM_Sans } from 'next/font/google'
+import type { Metadata, Viewport } from 'next'
+import './globals.css'
 
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const cormorant = Cormorant_Garamond({ subsets: ['latin'], variable: '--font-serif' })
+const dmSans = DM_Sans({ subsets: ['latin'], variable: '--font-sans' })
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://myriaconsulting.com"),
-  title: {
-    default: "Myria Consulting — AI Platforms & Voice Agents",
-    template: "%s | Myria Consulting",
-  },
-  description:
-    "Myria Consulting designs and builds AI platforms for real organizations. We start with AI Voice Agents and scale toward secure, multi-tenant, governed AI systems.",
-  applicationName: "Myria Consulting",
-  authors: [{ name: "Myria Consulting" }],
-  generator: "Next.js",
-  keywords: [
-    "AI Consulting",
-    "AI Voice Agent",
-    "Agentic AI",
-    "AI Platform",
-    "Multi-tenant AI",
-    "Enterprise AI",
-    "AI Governance",
-    "AI Architecture",
-    "Next.js AI",
-  ],
-
+  title: 'Myria Consulting | Virtual Management Consulting',
+  description: 'Myria Consulting combines senior management consulting thinking with a virtual team of specialist advisors.',
+  keywords: ['Myria', 'Myria Consulting', 'Virtual Management Consulting', 'Virtual Advisory Service', 'Distributed Systems', 'Management Consulting', 'Advisory Service'],
+  generator: 'myria.app',
+  robots: 'index, follow',
+  
   openGraph: {
-    type: "website",
-    siteName: "Myria Consulting",
-    title: "Myria Consulting — AI Platforms & Voice Agents",
-    description:
-      "We help organizations move from AI experiments to production-ready AI platforms. Voice Agents, governance, security, and scale built in.",
-    url: "https://myriaconsulting.com",
-    images: [
+    title: 'Advisory Labs',
+    description: 'Professional advisory service for distributed systems',
+    type: 'website',
+  },
+
+    icons: {
+    icon: [
       {
-        url: "/og-image.png", // you can add later
-        width: 1200,
-        height: 630,
-        alt: "Myria Consulting — AI Platforms",
+        url: '/images/favicon-16x16.png',
+        sizes: '16x16',
+        type: 'image/png',
+      },
+      {
+        url: '/images/favicon-32x32.png',
+        sizes: '32x32',
+        type: 'image/png',
+      },
+      {
+        url: '/images/favicon-48x48.png',
+        sizes: '48x48',
+        type: 'image/png',
       },
     ],
   },
+}
 
-  twitter: {
-    card: "summary_large_image",
-    title: "Myria Consulting — AI Platforms & Voice Agents",
-    description:
-      "From AI Voice Agents to full AI platforms. Designed for scale, governance, and real-world use.",
-    images: ["/og-image.png"],
-  },
 
-  robots: {
-    index: true,
-    follow: true,
-  },
-};
 
+
+export const viewport: Viewport = {
+  colorScheme: 'light dark',
+  themeColor: [
+    { media: '(prefers-color-scheme: light)', color: 'white' },
+    { media: '(prefers-color-scheme: dark)', color: 'black' },
+  ],
+}
 
 export default function RootLayout({
   children,
-}: {
-  children: React.ReactNode;
-}) {
+}: Readonly<{
+  children: React.ReactNode
+}>) {
   return (
-    <html
-      lang="en"
-      className="dark"
-      style={{ colorScheme: "dark" }}   // ✅ MATCHES SERVER OUTPUT
-    >
-      <body
-        className={`
-          ${geistSans.variable}
-          ${geistMono.variable}
-          min-h-screen
-          bg-black
-          text-white
-          antialiased
-        `}
-      >
-          {/* Global Navbar */}
-          <Navbar />
-          
+    <html lang="en" className="bg-white text-black antialiased dark:bg-black dark:text-white">
+      <body className={`${dmSans.variable} ${cormorant.variable} font-sans antialiased`}>
         {children}
-          {/* Global Footer */}
-          <Footer />
+        
       </body>
-      <Script
-      src="https://assets.calendly.com/assets/external/widget.js"
-      strategy="afterInteractive"
-      />
     </html>
-  );
+  )
 }
