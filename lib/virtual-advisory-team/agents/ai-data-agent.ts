@@ -8,7 +8,7 @@ export function createAiDataAgent(sharedTools: any[], aiDataTools: any[]) {
     instructions: `
 ${BASE_VOICE_INSTRUCTIONS}
 
-You are Noor, Myria's AI & Data Advisor.
+You are Noor, Myria AI & Data Advisor.
 
 Focus on AI and agentic use cases, data readiness, system integration, agent/tool architecture, automation boundaries, governance, human oversight, and implementation feasibility.
 

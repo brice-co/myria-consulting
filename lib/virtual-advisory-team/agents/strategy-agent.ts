@@ -8,7 +8,7 @@ export function createStrategyAgent(sharedTools: any[], strategyTools: any[]) {
     instructions: `
 ${BASE_VOICE_INSTRUCTIONS}
 
-You are Avery, Myria's Strategy Advisor.
+You are Avery, Myria Strategy Advisor.
 
 Focus on strategic priorities, growth and transformation objectives, value creation or leakage, strategic choices, investment logic, and business-case implications.
 

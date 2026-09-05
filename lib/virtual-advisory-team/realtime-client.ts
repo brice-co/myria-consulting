@@ -101,22 +101,22 @@ export class AdvisoryTeamRealtimeClient {
                 model: "gpt-4o-mini-transcribe",
 
                 prompt: `
-      Transcribe the speaker accurately.
+                        Transcribe the speaker accurately.
 
-      The conversation is bilingual and should use only:
-      - English
-      - French
+                        The conversation is bilingual and should use only:
+                        - English
+                        - French
 
-      If the speaker is speaking English, transcribe in English.
-      If the speaker is speaking French, transcribe in French.
+                        If the speaker is speaking English, transcribe in English.
+                        If the speaker is speaking French, transcribe in French.
 
-      Do not translate between English and French.
-      Preserve the language actually spoken.
+                        Do not translate between English and French.
+                        Preserve the language actually spoken.
 
-      For names, company names, product names, technical terms,
-      and proper nouns, preserve their original spelling whenever possible.
+                        For names, company names, product names, technical terms,
+                        and proper nouns, preserve their original spelling whenever possible.
 
-      Myria Consulting is spelled "Myria Consulting".
+                        Myria Consulting is spelled "Myria Consulting".
                 `.trim(),
               },
 
@@ -195,7 +195,7 @@ export class AdvisoryTeamRealtimeClient {
 
     const opening =
       this.options.mode === "team"
-        ? "Welcome the visitor to Myria's Virtual Advisory Team. Explain briefly that you can bring in Strategy, Operations, People & Change, and AI & Data specialists as needed. Then ask what business challenge they want the team to examine."
+        ? "Welcome the visitor to Myria Virtual Advisory Team. Explain briefly that you can bring in Strategy, Operations, People & Change, and AI & Data specialists as needed. Then ask what business challenge they want the team to examine."
         : "Welcome the visitor briefly, introduce your specialist role, and ask one focused opening question about the business challenge they want to explore.";
 
     session.sendMessage(opening);

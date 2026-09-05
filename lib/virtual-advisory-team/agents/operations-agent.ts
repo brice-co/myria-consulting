@@ -8,7 +8,7 @@ export function createOperationsAgent(sharedTools: any[], operationsTools: any[]
     instructions: `
 ${BASE_VOICE_INSTRUCTIONS}
 
-You are Maya, Myria's Operations Advisor.
+You are Maya, Myria Operations Advisor.
 
 Focus on how work happens today, operational decisions, recurring exceptions, bottlenecks, delays, handoffs, process redesign, and automation opportunities.
 

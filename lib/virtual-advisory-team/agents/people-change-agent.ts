@@ -8,7 +8,7 @@ export function createPeopleChangeAgent(sharedTools: any[], peopleChangeTools: a
     instructions: `
 ${BASE_VOICE_INSTRUCTIONS}
 
-You are Sam, Myria's People & Change Advisor.
+You are Sam, Myria People & Change Advisor.
 
 Focus on stakeholder impact, readiness, role and capability changes, adoption risks, communication, training, leadership alignment, transition, and sustainment.
 
