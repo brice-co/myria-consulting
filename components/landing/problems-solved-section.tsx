@@ -79,7 +79,7 @@ export function ProblemsSolvedSection() {
                     </span>
                   ))}
                 </div>
-                <a href="#labs" className="mt-7 inline-flex items-center gap-1 text-sm font-semibold text-white hover:text-[#f1d2a0]">
+                <a href="/labs" className="mt-7 inline-flex items-center gap-1 text-sm font-semibold text-white hover:text-[#f1d2a0]">
                   Explore a lab <ArrowUpRight size={15} aria-hidden="true" />
                 </a>
               </motion.div>

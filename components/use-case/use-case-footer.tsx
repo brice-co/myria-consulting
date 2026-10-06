@@ -1,0 +1,2 @@
+import Link from "next/link";
+export function UseCaseFooter(){return <footer className="border-t border-[#12313a]/15 bg-[#fbf8f1]"><div className="mx-auto flex max-w-7xl flex-col gap-4 px-6 py-8 text-sm text-[#5f6b6f] sm:flex-row sm:items-center sm:justify-between lg:px-8"><Link href="/" className="font-serif text-lg text-[#12313a]">Myria Consulting</Link><p>The modern management consulting firm. Business First.</p></div></footer>}

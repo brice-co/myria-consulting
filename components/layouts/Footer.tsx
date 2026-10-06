@@ -2,12 +2,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 const footerMenuItems = [
-  { label: 'Approach', href: '/#approach' },
-  { label: 'Problems Solved', href: '/#problems-solved' },
-  { label: 'Labs', href: '/#labs' },
-  { label: 'How It Works', href: '/#how-it-works' },
-  { label: 'Virtual Teams', href: '/#virtual-team' },
-  { label: 'For Leaders', href: '/#for-leaders' },
+  { label: 'Intelligent OS', href: '/experience/myria-os' },
+  { label: 'Team workspace', href: '/experience/workspace' },
+  { label: 'Virtual Labs', href: '/experience/ai-advisory' },  
+  { label: 'AI-Enabled E-Book', href: '/resources/playbook' },
+  { label: 'Guides', href: '/resources/guides' },
 ]
 
 export function Footer() {

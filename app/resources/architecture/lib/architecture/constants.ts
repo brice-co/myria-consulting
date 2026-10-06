@@ -1,0 +1,1 @@
+export const STEP_MS = 1100;

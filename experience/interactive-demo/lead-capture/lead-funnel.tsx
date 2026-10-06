@@ -1,0 +1,10 @@
+import { ChevronRight, Filter } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import type { Lead, LeadStage } from "@/lib/intelligence-use-cases";
+import { leadStages } from "@/lib/intelligence-use-cases";
+import { cn } from "@/lib/utils";
+
+export function LeadFunnel({ leads, activeStage, onStageChange }: { leads: Lead[]; activeStage: LeadStage | "All"; onStageChange: (stage: LeadStage | "All") => void }) {
+  const peak = Math.max(...leadStages.map((stage) => leads.filter((lead) => lead.stage === stage).length), 1);
+  return <section className="border-b border-border bg-secondary/30 p-4"><div className="mb-3 flex items-center justify-between"><div><div className="text-xs font-bold text-foreground">Live pipeline funnel</div><div className="mt-0.5 text-[10px] text-muted-foreground">Select a stage to focus the room</div></div><Button variant="ghost" size="sm" onClick={() => onStageChange("All")} aria-pressed={activeStage === "All"}><Filter />All leads</Button></div><div className="grid gap-2 sm:grid-cols-5">{leadStages.map((stage, index) => { const count = leads.filter((lead) => lead.stage === stage).length; const width = Math.max(48, 100 - index * 10); return <div key={stage} className="relative flex items-center justify-center"><Button variant="outline" onClick={() => onStageChange(stage)} aria-pressed={activeStage === stage} className={cn("relative h-20 w-full flex-col gap-1 overflow-hidden border-border bg-card px-2 shadow-none", activeStage === stage && "border-primary bg-primary/5 ring-1 ring-primary/20")}><span className="text-xl font-bold text-foreground">{count}</span><span className="text-[9px] font-bold uppercase text-muted-foreground">{stage}</span><span className="absolute bottom-0 left-0 h-1 bg-primary/70" style={{ width: `${(count / peak) * width}%` }} /></Button>{index < leadStages.length - 1 && <ChevronRight className="absolute -right-2 z-10 hidden h-3.5 w-3.5 text-muted-foreground sm:block" />}</div>; })}</div></section>;
+}

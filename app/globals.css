@@ -166,3 +166,14 @@
     @apply bg-background text-foreground;
   }
 }
+
+@import "tailwindcss";
+
+@layer utilities {
+  /* Remove the infinite keyframe animation completely */
+  .progress-bar-transition {
+    /* Smooth transition from whatever width React sets */
+    transition: width linear; 
+  }
+}
+

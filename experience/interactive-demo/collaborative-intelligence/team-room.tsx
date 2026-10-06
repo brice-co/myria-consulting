@@ -1,0 +1,59 @@
+import { useState, type FormEvent } from "react";
+import { Bot, Check, MessageSquare, Plus, Send, UsersRound } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import type { RoomMessage, RoomParticipant } from "@/lib/intelligence-use-cases";
+import { cn } from "@/lib/utils";
+
+export function TeamRoom({ participants, messages, onSend, onInvite }: { participants: RoomParticipant[]; messages: RoomMessage[]; onSend: (text: string) => void; onInvite: () => void }) {
+  const [draft, setDraft] = useState("");
+  function submit(event: FormEvent) { event.preventDefault(); const text = draft.trim(); if (!text) return; onSend(text); setDraft(""); }
+  return (
+    <aside className="bg-card">
+      <div className="border-b border-border px-4 py-4">
+        <div className="flex items-center justify-between gap-2">
+          <div>
+            <div className="flex items-center gap-2 text-xs font-bold text-foreground"><UsersRound className="h-3.5 w-3.5 text-primary" />Team room</div>
+            <div className="mt-0.5 text-[9px] text-muted-foreground">{participants.filter((p) => p.kind === "person").length} people · {participants.filter((p) => p.kind === "agent").length} agents present</div>
+          </div>
+          <Button size="icon" variant="outline" onClick={onInvite} aria-label="Invite participant"><Plus /></Button>
+        </div>
+        <div className="mt-3 flex -space-x-1.5">
+          {participants.map((participant) => <span key={participant.id} title={`${participant.name} · ${participant.role}`} className={cn("flex h-7 w-7 items-center justify-center rounded-full border-2 border-card text-[8px] font-bold", participant.kind === "agent" ? "bg-primary text-primary-foreground" : "bg-accent text-accent-foreground")}>{participant.initials}</span>)}
+        </div>
+      </div>
+      <div className="border-b border-border p-4">
+        <div className="mb-3 flex items-center gap-2 text-[10px] font-semibold uppercase text-muted-foreground"><MessageSquare className="h-3 w-3" />Conversation</div>
+        <div className="max-h-64 space-y-3 overflow-y-auto pr-1">
+          {messages.map((message) => (
+            <div key={message.id} className="flex gap-2">
+              <span className={cn("flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-[7px] font-bold", message.kind === "agent" ? "bg-primary text-primary-foreground" : "bg-accent text-accent-foreground")}>{message.initials}</span>
+              <div className="min-w-0">
+                <div className="flex items-center gap-1.5"><strong className="text-[9px] text-foreground">{message.author}</strong>{message.kind === "agent" && <Bot className="h-2.5 w-2.5 text-primary" />}<span className="text-[8px] text-muted-foreground">{message.time}</span></div>
+                <p className="mt-0.5 text-[10px] leading-relaxed text-muted-foreground">{message.text}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+        <form onSubmit={submit} className="mt-3 flex gap-2">
+          <input value={draft} onChange={(event) => setDraft(event.target.value)} aria-label="Message the team room" placeholder="Message the room…" className="min-w-0 flex-1 rounded-md border border-input bg-background px-3 text-[10px] text-foreground outline-none focus:ring-1 focus:ring-ring" />
+          <Button type="submit" size="icon" aria-label="Send room message"><Send /></Button>
+        </form>
+      </div>
+      <div className="p-4">
+        <div className="mb-3 text-[10px] font-semibold uppercase text-muted-foreground">Agents participating</div>
+        <div className="space-y-2">
+          {participants.filter((participant) => participant.kind === "agent").map((agent, index) => (
+            <div key={agent.id} className="flex items-center gap-2 rounded-md bg-secondary/45 p-2.5">
+              <span className="flex h-7 w-7 items-center justify-center rounded bg-primary/10 text-primary"><Bot className="h-3.5 w-3.5" /></span>
+              <div className="min-w-0 flex-1">
+                <div className="text-[9px] font-bold text-foreground">{agent.name}</div>
+                <div className="truncate text-[8px] text-muted-foreground">{index === 0 ? "Drafting in the open document" : "Grounding answers in live data"}</div>
+              </div>
+              {agent.status === "Working" ? <span className="typing-dot h-1.5 w-1.5 rounded-full bg-primary" /> : <Check className="h-3 w-3 text-primary" />}
+            </div>
+          ))}
+        </div>
+      </div>
+    </aside>
+  );
+}

@@ -1,6 +1,8 @@
 import { Cormorant_Garamond, DM_Sans } from 'next/font/google'
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
+import  SiteHeader  from '@/components/navigation/site-header'
+
 
 const cormorant = Cormorant_Garamond({ subsets: ['latin'], variable: '--font-serif' })
 const dmSans = DM_Sans({ subsets: ['latin'], variable: '--font-sans' })
@@ -58,8 +60,9 @@ export default function RootLayout({
   return (
     <html lang="en" className="bg-white text-black antialiased dark:bg-black dark:text-white">
       <body className={`${dmSans.variable} ${cormorant.variable} font-sans antialiased`}>
+        <SiteHeader>{null}</SiteHeader>
         {children}
-        
+   
       </body>
     </html>
   )
