@@ -18,12 +18,11 @@ export async function POST(request: NextRequest) {
     const limit = await checkPlaybookRateLimit(identifier);
     if (!limit.success) return NextResponse.json({ error: "Too many requests. Please try again later." }, { status: 429 });
 
-    const pdfUrl = process.env.PLAYBOOK_PDF_URL;
     const digitalUrl = process.env.PLAYBOOK_DIGITAL_EDITION_URL;
     const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
     const from = process.env.PLAYBOOK_FROM_EMAIL;
 
-    if (!pdfUrl || !digitalUrl || !siteUrl || !from) {
+    if (!digitalUrl || !siteUrl || !from) {
       throw new Error("Playbook delivery environment is incomplete.");
     }
 
@@ -35,7 +34,7 @@ export async function POST(request: NextRequest) {
       from,
       to: email,
       subject: "Your AI-Enabled Enterprise Playbook",
-      html: buildPlaybookEmail({ name, pdfUrl, digitalUrl, labsUrl: `${siteUrl}/labs` }),
+      html: buildPlaybookEmail({ name, digitalUrl, labsUrl: `${siteUrl}/labs` }),
     });
     if (error) throw new Error(error.message);
     return NextResponse.json({ ok: true });
