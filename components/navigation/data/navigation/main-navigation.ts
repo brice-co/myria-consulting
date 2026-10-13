@@ -13,6 +13,7 @@ import {
   Sparkles,
   Workflow,
 } from "lucide-react";
+import { title } from "process";
 
 export type NavigationItem = {
   title: string;
@@ -145,6 +146,14 @@ export const mainNavigation: NavigationGroup[] = [
         description:
           "Explore structured consulting experiences powered by Myria.",
         href: "/experience/ai-advisory",
+        icon: Presentation,
+      },
+
+{
+        title: "Labs Registration",
+        description:
+          "Register for access to Myria's advisory labs.",
+        href: "/experience/intelligent-labs",
         icon: Presentation,
       },
     ],

@@ -11,12 +11,14 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint",
-    "db:seed": "npx tsx src/db/seed.ts"
+    "db:seed": "npx tsx src/db/seed.ts",
+    "seed:labs-admin": "tsx scripts/seed-labs-admin.ts"
   },
   "dependencies": {
     "@ai-sdk/openai": "^4.0.72",
     "@ai-sdk/react": "^4.0.114",
     "@base-ui/react": "^1.1.0",
+    "@better-auth/drizzle-adapter": "^1.7.7",
     "@google/generative-ai": "^0.24.1",
     "@hookform/resolvers": "^5.2.2",
     "@liveblocks/client": "^3.24.1",

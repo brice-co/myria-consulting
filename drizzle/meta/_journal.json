@@ -8,6 +8,20 @@
       "when": 1791301324749,
       "tag": "0000_even_sue_storm",
       "breakpoints": true
+    },
+    {
+      "idx": 1,
+      "version": "7",
+      "when": 1791584440669,
+      "tag": "0001_magenta_fat_cobra",
+      "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "7",
+      "when": 1791779394870,
+      "tag": "0002_bouncy_doctor_spectrum",
+      "breakpoints": true
     }
   ]
 }

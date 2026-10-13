@@ -1,3 +1,4 @@
+
 "use client";
 
 import Link from "next/link";
@@ -10,7 +11,7 @@ import { MyriaLogo } from "./myria-logo";
 export default function SiteHeader({
   children,
 }: Readonly<{
-  children: React.ReactNode
+  children: React.ReactNode;
 }>) {
   return (
     <header className="relative z-50 border-b border-[#173039]/30 bg-[#f8f5ef]/95 backdrop-blur">
@@ -27,6 +28,7 @@ export default function SiteHeader({
             Client portal
           </Link>
 
+          
           <Link
             href="/resources/playbook"
             className="inline-flex items-center gap-2 rounded-full bg-[#173039] px-5 py-3 text-[12px] font-semibold text-white transition-transform hover:-translate-y-0.5"
@@ -39,6 +41,7 @@ export default function SiteHeader({
 
         <MobileNavigation />
       </div>
+
       {children}
     </header>
   );

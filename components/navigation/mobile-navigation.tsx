@@ -32,6 +32,7 @@ export function MobileNavigation() {
           ))}
 
           <div className="mt-6 grid gap-3">
+            
             <Link
               href="/client-portal"
               className="rounded-full border border-border px-5 py-3 text-center text-sm font-semibold"
