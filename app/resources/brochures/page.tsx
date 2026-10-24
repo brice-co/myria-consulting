@@ -38,7 +38,7 @@ export default function BrochuresPage() {
       </section>
       <section className="px-6 py-20" aria-label="Publications and management frameworks">
         <div className="mx-auto grid max-w-7xl gap-6 md:grid-cols-2 lg:grid-cols-3">
-          {brochures.map((item, index) => (
+          {brochures.map((item) => (
             <article key={item.slug} className="flex min-h-[440px] flex-col border border-[#142b35]/15 bg-white">
               <div className="flex min-h-52 flex-col justify-between bg-[#173039] p-8 text-white">
                 <div className="flex items-center justify-between">
@@ -61,9 +61,6 @@ export default function BrochuresPage() {
             </article>
           ))}
         </div>
-        <p className="mx-auto mt-9 max-w-7xl text-xs leading-6 text-[#647071]">
-          These pages provide accessible introductions to Myria's publications. Full PDF downloads will be added when the source documents are deployed.
-        </p>
       </section>
     </main>
   );
