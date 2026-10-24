@@ -4,7 +4,6 @@ import { ArrowUpRight } from "lucide-react";
 import { studies } from "@/lib/insights/studies";
 import { StudyCard } from "@/components/consulting/insights/StudyCard";
 import { publicPageMetadata } from "@/lib/seo";
-import "@/components/consulting/insights/research.css";
 
 export const metadata: Metadata = publicPageMetadata({
   title: "Research & Insights | Myria Consulting",

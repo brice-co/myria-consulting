@@ -13,6 +13,7 @@ const publicPaths = [
   "/resources/brochures/ai-governance",
   "/resources/guides",
   "/resources/playbook",
+  "/insights",
   "/about-myria",
   "/contact-myria",
   "/client-portal",

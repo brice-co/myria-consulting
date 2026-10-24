@@ -8,7 +8,7 @@ export const consultingNavigation = [
   { label: "Our approach", href: "/our-approach/management-model" },
   { label: "Discovery Lab", href: "#discovery" },
   { label: "Experience", href: "#experience" },
-  { label: "Insights", href: "#insights" },
+  { label: "Insights", href: "/insights" },
   { label: "Brochures", href: "/resources/brochures" },
 ] as const;
 

@@ -162,7 +162,7 @@ export function ContactSection() {
     <section className="mc-contact" id="contact" aria-labelledby="mc-contact-title">
       <div className="mc-container mc-contact-layout">
         <div>
-          <p className="mc-eyebrow mc-eyebrow-light">07 — BEGIN HERE</p>
+          <p className="mc-eyebrow mc-eyebrow-light">08 — BEGIN HERE</p>
           <h2 id="mc-contact-title">What challenge is your organization working through?</h2>
         </div>
         <div className="mc-contact-action">

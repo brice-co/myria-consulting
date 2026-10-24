@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
+import { BrochurePdfActions } from "@/components/consulting/resources/BrochurePdfActions";
 
 export const metadata: Metadata = {
   title: "Myria Management Model | Integrated Management Approach",
@@ -54,7 +55,10 @@ export default function ManagementModelPage() {
             A practical, integrated approach to strengthening organizational clarity,
             alignment and the capacity to improve and evolve over time.
           </p>
-          <Link href="/resources/brochures" className="mt-10 inline-flex items-center gap-3 border-b border-[#e7bd8a] pb-2 text-sm font-semibold text-[#e7bd8a]">
+          <div className="mt-10 max-w-xl">
+            <BrochurePdfActions pdf="/brochures/myria-management-model.pdf" compact />
+          </div>
+          <Link href="/resources/brochures" className="mt-8 inline-flex items-center gap-3 border-b border-[#e7bd8a] pb-2 text-sm font-semibold text-[#e7bd8a]">
             Explore our management resources <ArrowUpRight size={17} aria-hidden="true" />
           </Link>
         </div>

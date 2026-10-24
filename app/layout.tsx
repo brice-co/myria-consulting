@@ -2,6 +2,7 @@ import { Cormorant_Garamond, DM_Sans } from 'next/font/google'
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
 import '@/components/consulting/home/consulting.css'
+import '@/components/consulting/insights/research.css'
 import SiteHeader from '@/components/navigation/site-header'
 import { SITE_URL } from '@/lib/seo'
 
