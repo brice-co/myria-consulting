@@ -29,9 +29,8 @@ export default function OpenGraphImage() {
             MANAGEMENT ADVISORY / INTELLIGENT SYSTEMS
           </span>
         </div>
-        <div style={{ fontSize: 75, lineHeight: 1.08, letterSpacing: -2 }}>
-          Better decisions.
-          <br />
+        <div style={{ display: "flex", flexDirection: "column", fontSize: 75, lineHeight: 1.08, letterSpacing: -2 }}>
+          <span>Better decisions.</span>
           <span style={{ color: "#e5c29f" }}>Stronger execution.</span>
         </div>
         <div style={{ display: "flex", justifyContent: "space-between", fontFamily: "Arial, sans-serif", fontSize: 18 }}>
