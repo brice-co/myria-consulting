@@ -55,7 +55,7 @@ export default function ManagementModelPage() {
             A practical, integrated approach to strengthening organizational clarity,
             alignment and the capacity to improve and evolve over time.
           </p>
-          <div className="mt-10 max-w-xl">
+          <div className="mc-pdf-on-dark mt-10 max-w-xl">
             <BrochurePdfActions pdf="/brochures/myria-management-model.pdf" compact />
           </div>
           <Link href="/resources/brochures" className="mt-8 inline-flex items-center gap-3 border-b border-[#e7bd8a] pb-2 text-sm font-semibold text-[#e7bd8a]">

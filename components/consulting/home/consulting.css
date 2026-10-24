@@ -322,3 +322,5 @@
 
 /* Contrast for the unavailable-PDF note on dark Management Model hero. */
 .bg-\[\#142b35\] .mc-pdf-state { color: #f0d4b4; }
+
+.mc-pdf-on-dark .mc-pdf-state { color: #f0d4b4; }
