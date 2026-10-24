@@ -1,0 +1,37 @@
+/* Brand-aligned, restrained editorial treatment for externally sourced research. */
+.myria-consulting .mc-research { background: #eae7df; }
+.myria-consulting .mc-research-heading { display: grid; grid-template-columns: 1.2fr .7fr; gap: 12%; margin-bottom: 43px; align-items: end; }
+.myria-consulting .mc-research-heading h2,
+.myria-consulting .mc-owned-insights h2 { font: 400 clamp(43px, 5vw, 74px)/1.08 var(--mc-serif); letter-spacing: -.035em; margin-top: 22px; }
+.myria-consulting .mc-research-intro { font-size: 15px; line-height: 1.85; color: #4a575a; }
+.myria-consulting .mc-research-intro p { line-height: inherit; }
+.myria-consulting .mc-research-intro a { display: inline-flex; align-items: center; gap: 12px; margin-top: 21px; border-bottom: 1px solid #142b35; padding-bottom: 8px; color: #142b35; font-size: 13px; font-weight: 650; }
+.myria-consulting .mc-research-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.myria-consulting .mc-study-card { min-width: 0; display: flex; flex-direction: column; border: 1px solid rgba(20,43,53,.14); background: #fffdf9; }
+.myria-consulting .mc-study-art { position: relative; height: 204px; overflow: hidden; background: #173039; }
+.myria-consulting .mc-study-art img { object-fit: cover; }
+.myria-consulting .mc-study-body { display: flex; flex-direction: column; flex: 1; padding: 30px; }
+.myria-consulting .mc-study-meta { display: flex; justify-content: space-between; gap: 10px; color: #70513d; font-size: 10px; font-weight: 700; text-transform: uppercase; letter-spacing: .1em; }
+.myria-consulting .mc-study-body h3 { margin-top: 25px; font: 400 clamp(29px, 2.55vw, 38px)/1.13 var(--mc-serif); letter-spacing: -.018em; }
+.myria-consulting .mc-study-finding { margin-top: 23px; color: #47565b; line-height: 1.72; font-size: 14px; }
+.myria-consulting .mc-study-lens { margin-top: 15px; color: #47565b; line-height: 1.72; font-size: 14px; padding-left: 15px; border-left: 2px solid #a87532; }
+.myria-consulting .mc-study-finding strong, .myria-consulting .mc-study-lens strong { color: #142b35; }
+.myria-consulting .mc-study-footer { display: flex; flex-direction: column; gap: 17px; margin-top: auto; padding-top: 27px; }
+.myria-consulting .mc-study-footer > span { color: #70513d; font-size: 11px; line-height: 1.55; }
+.myria-consulting .mc-study-footer > a { display: inline-flex; align-self: flex-start; align-items: center; gap: 9px; border-bottom: 1px solid #142b35; padding-bottom: 7px; color: #142b35; font-size: 13px; font-weight: 650; }
+.myria-consulting .mc-study-footer > a:hover, .myria-consulting .mc-research-intro a:hover { color: #795331; }
+.myria-consulting .mc-research-note { margin-top: 23px; color: #526066; font-size: 11px; line-height: 1.7; }
+.myria-consulting .mc-insights-hero { background: #142b35; color: #fff; padding: 112px 0 100px; }
+.myria-consulting .mc-insights-hero .mc-eyebrow { color: #e7bd8a; }
+.myria-consulting .mc-insights-hero h1 { margin-top: 35px; max-width: 1020px; font: 400 clamp(50px, 6.3vw, 90px)/1.04 var(--mc-serif); letter-spacing: -.038em; }
+.myria-consulting .mc-insights-hero h1 em { color: #e7bd8a; }
+.myria-consulting .mc-insights-hero p:not(.mc-eyebrow) { margin-top: 26px; max-width: 680px; font-size: 17px; line-height: 1.8; color: #e0e5e4; }
+.myria-consulting .mc-owned-insights { background: #f7f4ee; }
+.myria-consulting .mc-owned-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 17px; margin-top: 42px; }
+.myria-consulting .mc-owned-card { background: #fffdf9; border-top: 2px solid #a87532; display: flex; flex-direction: column; padding: 32px; min-height: 270px; }
+.myria-consulting .mc-owned-card h3 { font: 400 34px/1.14 var(--mc-serif); }
+.myria-consulting .mc-owned-card p { margin-top: 18px; line-height: 1.72; color: #4a575a; font-size: 14px; }
+.myria-consulting .mc-owned-card a { margin-top: auto; padding-top: 28px; display: flex; align-items: center; gap: 9px; font-size: 13px; font-weight: 650; }
+@media(max-width:1100px) { .myria-consulting .mc-research-grid, .myria-consulting .mc-owned-grid { grid-template-columns: repeat(2,minmax(0,1fr)); } }
+@media(max-width:800px) { .myria-consulting .mc-research-heading { grid-template-columns: 1fr; gap: 23px; } }
+@media(max-width:650px) { .myria-consulting .mc-research-grid, .myria-consulting .mc-owned-grid { grid-template-columns: 1fr; } .myria-consulting .mc-study-art { height: 195px; } .myria-consulting .mc-study-body { padding: 25px; } .myria-consulting .mc-owned-card { min-height: 230px; } .myria-consulting .mc-insights-hero { padding-top: 85px; padding-bottom: 85px; } }
