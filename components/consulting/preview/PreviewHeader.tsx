@@ -1,17 +1,21 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { previewNavigation } from "./content";
 
 export function PreviewHeader() {
   const [open, setOpen] = useState(false);
+  const menuToggleRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     if (!open) return;
     const onEscape = (event: KeyboardEvent) => {
-      if (event.key === "Escape") setOpen(false);
+      if (event.key === "Escape") {
+        setOpen(false);
+        menuToggleRef.current?.focus();
+      }
     };
     document.addEventListener("keydown", onEscape);
     return () => document.removeEventListener("keydown", onEscape);
@@ -37,6 +41,7 @@ export function PreviewHeader() {
         </nav>
         <button
           type="button"
+          ref={menuToggleRef}
           className="mc-menu-button"
           aria-controls="mc-main-navigation"
           aria-expanded={open}
