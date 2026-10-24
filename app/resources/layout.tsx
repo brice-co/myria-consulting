@@ -42,7 +42,7 @@ export default function ResourcesLayout({
               </a>
 
               <span className="text-sm text-muted-foreground">
-                Myria Consulting · Virtual by nature, human in judgment.
+                Myria Consulting · Management expertise. Intelligent systems. Practical execution.
               </span>
             </div>
           </div>
