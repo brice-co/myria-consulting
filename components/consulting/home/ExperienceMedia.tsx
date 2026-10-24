@@ -7,7 +7,7 @@ import type { Experience } from "./experience-content";
  * without a misleading playback control.
  */
 export function ExperienceMedia({ experience }: { experience: Experience }) {
-  const { id, title, videoSrc, posterSrc } = experience;
+  const { id, title, videoSrc, posterSrc, captionsSrc } = experience;
 
   if (videoSrc) {
     return (
@@ -16,10 +16,14 @@ export function ExperienceMedia({ experience }: { experience: Experience }) {
           controls
           playsInline
           preload="metadata"
+          disablePictureInPicture={false}
           poster={posterSrc ?? undefined}
           aria-label={`Watch ${title} demonstration`}
         >
           <source src={videoSrc} type={videoSrc.endsWith(".webm") ? "video/webm" : "video/mp4"} />
+          {captionsSrc && (
+            <track src={captionsSrc} kind="captions" srcLang="en" label="English captions" default />
+          )}
           Your browser does not support HTML video.
         </video>
       </div>

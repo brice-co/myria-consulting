@@ -20,6 +20,8 @@ export type Experience = {
   linkLabel: string;
   videoSrc: string | null;
   posterSrc: string | null;
+  /** An edited WebVTT caption file for a real video; never auto-generate misleading captions. */
+  captionsSrc?: string | null;
 };
 
 export const myriaExperiences: readonly Experience[] = [
@@ -35,6 +37,7 @@ export const myriaExperiences: readonly Experience[] = [
     linkLabel: "Explore the Advisory Lab",
     videoSrc: null,
     posterSrc: null,
+    captionsSrc: null,
   },
   {
     id: "team",
@@ -48,6 +51,7 @@ export const myriaExperiences: readonly Experience[] = [
     linkLabel: "Meet the virtual advisors",
     videoSrc: null,
     posterSrc: null,
+    captionsSrc: null,
   },
   {
     id: "workspace",
@@ -61,5 +65,6 @@ export const myriaExperiences: readonly Experience[] = [
     linkLabel: "Explore the workspace",
     videoSrc: null,
     posterSrc: null,
+    captionsSrc: null,
   },
 ];

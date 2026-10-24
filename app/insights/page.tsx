@@ -14,6 +14,12 @@ export const metadata: Metadata = publicPageMetadata({
 
 const ourThinking = [
   {
+    title: "From strategy to execution",
+    text: "A Myria practice note on connecting decisions, end-to-end workflows, accountability and measurable progress.",
+    href: "/insights/from-strategy-to-execution",
+    label: "Read the practice note",
+  },
+  {
     title: "The Myria Management Model",
     text: "In-Depth Thinking, Intelligent Structure and Thinking Culture as mutually reinforcing management capabilities.",
     href: "/our-approach/management-model",
@@ -71,7 +77,7 @@ export default function InsightsPage() {
       </section>
       <section className="mc-section mc-owned-insights" aria-labelledby="our-thinking-title">
         <div className="mc-container">
-          <p className="mc-eyebrow">OUR THINKING / APPLIED FRAMEWORKS</p>
+          <p className="mc-eyebrow">OUR THINKING / ORIGINAL PERSPECTIVES</p>
           <h2 id="our-thinking-title">How we put those ideas to work.</h2>
           <div className="mc-owned-grid">
             {ourThinking.map((item) => (

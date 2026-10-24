@@ -14,6 +14,7 @@ const publicPaths = [
   "/resources/guides",
   "/resources/playbook",
   "/insights",
+  "/insights/from-strategy-to-execution",
   "/about-myria",
   "/contact-myria",
   "/client-portal",
