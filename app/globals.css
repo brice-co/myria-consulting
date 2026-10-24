@@ -50,6 +50,11 @@
 
 :root {
   color-scheme: light;
+  /* Shared public-site brand palette. Keep application tokens unchanged. */
+  --myria-navy: #142b35;
+  --myria-teal: #173039;
+  --myria-paper: #f7f4ee;
+  --myria-copper: #a87532;
   --navy: #142b35;
   --navy-200: #31505a;
   --background: #f7f4ee;

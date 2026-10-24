@@ -8,10 +8,6 @@ import type {
   SessionFindingStatus,
 } from "@/lib/labs/session-types";
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-
 type AnalyzeLabStageRequest = {
   labSlug: LabSlug;
   stageId: number;
@@ -84,6 +80,16 @@ export async function POST(request: Request) {
         },
       );
     }
+
+    const apiKey = process.env.OPENAI_API_KEY;
+    if (!apiKey) {
+      return NextResponse.json(
+        { error: "AI analysis is not configured for this environment." },
+        { status: 503 },
+      );
+    }
+
+    const openai = new OpenAI({ apiKey });
 
     const response = await openai.responses.create({
       model:
