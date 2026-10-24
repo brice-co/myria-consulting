@@ -1,11 +1,8 @@
+import { publicPageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 import { AboutMyriaAgentPage } from "@/components/about-myria/about-myria-agent-page";
 
-export const metadata: Metadata = {
-  title: "Myria Consulting | About Us",
-  description:
-    "Explore Myria's virtual specialist team, Advisory Labs, consulting operating model, and AI Enablement Architecture through realtime voice and text.",
-};
+export const metadata = publicPageMetadata({"title":"About Myria | Our Management Consulting Approach","description":"Meet Myria Consulting and explore how management expertise, advisory labs and intelligent systems support organizational decisions and execution.","pathname":"/about-myria","index":true});
 
 export default function AboutMyriaPage() {
   return <AboutMyriaAgentPage />;

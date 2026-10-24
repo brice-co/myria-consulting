@@ -1,3 +1,4 @@
+import { publicPageMetadata } from "@/lib/seo";
 import type { Metadata } from "next";
 
 import { AIEnablementHero } from "@/components/ai-enablement/ai-enablement-hero";
@@ -6,11 +7,7 @@ import { AutonomyScale } from "@/components/ai-enablement/autonomy-scale";
 import { OperatingLoop } from "@/components/ai-enablement/operating-loop";
 import { OperatingModelPath } from "@/components/ai-enablement/operating-model-path";
 
-export const metadata: Metadata = {
-  title: "AI Enablement Architecture | Myria Consulting",
-  description:
-    "See how Myria embeds AI across strategy, decisions, workflows, systems, data, governance, and people as an organizational operating system.",
-};
+export const metadata = publicPageMetadata({"title":"AI Enablement Architecture | Myria Consulting","description":"Understand how AI-enabled operating capabilities connect decisions, processes, systems, people, data and governance.","pathname":"/ai-enablement","index":true});
 
 export default function AIEnablementPage() {
   return (

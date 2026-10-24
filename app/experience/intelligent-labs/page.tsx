@@ -1,10 +1,8 @@
+import { publicPageMetadata } from "@/lib/seo";
 import { LabsHero } from "@/features/intelligent-labs/components/landing/labs-hero";
 import { LabsGrid } from "@/features/intelligent-labs/components/landing/labs-grid";
 
-export const metadata = {
-  title: "Intelligent Labs | Myria Consulting",
-  description: "Explore practical intelligent systems through collaborative Myria Lab experiences.",
-};
+export const metadata = publicPageMetadata({"title":"Intelligent Labs | Explore Practical AI Systems","description":"Experience real AI-enabled workflows and collaborative intelligent systems through Myria Consulting's Intelligent Labs.","pathname":"/experience/intelligent-labs","index":true});
 
 export default function IntelligentLabsPage() {
   return (
