@@ -137,7 +137,7 @@ export function InsightsSection() {
     <section className="mc-section mc-insights" id="insights" aria-labelledby="mc-insights-title">
       <div className="mc-container">
         <div id="mc-insights-title">
-          <SectionIntro eyebrow="05 — INSIGHTS & EXPERTISE" heading="Ideas grounded in the work."
+          <SectionIntro eyebrow="06 — INSIGHTS & EXPERTISE" heading="Ideas grounded in the work."
             detail="Practical resources for leaders exploring strategy, transformation, and the business use of intelligent systems." />
         </div>
         <div className="mc-insight-grid">
@@ -159,7 +159,7 @@ export function ContactSection() {
     <section className="mc-contact" id="contact" aria-labelledby="mc-contact-title">
       <div className="mc-container mc-contact-layout">
         <div>
-          <p className="mc-eyebrow mc-eyebrow-light">06 — BEGIN HERE</p>
+          <p className="mc-eyebrow mc-eyebrow-light">07 — BEGIN HERE</p>
           <h2 id="mc-contact-title">What challenge is your organization working through?</h2>
         </div>
         <div className="mc-contact-action">

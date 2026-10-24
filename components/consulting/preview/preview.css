@@ -185,3 +185,96 @@ body:has(#myria-redesign-preview) { background: #f6f2ec; }
  .myria-preview *, .myria-preview *::before, .myria-preview *::after { animation-duration: .01ms !important; transition-duration: .01ms !important; }
  .myria-preview .mc-hero-image { will-change: auto; }
 }
+
+
+/* Experiential gallery: purpose-built media panels accept actual video assets
+   without changing the card geometry. */
+.myria-preview .mc-experience { background: #f8f5f0; }
+.myria-preview .mc-experience-heading {
+  display: grid;
+  grid-template-columns: 1.1fr .65fr;
+  gap: 11%;
+  align-items: end;
+  margin-bottom: 49px;
+}
+.myria-preview .mc-experience-heading h2 {
+  max-width: 810px;
+  margin-top: 22px;
+  font: 400 clamp(44px, 5.4vw, 78px)/1.07 var(--mc-serif);
+  letter-spacing: -.041em;
+}
+.myria-preview .mc-experience-heading h2 em { color: #a0785d; font-weight: 400; }
+.myria-preview .mc-experience-intro p { color: var(--mc-subtle); font-size: 16px; line-height: 1.85; }
+.myria-preview .mc-experience-intro > span {
+  display: block; margin-top: 21px; padding-top: 18px;
+  border-top: 1px solid var(--mc-line);
+  color: #866c58; font-size: 12px; letter-spacing: .025em;
+}
+.myria-preview .mc-experience-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 17px; }
+.myria-preview .mc-experience-card { display: flex; flex-direction: column; min-width: 0; background: #fffdf9; border: 1px solid var(--mc-line); }
+.myria-preview .mc-experience-media {
+  position: relative; isolation: isolate; width: 100%;
+  aspect-ratio: 16 / 10; overflow: hidden; color: #ecf1ef;
+  background: radial-gradient(circle at 80% 20%, #516e69 0, transparent 48%), linear-gradient(145deg, #213e41 0%, #13282e 100%);
+}
+.myria-preview .mc-experience-media--team { background: radial-gradient(circle at 55% 48%, #4f5f75 0%, transparent 48%), linear-gradient(140deg, #253a48, #101f28); }
+.myria-preview .mc-experience-media--workspace { background: radial-gradient(circle at 32% 20%, #636558 0%, transparent 60%), linear-gradient(145deg, #354346, #182a30); }
+.myria-preview .mc-experience-media::before { content: ""; pointer-events: none; position: absolute; inset: 0; opacity: .16; background: linear-gradient(45deg, transparent 49.5%, rgba(255,255,255,.26) 50%, transparent 50.5%); background-size: 26px 26px; }
+.myria-preview .mc-media-interface { position: absolute; inset: 12% 9% 10%; overflow: hidden; border: 1px solid rgba(255,255,255,.22); border-radius: 9px; background: rgba(14,28,32,.76); box-shadow: 0 18px 50px rgba(0,0,0,.22); backdrop-filter: blur(9px); }
+.myria-preview .mc-media-topbar { display: flex; align-items: center; justify-content: space-between; gap: 12px; height: 34px; border-bottom: 1px solid rgba(255,255,255,.14); padding-inline: 12px; font-size: 8px; letter-spacing: .15em; color: rgba(255,255,255,.63); }
+.myria-preview .mc-media-dots { display: flex; gap: 4px; }
+.myria-preview .mc-media-dots i { width: 5px; height: 5px; border: 1px solid rgba(255,255,255,.5); border-radius: 50%; }
+.myria-preview .mc-media-lab { padding: 23px 20px; }
+.myria-preview .mc-media-overline { display: block; color: #d9bca7; font-size: 8px; letter-spacing: .15em; }
+.myria-preview .mc-media-lab strong { display: block; margin-top: 14px; font: 400 clamp(18px, 1.9vw, 27px)/1.17 var(--mc-serif); }
+.myria-preview .mc-media-steps { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 19px; }
+.myria-preview .mc-media-steps span { padding: 6px 8px; color: rgba(255,255,255,.78); border: 1px solid rgba(255,255,255,.16); border-radius: 3px; font-size: 8px; }
+.myria-preview .mc-media-progress { height: 2px; margin-top: 19px; background: rgba(255,255,255,.18); }
+.myria-preview .mc-media-progress span { display: block; width: 66%; height: 100%; background: #dfbb9c; }
+.myria-preview .mc-media-team { display: flex; flex-direction: column; justify-content: center; align-items: center; gap: 13px; padding: 16px 12px 12px; }
+.myria-preview .mc-media-hub { display: flex; flex-direction: column; align-items: center; gap: 5px; color: #ecd0b7; font-size: 9px; }
+.myria-preview .mc-media-roles { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; width: 94%; }
+.myria-preview .mc-media-roles span { display: flex; align-items: center; gap: 5px; padding: 8px; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.12); border-radius: 3px; font-size: 8px; color: rgba(255,255,255,.83); white-space: nowrap; }
+.myria-preview .mc-media-roles svg { flex-shrink: 0; color: #e2c3a8; }
+.myria-preview .mc-media-workspace { padding: 15px 12px; }
+.myria-preview .mc-media-meeting-top { display: flex; justify-content: space-between; align-items: center; color: rgba(255,255,255,.8); font-size: 9px; }
+.myria-preview .mc-media-meeting-top i { display: inline-block; vertical-align: middle; width: 7px; height: 7px; margin-right: 6px; border-radius: 50%; background: #91b4a1; }
+.myria-preview .mc-media-avatars { display: flex; }
+.myria-preview .mc-media-avatars b { display: grid; place-items: center; width: 21px; height: 21px; border-radius: 50%; margin-left: -3px; border: 1px solid #20373a; background: #b0a490; color: #173039; font-size: 8px; }
+.myria-preview .mc-media-avatars b + b { background: #659288; color: #fff; }
+.myria-preview .mc-media-workspace-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 16px; }
+.myria-preview .mc-media-workspace-grid div { display: flex; flex-direction: column; gap: 6px; }
+.myria-preview .mc-media-workspace-grid small { font-size: 7px; color: #dbbda3; letter-spacing: .11em; }
+.myria-preview .mc-media-workspace-grid div > span { padding: 7px 8px; background: rgba(255,255,255,.1); border-left: 2px solid #c3aa92; font-size: 8px; color: rgba(255,255,255,.78); }
+.myria-preview .mc-media-workspace-bottom { display: flex; justify-content: space-between; gap: 6px; margin-top: 12px; color: rgba(255,255,255,.58); font-size: 8px; }
+.myria-preview .mc-media-caption { position: absolute; bottom: 7px; right: 13px; font-size: 8px; letter-spacing: .08em; color: rgba(255,255,255,.65); }
+.myria-preview .mc-experience-video video { width: 100%; height: 100%; object-fit: cover; }
+.myria-preview .mc-experience-card-copy { display: flex; flex-direction: column; flex: 1; padding: 31px 29px 28px; }
+.myria-preview .mc-experience-meta { display: flex; justify-content: space-between; gap: 10px; font-size: 9px; line-height: 1.4; letter-spacing: .1em; font-weight: 700; color: #98765e; }
+.myria-preview .mc-experience-meta span:last-child { text-align: right; }
+.myria-preview .mc-experience-card h3 { margin-top: 24px; font: 400 clamp(30px, 2.6vw, 40px)/1.09 var(--mc-serif); letter-spacing: -.026em; }
+.myria-preview .mc-experience-card-copy > p { margin-top: 17px; color: var(--mc-subtle); font-size: 14px; line-height: 1.79; }
+.myria-preview .mc-experience-foot { display: flex; flex-direction: column; align-items: flex-start; gap: 26px; margin-top: auto; padding-top: 30px; }
+.myria-preview .mc-experience-foot > span { color: #93725a; font-size: 11px; line-height: 1.5; }
+.myria-preview .mc-experience-foot > a { display: inline-flex; align-items: center; gap: 12px; padding-bottom: 7px; border-bottom: 1px solid var(--mc-ink); color: var(--mc-ink); font-size: 13px; font-weight: 650; transition: gap .2s, color .2s; }
+.myria-preview .mc-experience-foot > a:hover { gap: 17px; color: #8e6647; }
+.myria-preview .mc-experience-note { margin-top: 19px; color: #777771; font-size: 11px; line-height: 1.6; }
+@media (max-width: 1050px) {
+  .myria-preview .mc-experience-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .myria-preview .mc-experience-card:last-child { grid-column: 1 / -1; }
+  .myria-preview .mc-experience-card:last-child .mc-experience-media { aspect-ratio: 2.1 / 1; }
+  .myria-preview .mc-experience-heading { grid-template-columns: 1fr 1fr; gap: 8%; }
+  .myria-preview .mc-media-lab strong { font-size: 28px; }
+}
+@media (max-width: 920px) {
+  .myria-preview .mc-experience-heading { grid-template-columns: 1fr; gap: 22px; }
+  .myria-preview .mc-experience-heading h2 { max-width: 780px; }
+}
+@media (max-width: 620px) {
+  .myria-preview .mc-experience-grid { grid-template-columns: 1fr; gap: 15px; }
+  .myria-preview .mc-experience-card:last-child { grid-column: auto; }
+  .myria-preview .mc-experience-card:last-child .mc-experience-media { aspect-ratio: 16 / 10; }
+  .myria-preview .mc-experience-card-copy { padding: 28px 24px; }
+  .myria-preview .mc-experience-heading h2 { font-size: clamp(43px, 10vw, 60px); }
+  .myria-preview .mc-media-lab strong { font-size: 24px; }
+}

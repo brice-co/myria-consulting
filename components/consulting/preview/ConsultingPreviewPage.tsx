@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { PreviewHeader } from "./PreviewHeader";
 import { PreviewHero } from "./PreviewHero";
+import { ExperienceSection } from "./ExperienceSection";
 import {
   ChallengesSection,
   CapabilitiesSection,
@@ -21,6 +22,7 @@ export function ConsultingPreviewPage() {
         <CapabilitiesSection />
         <DifferenceSection />
         <DiscoverySection />
+        <ExperienceSection />
         <InsightsSection />
         <ContactSection />
       </main>
@@ -31,6 +33,7 @@ export function ConsultingPreviewPage() {
             <a href="#capabilities">Capabilities</a>
             <a href="#difference">Our approach</a>
             <a href="#discovery">Discovery Lab</a>
+            <a href="#experience">Experience</a>
             <Link href="/client-portal">Client portal</Link>
             <Link href="/privacy-policy">Privacy</Link>
             <Link href="/terms-of-service">Terms</Link>

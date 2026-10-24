@@ -4,10 +4,10 @@
  * Current site content and data/labs.ts inform these descriptions.
  */
 export const previewNavigation = [
-  { label: "Challenges", href: "#challenges" },
   { label: "Capabilities", href: "#capabilities" },
   { label: "Our approach", href: "#difference" },
   { label: "Discovery Lab", href: "#discovery" },
+  { label: "Experience", href: "#experience" },
   { label: "Insights", href: "#insights" },
 ] as const;
 
