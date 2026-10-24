@@ -117,6 +117,7 @@ body:has(#myria-redesign-preview) { background: #f6f2ec; }
 .myria-preview .mc-insight-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 15px; }
 .myria-preview .mc-insight { display: flex; flex-direction: column; min-height: 375px; justify-content: space-between; background: #eae4db; padding: 34px; }
 .myria-preview .mc-insight:first-child { background: #ddd2c5; }
+.myria-preview .mc-insight:first-child p { color: #405255; }
 .myria-preview .mc-insight small { font-size: 10px; font-weight: 650; letter-spacing: .13em; color: #654633; }
 .myria-preview .mc-insight h3 { font: 400 clamp(29px,2.6vw,38px)/1.14 var(--mc-serif); margin-bottom: 15px; }
 .myria-preview .mc-insight p { font-size: 14px; color: var(--mc-subtle); line-height: 1.75; }
