@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
@@ -10,7 +11,11 @@ const headline = [
 ];
 
 export function ConsultingHero() {
-  const reducedMotion = useReducedMotion();
+  // Keep the first server/client render identical before honoring reduced motion.
+  const prefersReducedMotion = useReducedMotion();
+  const [hasMounted, setHasMounted] = useState(false);
+  useEffect(() => setHasMounted(true), []);
+  const reducedMotion = hasMounted && Boolean(prefersReducedMotion);
   // Page scroll provides stable parallax without measuring an offset target.
   const { scrollY } = useScroll();
   const parallaxY = useTransform(scrollY, [0, 850], [0, 110]);
