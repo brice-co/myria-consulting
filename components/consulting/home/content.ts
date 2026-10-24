@@ -1,5 +1,5 @@
 /**
- * Marketing copy for the redesign preview.
+ * Marketing copy for the Myria Consulting homepage.
  * Keep business-facing messages independent of animation and layout code.
  * Current site content and data/labs.ts inform these descriptions.
  */

@@ -12,7 +12,7 @@ import {
 
 export function ConsultingHomePage() {
   return (
-    <div id="myria-consulting-home" className="myria-preview">
+    <div id="myria-consulting-home" className="myria-consulting">
       <main id="mc-main">
         <ConsultingHero />
         <ChallengesSection />
