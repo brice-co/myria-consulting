@@ -1,6 +1,5 @@
 "use client";
 
-import { useRef } from "react";
 import { motion, useReducedMotion, useScroll, useTransform } from "framer-motion";
 import { ArrowDown, ArrowUpRight } from "lucide-react";
 import Link from "next/link";
@@ -11,16 +10,13 @@ const headline = [
 ];
 
 export function PreviewHero() {
-  const heroRef = useRef<HTMLElement>(null);
   const reducedMotion = useReducedMotion();
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-  });
-  const parallaxY = useTransform(scrollYProgress, [0, 1], [0, 110]);
+  // Page scroll provides stable parallax without measuring an offset target.
+  const { scrollY } = useScroll();
+  const parallaxY = useTransform(scrollY, [0, 850], [0, 110]);
 
   return (
-    <section className="mc-hero" id="top" aria-labelledby="mc-hero-title" ref={heroRef}>
+    <section className="mc-hero" id="top" aria-labelledby="mc-hero-title">
       <div className="mc-hero-picture" aria-hidden="true">
         <motion.div className="mc-hero-parallax" style={{ y: reducedMotion ? 0 : parallaxY }}>
           <motion.div
