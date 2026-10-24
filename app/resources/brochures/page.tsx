@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight, BookOpen } from "lucide-react";
 import { brochures } from "@/lib/brochure-resources";
+import { BrochurePdfActions } from "@/components/consulting/resources/BrochurePdfActions";
 
 export const metadata: Metadata = {
   title: "Management Frameworks & Brochures | Myria Consulting",
@@ -54,9 +55,12 @@ export default function BrochuresPage() {
                     <li key={topic} className="border border-[#142b35]/15 px-3 py-1 text-xs text-[#526068]">{topic}</li>
                   ))}
                 </ul>
-                <Link href={item.href} className="mt-auto inline-flex items-center gap-2 self-start border-b border-[#142b35] pb-2 pt-9 text-sm font-semibold hover:text-[#785330]">
-                  Read the overview <ArrowUpRight size={16} aria-hidden="true" />
-                </Link>
+                <div className="mt-auto flex flex-col gap-4 pt-8">
+                  <Link href={item.href} className="inline-flex items-center gap-2 self-start border-b border-[#142b35] pb-2 text-sm font-semibold hover:text-[#785330]">
+                    Read the overview <ArrowUpRight size={16} aria-hidden="true" />
+                  </Link>
+                  <BrochurePdfActions pdf={item.pdf} compact />
+                </div>
               </div>
             </article>
           ))}

@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" role="img" aria-label="Adoption and capability">
+ <rect width="640" height="360" fill="#173039"/><g stroke="#d7e7e0" stroke-width="1" opacity=".12"><path d="M0 70h640M0 140h640M0 210h640M0 280h640M90 0v360M180 0v360M270 0v360M360 0v360M450 0v360M540 0v360"/></g>
+ <circle cx="160" cy="185" r="104" stroke="#d3e4de" opacity=".6" stroke-width="2"/><circle cx="160" cy="185" r="76" stroke="#c49e7c" stroke-width="18" stroke-dasharray="345 170" transform="rotate(-85 160 185)" fill="none"/><g fill="#c49e7c"><circle cx="460" cy="120" r="24"/><circle cx="530" cy="180" r="18"/><circle cx="432" cy="250" r="30"/></g><g stroke="#c2d8d2" stroke-width="2"><path d="M460 120L530 180 432 250 460 120"/></g>
+ </svg>

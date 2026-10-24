@@ -1,0 +1,4 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="640" height="360" viewBox="0 0 640 360" role="img" aria-label="Enterprise connections">
+ <rect width="640" height="360" fill="#243b3b"/><g stroke="#d7e7e0" stroke-width="1" opacity=".12"><path d="M0 70h640M0 140h640M0 210h640M0 280h640M90 0v360M180 0v360M270 0v360M360 0v360M450 0v360M540 0v360"/></g>
+ <g stroke="#d3e0d9" stroke-width="2" fill="#b9aa90"><path d="M320 70L120 178 320 287 520 178Z" fill="none"/><path d="M320 70V287M120 178h400M205 118l230 120M435 118L205 238" fill="none"/><circle cx="320" cy="70" r="21"/><circle cx="120" cy="178" r="21"/><circle cx="520" cy="178" r="21"/><circle cx="320" cy="287" r="21"/><circle cx="320" cy="178" r="29"/></g>
+ </svg>

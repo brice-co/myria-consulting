@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ConsultingHero } from "./ConsultingHero";
 import { ExperienceSection } from "./ExperienceSection";
+import { ResearchSection } from "@/components/consulting/insights/ResearchSection";
 import {
   ChallengesSection,
   CapabilitiesSection,
@@ -21,6 +22,7 @@ export function ConsultingHomePage() {
         <DiscoverySection />
         <ExperienceSection />
         <InsightsSection />
+        <ResearchSection />
         <ContactSection />
       </main>
       <footer className="mc-footer">
@@ -32,6 +34,7 @@ export function ConsultingHomePage() {
             <a href="#discovery">Discovery Lab</a>
             <a href="#experience">Experience</a>
             <Link href="/resources/brochures">Brochures</Link>
+            <Link href="/insights">Research &amp; insights</Link>
             <Link href="/resources/playbook">Playbook</Link>
             <Link href="/client-portal">Client portal</Link>
             <Link href="/privacy-policy">Privacy</Link>
