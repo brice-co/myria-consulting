@@ -24,7 +24,7 @@ export function PreviewHeader() {
   return (
     <header className="mc-header">
       <div className="mc-container mc-header-inner">
-        <a href="#top" className="mc-brand" aria-label="Myria Consulting, back to top" onClick={() => setOpen(false)}>
+        <a href="#top" className="mc-brand" title="Back to top" onClick={() => setOpen(false)}>
           <span className="mc-brand-symbol" aria-hidden="true">M</span>
           <span className="mc-brand-name">MYRIA<small>CONSULTING</small></span>
         </a>
