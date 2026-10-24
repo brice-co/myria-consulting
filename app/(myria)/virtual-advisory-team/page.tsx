@@ -1,11 +1,8 @@
+import { publicPageMetadata } from "@/lib/seo";
 import { VirtualAdvisoryTeamExperience } from "@/components/virtual-advisory-team/VirtualAdvisoryTeamExperience";
 import {Metadata} from "next";
 
-export const metadata: Metadata = {
-  title: "Myria Consulting | Virtual Advisory Team",
-  description: "Meet the Myria Virtual Advisory Team and learn how we can help your organization.",
-  keywords: ["Myria", "Myria Consulting", "Virtual Management Consulting", "Virtual Advisory Service", "Distributed Systems", "Management Consulting", "Advisory Service"],
-};
+export const metadata = publicPageMetadata({"title":"Virtual Advisory Team | Specialist AI Advisors at Myria","description":"Explore Myria's virtual advisory team, supporting human-led strategy, operations, AI and data, and people and change engagements.","pathname":"/virtual-advisory-team","index":true});
 
 export default function VirtualAdvisoryTeamPage() {
   return (

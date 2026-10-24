@@ -5,10 +5,11 @@
  */
 export const consultingNavigation = [
   { label: "Capabilities", href: "#capabilities" },
-  { label: "Our approach", href: "#difference" },
+  { label: "Our approach", href: "/our-approach/management-model" },
   { label: "Discovery Lab", href: "#discovery" },
   { label: "Experience", href: "#experience" },
   { label: "Insights", href: "#insights" },
+  { label: "Brochures", href: "/resources/brochures" },
 ] as const;
 
 export const challenges = [
@@ -107,10 +108,10 @@ export const insights = [
     linkText: "Explore the playbook",
   },
   {
-    type: "RESOURCE LIBRARY",
-    title: "Myria's practical guides",
-    summary: "Methods and perspectives to help leaders understand complex decisions and improvement opportunities.",
-    href: "/resources/guides",
-    linkText: "Explore the guides",
+    type: "MANAGEMENT FRAMEWORKS",
+    title: "The Myria Management Model & publications",
+    summary: "Explore Myria's integrated management model and frameworks for strategy, organizational performance and AI governance.",
+    href: "/resources/brochures",
+    linkText: "Explore the frameworks",
   },
 ] as const;

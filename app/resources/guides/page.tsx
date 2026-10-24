@@ -1,3 +1,5 @@
+import { publicPageMetadata } from "@/lib/seo";
+export const metadata = publicPageMetadata({title:"Management & AI Guides | Myria Consulting",description:"Practical guides for leaders exploring strategy, intelligent workflows and responsible AI implementation, starting with business decisions and measurable outcomes.",pathname:"/resources/guides"});
 import Link from "next/link";
 import { guides } from "./_data/guides";
 

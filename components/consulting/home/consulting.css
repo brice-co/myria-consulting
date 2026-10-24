@@ -291,3 +291,20 @@
 .mc-header--solid .mc-navigation-open { background: var(--myria-paper); box-shadow: 0 20px 30px rgba(20,43,53,.16); }
 @media (max-width: 920px) { .mc-header .mc-container { width: min(100% - 54px, 1300px); } .mc-header--solid .mc-navigation-open { border-color: rgba(20,43,53,.12); } }
 @media (max-width: 620px) { .mc-header .mc-container { width: calc(100% - 40px); } }
+
+/* Logo asset is already present in the original repository. Neutralize its
+   white canvas without modifying the binary source asset. */
+.mc-brand-logo { width: 50px; height: 50px; overflow: hidden; display: inline-grid; flex: none; place-items: center; }
+.mc-brand-logo img { width: 50px; height: 50px; object-fit: cover; transform: scale(1.39); mix-blend-mode: multiply; }
+.mc-header--overlay .mc-brand-logo img { filter: invert(1); mix-blend-mode: screen; }
+.mc-management-link { display: inline-flex; gap: 12px; align-items: center; margin-top: 26px; padding-bottom: 8px; border-bottom: 1px solid #142b35; font-size: 13px; font-weight: 650; color: #142b35; }
+.mc-management-link:hover { color: #795331; }
+@media (max-width: 1250px) {
+  .mc-navigation { display: none; }
+  .mc-menu-button { display: inline-flex; }
+  .mc-navigation.mc-navigation-open { display: flex; flex-direction: column; align-items: stretch; position: absolute; top: 91px; left: 0; right: 0; background: #173039; padding: 20px 27px 30px; gap: 0; border-top: 1px solid rgba(255,255,255,.2); }
+  .mc-header--solid .mc-navigation.mc-navigation-open { background: #f7f4ee; }
+  .mc-navigation.mc-navigation-open > a { padding: 14px 0; font-size: 15px; }
+  .mc-navigation.mc-navigation-open > a.mc-nav-cta { align-self: flex-start; padding: 12px 18px; margin-top: 12px; }
+}
+@media (max-width: 620px) { .mc-brand-logo, .mc-brand-logo img { width: 43px; height: 43px; } }

@@ -1,3 +1,4 @@
+import { publicPageMetadata } from "@/lib/seo";
 import Link from "next/link";
 import {
   ArrowRight,
@@ -10,11 +11,7 @@ import {
 } from "lucide-react";
 import {Metadata} from "next";
 
-export const metadata: Metadata = {
-  title: "Myria Consulting | Client Portal",
-  description: "Myria Client Portal",
-  keywords: ["Myria", "Myria Consulting", "Virtual Management Consulting", "Virtual Advisory Service", "Distributed Systems", "Management Consulting", "Advisory Service"],
-};
+export const metadata = publicPageMetadata({"title":"Client Portal & Advisory Engagements | Myria Consulting","description":"Learn how Myria's client portal supports structured engagements, collaborative advisory work, reports and human decision making.","pathname":"/client-portal","index":true});
 
 const engagementSteps = [
   {
