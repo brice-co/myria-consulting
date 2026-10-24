@@ -1,11 +1,15 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import { usePathname } from "next/navigation";
 import Link from "next/link";
 import { ArrowUpRight, Menu, X } from "lucide-react";
-import { previewNavigation } from "./content";
+import { consultingNavigation } from "@/components/consulting/home/content";
 
-export function PreviewHeader() {
+export function ConsultingHeader() {
+  const pathname = usePathname();
+  const isHome = pathname === "/";
+  const isFullScreenApp = /^\/(portal|workspace|auth|admin)(\/|$)/.test(pathname);
   const [open, setOpen] = useState(false);
   const menuToggleRef = useRef<HTMLButtonElement>(null);
 
@@ -21,16 +25,22 @@ export function PreviewHeader() {
     return () => document.removeEventListener("keydown", onEscape);
   }, [open]);
 
+  if (isFullScreenApp) return null;
+
   return (
-    <header className="mc-header">
+    <>
+      {isHome && <a className="mc-skip-link" href="#mc-main">Skip to content</a>}
+      <header className={isHome ? "mc-header mc-header--overlay" : "mc-header mc-header--solid"}>
       <div className="mc-container mc-header-inner">
-        <a href="#top" className="mc-brand" title="Back to top" onClick={() => setOpen(false)}>
+        <Link href={isHome ? "#top" : "/"} className="mc-brand" title="Myria Consulting home" onClick={() => setOpen(false)}>
           <span className="mc-brand-symbol" aria-hidden="true">M</span>
           <span className="mc-brand-name">MYRIA<small>CONSULTING</small></span>
-        </a>
+        </Link>
         <nav id="mc-main-navigation" aria-label="Primary navigation" className={open ? "mc-navigation mc-navigation-open" : "mc-navigation"}>
-          {previewNavigation.map((item) => (
-            <a key={item.href} href={item.href} onClick={() => setOpen(false)}>{item.label}</a>
+          {consultingNavigation.map((item) => (
+            <Link key={item.href} href={isHome ? item.href : `/${item.href}`} onClick={() => setOpen(false)}>
+              {item.label}
+            </Link>
           ))}
           <Link className="mc-nav-cta" href="/contact-myria" onClick={() => setOpen(false)}>
             Start a conversation <ArrowUpRight size={16} aria-hidden="true" />
@@ -51,6 +61,7 @@ export function PreviewHeader() {
           {open ? <X size={23} /> : <Menu size={23} />}
         </button>
       </div>
-    </header>
+      </header>
+    </>
   );
 }

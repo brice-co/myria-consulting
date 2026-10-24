@@ -1,6 +1,5 @@
 import Link from "next/link";
-import { PreviewHeader } from "./PreviewHeader";
-import { PreviewHero } from "./PreviewHero";
+import { ConsultingHero } from "./ConsultingHero";
 import { ExperienceSection } from "./ExperienceSection";
 import {
   ChallengesSection,
@@ -9,15 +8,13 @@ import {
   DiscoverySection,
   InsightsSection,
   ContactSection,
-} from "./PreviewSections";
+} from "./ConsultingSections";
 
-export function ConsultingPreviewPage() {
+export function ConsultingHomePage() {
   return (
-    <div id="myria-redesign-preview" className="myria-preview">
-      <a className="mc-skip-link" href="#mc-main">Skip to content</a>
-      <PreviewHeader />
+    <div id="myria-consulting-home" className="myria-preview">
       <main id="mc-main">
-        <PreviewHero />
+        <ConsultingHero />
         <ChallengesSection />
         <CapabilitiesSection />
         <DifferenceSection />

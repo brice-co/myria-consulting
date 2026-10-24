@@ -1,6 +1,7 @@
 import { Cormorant_Garamond, DM_Sans } from 'next/font/google'
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
+import '@/components/consulting/home/consulting.css'
 import  SiteHeader  from '@/components/navigation/site-header'
 
 
@@ -8,15 +9,15 @@ const cormorant = Cormorant_Garamond({ subsets: ['latin'], variable: '--font-ser
 const dmSans = DM_Sans({ subsets: ['latin'], variable: '--font-sans' })
 
 export const metadata: Metadata = {
-  title: 'Myria Consulting | Virtual Management Consulting',
-  description: 'Myria Consulting combines senior management consulting thinking with a virtual team of specialist advisors.',
-  keywords: ['Myria', 'Myria Consulting', 'Virtual Management Consulting', 'Virtual Advisory Service', 'Distributed Systems', 'Management Consulting', 'Advisory Service'],
+  title: 'Myria Consulting | Management Advisory & Intelligent Systems',
+  description: 'Myria helps organizations improve decisions, operations and execution through management expertise, intelligent systems and AI advisory.',
+  keywords: ['Myria Consulting', 'Management Consulting', 'Business Transformation', 'AI-Enabled Enterprise', 'Organizational Change', 'Intelligent Systems', 'Advisory Lab'],
   generator: 'myria.app',
   robots: 'index, follow',
   
   openGraph: {
-    title: 'Advisory Labs',
-    description: 'Professional advisory service for distributed systems',
+    title: 'Myria Consulting | Management Advisory & Intelligent Systems',
+    description: 'Management expertise and intelligent systems helping organizations turn strategy into action.',
     type: 'website',
   },
 

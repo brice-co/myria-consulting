@@ -9,7 +9,7 @@ const headline = [
   { text: "Stronger execution.", accent: true },
 ];
 
-export function PreviewHero() {
+export function ConsultingHero() {
   const reducedMotion = useReducedMotion();
   // Page scroll provides stable parallax without measuring an offset target.
   const { scrollY } = useScroll();

@@ -3,7 +3,7 @@
  * Keep business-facing messages independent of animation and layout code.
  * Current site content and data/labs.ts inform these descriptions.
  */
-export const previewNavigation = [
+export const consultingNavigation = [
   { label: "Capabilities", href: "#capabilities" },
   { label: "Our approach", href: "#difference" },
   { label: "Discovery Lab", href: "#discovery" },

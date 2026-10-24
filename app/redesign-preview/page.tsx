@@ -1,13 +1,6 @@
-import type { Metadata } from "next";
-import { ConsultingPreviewPage } from "@/components/consulting/preview/ConsultingPreviewPage";
-import "@/components/consulting/preview/preview.css";
+import { redirect } from "next/navigation";
 
-export const metadata: Metadata = {
-  title: "Myria Consulting | New Website Preview",
-  description: "An internal design preview of Myria Consulting's simplified advisory website.",
-  robots: { index: false, follow: false },
-};
-
-export default function RedesignPreviewRoute() {
-  return <ConsultingPreviewPage />;
+/** The approved redesign now lives at the canonical homepage. */
+export default function RetiredRedesignPreview() {
+  redirect("/");
 }
