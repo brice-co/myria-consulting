@@ -141,7 +141,7 @@ body:has(#myria-redesign-preview) { background: #f6f2ec; }
  .myria-preview .mc-capability:nth-child(n+3), .myria-preview .mc-challenge:nth-child(n+3) { border-top: 1px solid var(--mc-line); }
  .myria-preview .mc-challenge:nth-child(3) { padding-left: 0; }
 }
-@media (max-width: 920px) {
+@media (max-width: 1120px) {
  .myria-preview .mc-container { width: min(100% - 54px, 1300px); }
  .myria-preview .mc-menu-button { display: inline-flex; }
  .myria-preview .mc-navigation { display: none; position: absolute; top: 91px; left: 0; right: 0; background: #172f33; padding: 18px 27px 31px; border-top: 1px solid rgba(255,255,255,.2); }
