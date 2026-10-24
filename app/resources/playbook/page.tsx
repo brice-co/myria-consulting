@@ -1,3 +1,5 @@
+import { publicPageMetadata } from "@/lib/seo";
+export const metadata = publicPageMetadata({title:"AI-Enabled Enterprise Playbook | Myria Consulting",description:"Explore the AI-Enabled Enterprise Playbook: a practical management view of people, processes, decisions, data and governance in organizational AI transformation.",pathname:"/resources/playbook",type:"article"});
 import { PlaybookChapters } from "./_components/playbook-chapters";
 import { PlaybookGate } from "./_components/playbook-gate";
 import { PlaybookHero } from "./_components/playbook-hero";

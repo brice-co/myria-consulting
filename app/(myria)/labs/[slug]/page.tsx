@@ -2,19 +2,29 @@ import { notFound } from "next/navigation";
 
 import { LabPublicExperience } from "@/components/labs/public/lab-public-experience";
 import { getLabBySlug } from "@/data/labs";
-import {Metadata} from "next";
+import type { Metadata } from "next";
+import { publicPageMetadata } from "@/lib/seo";
 
-export const metadata: Metadata = {
-  title: "Myria Consulting | Advisory Lab",
-  description: "Myria Advisory Lab",
-  keywords: ["Myria", "Myria Consulting", "Virtual Management Consulting", "Virtual Advisory Service", "Distributed Systems", "Management Consulting", "Advisory Service"],
-};
+
 
 type LabPageProps = {
   params: Promise<{
     slug: string;
   }>;
 };
+
+export async function generateMetadata({ params }: LabPageProps): Promise<Metadata> {
+  const { slug } = await params;
+  const lab = getLabBySlug(slug);
+
+  if (!lab) return { robots: { index: false, follow: false } };
+
+  return publicPageMetadata({
+    title: `${lab.title} | Myria Consulting Advisory Labs`,
+    description: lab.description,
+    pathname: `/labs/${lab.slug}`,
+  });
+}
 
 export default async function LabPage({
   params,

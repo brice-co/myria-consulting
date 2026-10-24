@@ -12,7 +12,6 @@ const dmSans = DM_Sans({ subsets: ['latin'], variable: '--font-sans' })
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   applicationName: 'Myria Consulting',
-  alternates: { canonical: '/' },
   title: 'Myria Consulting | Management Advisory & Intelligent Systems',
   description: 'Myria helps organizations improve decisions, operations and execution through management expertise, intelligent systems and AI advisory.',
   keywords: ['Myria Consulting', 'Management Consulting', 'Business Transformation', 'AI-Enabled Enterprise', 'Organizational Change', 'Intelligent Systems', 'Advisory Lab'],
