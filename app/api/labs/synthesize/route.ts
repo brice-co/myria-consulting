@@ -20,10 +20,6 @@ import type {
   LabSynthesisSectionKey,
 } from "@/lib/labs/synthesis-types";
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
-
 type SynthesizeLabSessionRequest = {
   sessionId: string;
   labSlug: LabSlug;
@@ -106,6 +102,16 @@ export async function POST(
       getLabSynthesisConfig(
         labSlug,
       );
+
+    const apiKey = process.env.OPENAI_API_KEY;
+    if (!apiKey) {
+      return NextResponse.json(
+        { error: "AI analysis is not configured for this environment." },
+        { status: 503 },
+      );
+    }
+
+    const openai = new OpenAI({ apiKey });
 
     const response =
       await openai.responses.create({
