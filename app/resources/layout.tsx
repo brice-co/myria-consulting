@@ -18,7 +18,7 @@ export default function ResourcesLayout({
         className="mx-auto max-w-7xl px-6 py-20 lg:px-10 lg:py-28"
       >
         <div className="grid gap-10 lg:grid-cols-[0.65fr_1.35fr]">
-          <p className="font-mono text-[10px] uppercase tracking-[0.28em] text-primary">
+          <p className="font-mono text-[11px] font-semibold uppercase tracking-[0.18em] text-[#704e35]">
             For leaders building what&apos;s next
           </p>
 
@@ -31,7 +31,7 @@ export default function ResourcesLayout({
             <div className="mt-10 flex flex-wrap items-center gap-5">
               <a
                 href="/contact-myria"
-                className="rounded-full bg-primary px-6 py-3.5 text-sm font-semibold text-primary-foreground"
+                className="rounded-full bg-[#142b35] px-6 py-3.5 text-sm font-semibold text-white"
               >
                 Talk to Myria{" "}
                 <ArrowUpRight

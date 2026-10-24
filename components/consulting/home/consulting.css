@@ -319,3 +319,6 @@
 .mc-pdf-button--secondary { color: #173039; background: #fff; border: 1px solid #879a99; }
 .mc-pdf-button--secondary:hover { background: #eee8de; }
 .mc-pdf-state { font-size: 12px; line-height: 1.6; color: #6a5040; padding: 12px 0; }
+
+/* Contrast for the unavailable-PDF note on dark Management Model hero. */
+.bg-\[\#142b35\] .mc-pdf-state { color: #f0d4b4; }

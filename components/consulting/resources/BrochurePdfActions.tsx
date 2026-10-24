@@ -1,13 +1,13 @@
-"use client";
-
-import { useEffect, useState } from "react";
+import "server-only";
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 import { Download, ExternalLink } from "lucide-react";
 
-type PdfStatus = "checking" | "available" | "unavailable";
-
 /**
- * Restore the supplied brochure's Preview PDF and Download actions.
- * Do not send visitors to a missing file before the binary asset is deployed.
+ * Preserves the user's original Preview PDF / Download buttons.
+ * Server-side presence check: no 404 probes, broken links, or client hydration.
+ * When binaries are committed under public/brochures and redeployed, links
+ * automatically become available on the next build.
  */
 export function BrochurePdfActions({
   pdf,
@@ -16,27 +16,17 @@ export function BrochurePdfActions({
   pdf: string;
   compact?: boolean;
 }) {
-  const [status, setStatus] = useState<PdfStatus>("checking");
+  if (!/^\/brochures\/[a-z0-9-]+\.pdf$/.test(pdf)) {
+    return null;
+  }
 
-  useEffect(() => {
-    let active = true;
-    fetch(pdf, { method: "HEAD", cache: "no-store" })
-      .then((response) => {
-        if (active) {
-          const mime = response.headers.get("content-type") ?? "";
-          setStatus(response.ok && mime.includes("pdf") ? "available" : "unavailable");
-        }
-      })
-      .catch(() => { if (active) setStatus("unavailable"); });
+  const available = existsSync(join(process.cwd(), "public", pdf.slice(1)));
 
-    return () => { active = false; };
-  }, [pdf]);
-
-  if (status !== "available") {
+  if (!available) {
     return (
-      <div className="mc-pdf-state" role="status" aria-live="polite">
-        {status === "checking" ? "Checking document availability…" : "PDF preview and download will be available when the document is uploaded."}
-      </div>
+      <p className="mc-pdf-state">
+        PDF preview and download will be available when the source document is published.
+      </p>
     );
   }
 
@@ -51,11 +41,7 @@ export function BrochurePdfActions({
         <ExternalLink size={16} aria-hidden="true" /> Preview PDF
         <span className="sr-only">(opens in a new tab)</span>
       </a>
-      <a
-        href={pdf}
-        download
-        className="mc-pdf-button mc-pdf-button--secondary"
-      >
+      <a href={pdf} download className="mc-pdf-button mc-pdf-button--secondary">
         <Download size={16} aria-hidden="true" /> Download
       </a>
     </div>
