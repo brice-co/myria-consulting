@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { OrganizationJsonLd } from "@/components/seo/OrganizationJsonLd";
 import { ConsultingHomePage } from "@/components/consulting/home/ConsultingHomePage";
 
 export const metadata: Metadata = {
@@ -9,5 +10,10 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  return <ConsultingHomePage />;
+  return (
+    <>
+      <OrganizationJsonLd />
+      <ConsultingHomePage />
+    </>
+  );
 }

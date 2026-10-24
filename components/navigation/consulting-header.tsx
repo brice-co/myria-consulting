@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
+import Image from "next/image";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { consultingNavigation } from "@/components/consulting/home/content";
 
@@ -33,12 +34,14 @@ export function ConsultingHeader() {
       <header className={isHome ? "mc-header mc-header--overlay" : "mc-header mc-header--solid"}>
       <div className="mc-container mc-header-inner">
         <Link href={isHome ? "#top" : "/"} className="mc-brand" title="Myria Consulting home" onClick={() => setOpen(false)}>
-          <span className="mc-brand-symbol" aria-hidden="true">M</span>
+          <span className="mc-brand-logo" aria-hidden="true">
+            <Image src="/images/myria-logo.png" alt="" width={52} height={52} priority />
+          </span>
           <span className="mc-brand-name">MYRIA<small>CONSULTING</small></span>
         </Link>
         <nav id="mc-main-navigation" aria-label="Primary navigation" className={open ? "mc-navigation mc-navigation-open" : "mc-navigation"}>
           {consultingNavigation.map((item) => (
-            <Link key={item.href} href={isHome ? item.href : `/${item.href}`} onClick={() => setOpen(false)}>
+            <Link key={item.href} href={item.href.startsWith("#") ? (isHome ? item.href : `/${item.href}`) : item.href} onClick={() => setOpen(false)}>
               {item.label}
             </Link>
           ))}

@@ -93,6 +93,9 @@ export function DifferenceSection() {
         <div className="mc-governance"><ShieldCheck size={21} strokeWidth={1.5} aria-hidden="true" />
           AI strengthens the advisory process; decisions, approvals, and accountability remain with people.
         </div>
+        <Link href="/our-approach/management-model" className="mc-management-link">
+          Explore the Myria Management Model <ArrowUpRight size={17} aria-hidden="true" />
+        </Link>
       </div>
     </section>
   );

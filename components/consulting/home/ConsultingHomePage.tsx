@@ -28,9 +28,11 @@ export function ConsultingHomePage() {
           <a href="#top" className="mc-footer-brand">MYRIA <span>CONSULTING</span></a>
           <nav aria-label="Footer links">
             <a href="#capabilities">Capabilities</a>
-            <a href="#difference">Our approach</a>
+            <Link href="/our-approach/management-model">Management Model</Link>
             <a href="#discovery">Discovery Lab</a>
             <a href="#experience">Experience</a>
+            <Link href="/resources/brochures">Brochures</Link>
+            <Link href="/resources/playbook">Playbook</Link>
             <Link href="/client-portal">Client portal</Link>
             <Link href="/privacy-policy">Privacy</Link>
             <Link href="/terms-of-service">Terms</Link>

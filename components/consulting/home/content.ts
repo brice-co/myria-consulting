@@ -5,10 +5,11 @@
  */
 export const consultingNavigation = [
   { label: "Capabilities", href: "#capabilities" },
-  { label: "Our approach", href: "#difference" },
+  { label: "Our approach", href: "/our-approach/management-model" },
   { label: "Discovery Lab", href: "#discovery" },
   { label: "Experience", href: "#experience" },
   { label: "Insights", href: "#insights" },
+  { label: "Brochures", href: "/resources/brochures" },
 ] as const;
 
 export const challenges = [
