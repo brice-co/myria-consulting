@@ -4,12 +4,12 @@ import { challenges, capabilities, philosophy, discoveryStages, insights } from 
 
 const disciplineIcons = [Compass, Layers3, Network, Users];
 
-function SectionIntro({ eyebrow, heading, detail }: { eyebrow: string; heading: string; detail: string }) {
+function SectionIntro({ eyebrow, heading, detail, headingId }: { eyebrow: string; heading: string; detail: string; headingId: string }) {
   return (
     <div className="mc-section-heading">
       <div>
         <p className="mc-eyebrow">{eyebrow}</p>
-        <h2>{heading}</h2>
+        <h2 id={headingId}>{heading}</h2>
       </div>
       <p>{detail}</p>
     </div>
@@ -46,8 +46,8 @@ export function CapabilitiesSection() {
   return (
     <section className="mc-section mc-capabilities" id="capabilities" aria-labelledby="mc-capabilities-title">
       <div className="mc-container">
-        <div id="mc-capabilities-title">
-          <SectionIntro eyebrow="02 — WHAT WE DO" heading="Connected expertise. Practical action."
+        <div>
+          <SectionIntro headingId="mc-capabilities-title" eyebrow="02 — WHAT WE DO" heading="Connected expertise. Practical action."
             detail="Four complementary advisory disciplines, brought together according to the challenge — not as disconnected service offerings." />
         </div>
         <div className="mc-capabilities-grid">
@@ -136,8 +136,8 @@ export function InsightsSection() {
   return (
     <section className="mc-section mc-insights" id="insights" aria-labelledby="mc-insights-title">
       <div className="mc-container">
-        <div id="mc-insights-title">
-          <SectionIntro eyebrow="06 — INSIGHTS & EXPERTISE" heading="Ideas grounded in the work."
+        <div>
+          <SectionIntro headingId="mc-insights-title" eyebrow="06 — INSIGHTS & EXPERTISE" heading="Ideas grounded in the work."
             detail="Practical resources for leaders exploring strategy, transformation, and the business use of intelligent systems." />
         </div>
         <div className="mc-insight-grid">
