@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { consultingServices, getConsultingService } from "@/data/consulting-services";
 import { getServiceEditorial } from "@/data/service-editorial";
+import { serviceEvidence } from "@/data/service-evidence";
 import { publicPageMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -57,6 +58,7 @@ export default async function ServiceDetailPage({ params }: Props) {
   const service = getConsultingService(slug);
   if (!service) notFound();
   const editorial = getServiceEditorial(service);
+  const evidence = serviceEvidence[slug];
   const related = consultingServices.filter((item) => item.slug !== slug).slice(0, 3);
   const schema = {
     "@context": "https://schema.org",
@@ -117,6 +119,26 @@ export default async function ServiceDetailPage({ params }: Props) {
             <ul className="mt-10 space-y-6">{editorial.signals.map((signal, index) => <li key={signal} className="flex gap-5 border-b border-[#142b35]/15 pb-5"><span className="text-sm text-[#785330]">0{index + 1}</span><span className="text-lg leading-7">{signal}</span></li>)}</ul>
           </div>
           <div className="bg-[#eae4d9] p-9 md:p-12"><p className="text-xs font-semibold uppercase tracking-[.2em] text-[#785330]">Typical deliverables</p><h3 className="mt-5 font-serif text-4xl">{service.name} deliverables.</h3><ul className="mt-9 space-y-5">{service.outputs.map((output) => <li key={output} className="border-t border-[#142b35]/20 pt-5 leading-8">{output}</li>)}</ul><p className="mt-9 text-sm leading-7 text-[#536166]">Deliverables are defined to fit the organization's scope, priorities and readiness.</p></div>
+        </div>
+      </section>
+
+      <section className="bg-white px-6 py-24 md:py-28">
+        <div className="mx-auto grid max-w-7xl gap-14 lg:grid-cols-[1.1fr_.9fr]">
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[.2em] text-[#785330]">The work in practice</p>
+            <h2 className="mt-6 font-serif text-4xl font-normal md:text-5xl">What effective {service.name.toLowerCase()} requires.</h2>
+            <p className="mt-8 text-lg leading-9 text-[#536166]">{evidence.context}</p>
+            <h3 className="mt-12 font-serif text-3xl">An illustrative situation</h3>
+            <p className="mt-5 leading-8 text-[#536166]">{evidence.example}</p>
+            <p className="mt-4 text-sm italic text-[#785330]">Illustrative scenario, not a client case or claimed result.</p>
+          </div>
+          <div className="border-t border-[#a87532] pt-7">
+            <h3 className="font-serif text-3xl">Questions worth answering</h3>
+            <ul className="mt-7 space-y-4">{evidence.questions.map((question) => <li className="border-b border-[#142b35]/15 pb-4 leading-7" key={question}>{question}</li>)}</ul>
+            <h3 className="mt-12 font-serif text-3xl">Measures to consider</h3>
+            <ul className="mt-7 space-y-4">{evidence.metrics.map((metric) => <li className="border-b border-[#142b35]/15 pb-4 leading-7" key={metric}>{metric}</li>)}</ul>
+            <p className="mt-6 text-sm leading-7 text-[#536166]">Measures are selected and baselined with the organization before any improvement claims are made.</p>
+          </div>
         </div>
       </section>
 

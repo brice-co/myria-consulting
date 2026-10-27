@@ -18,6 +18,18 @@ export function ConsultingHomePage() {
         <ConsultingHero />
         <ChallengesSection />
         <CapabilitiesSection />
+        <section className="bg-[#f7f4ee] px-6 py-20 text-[#142b35]" aria-labelledby="consulting-services-title">
+          <div className="mx-auto max-w-6xl">
+            <p className="text-xs font-semibold uppercase tracking-[.2em] text-[#785330]">Consulting services</p>
+            <h2 id="consulting-services-title" className="mt-5 max-w-3xl font-serif text-4xl md:text-5xl">Expertise for the decisions and changes that matter.</h2>
+            <p className="mt-6 max-w-3xl leading-8 text-[#536166]">Explore Myria's management consulting, business transformation, operational excellence, organizational change management and AI advisory services.</p>
+            <div className="mt-10 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+              {[["Management consulting","management-consulting"],["Business transformation","business-transformation"],["Operational excellence","operations-excellence"],["Change management","change-management"],["AI strategy consulting","ai-strategy"],["Intelligent automation","intelligent-automation"]].map(([label,slug]) => (
+                <Link key={slug} href={`/services/${slug}`} className="border-t border-[#a87532] pt-5 text-lg font-medium hover:underline">{label} <span aria-hidden="true">↗</span></Link>
+              ))}
+            </div>
+          </div>
+        </section>
         <DifferenceSection />
         <DiscoverySection />
         <ExperienceSection />
