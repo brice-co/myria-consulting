@@ -212,6 +212,16 @@ export default function StrategyToExecutionArticle() {
           </Link>
         </div>
       </section>
+      <section className="bg-[#f7f4ee] px-6 py-20 text-[#142b35]">
+        <div className="mx-auto max-w-6xl">
+          <h2 className="font-serif text-4xl">Explore the related consulting disciplines.</h2>
+          <div className="mt-8 flex flex-wrap gap-6">
+            <Link className="underline underline-offset-4" href="/services/business-transformation">Business transformation consulting</Link>
+            <Link className="underline underline-offset-4" href="/services/operations-excellence">Operational excellence consulting</Link>
+            <Link className="underline underline-offset-4" href="/services/change-management">Organizational change management consulting</Link>
+          </div>
+        </div>
+      </section>
     </main>
   );
 }

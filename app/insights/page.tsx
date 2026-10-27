@@ -4,6 +4,7 @@ import { ArrowUpRight } from "lucide-react";
 import { studies } from "@/lib/insights/studies";
 import { StudyCard } from "@/components/consulting/insights/StudyCard";
 import { publicPageMetadata } from "@/lib/seo";
+import { consultingServices } from "@/data/consulting-services";
 
 export const metadata: Metadata = publicPageMetadata({
   title: "Research & Insights | Myria Consulting",
@@ -89,6 +90,15 @@ export default function InsightsPage() {
                 </Link>
               </article>
             ))}
+          </div>
+        </div>
+      </section>
+      <section className="px-6 py-20 bg-[#f7f4ee] text-[#142b35]" aria-labelledby="insights-services-title">
+        <div className="mx-auto max-w-6xl">
+          <p className="text-xs font-semibold uppercase tracking-[.2em] text-[#785330]">From insight to advisory</p>
+          <h2 id="insights-services-title" className="mt-5 font-serif text-4xl">Explore related consulting expertise.</h2>
+          <div className="mt-9 grid gap-5 md:grid-cols-3">
+            {consultingServices.map((service) => <Link key={service.slug} href={`/services/${service.slug}`} className="border-t border-[#a87532] pt-5 font-medium hover:underline">{service.name} <ArrowUpRight size={15} className="ml-1 inline" aria-hidden="true" /></Link>)}
           </div>
         </div>
       </section>
