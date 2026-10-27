@@ -43,6 +43,7 @@ export function ConsultingHomePage() {
           <nav aria-label="Footer links">
             <a href="#capabilities">Capabilities</a>
             <Link href="/our-approach/management-model">Management Model</Link>
+            <Link href="/services">Consulting services</Link>
             <a href="#discovery">Discovery Lab</a>
             <a href="#experience">Experience</a>
             <Link href="/resources/brochures">Brochures</Link>

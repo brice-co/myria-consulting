@@ -3,9 +3,9 @@ import { OrganizationJsonLd } from "@/components/seo/OrganizationJsonLd";
 import { ConsultingHomePage } from "@/components/consulting/home/ConsultingHomePage";
 
 export const metadata: Metadata = {
-  title: "Myria Consulting | Management Advisory & Intelligent Systems",
+  title: "Management Consulting & AI Advisory | Myria Consulting",
   description:
-    "Management consulting strengthened by intelligent systems. Myria helps leaders make better decisions, improve operations and turn strategy into execution.",
+    "Montreal-based management consulting for strategy, operations, business transformation, organizational change and AI advisory. Better decisions. Stronger execution.",
   alternates: { canonical: "/" },
 };
 
