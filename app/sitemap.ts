@@ -3,10 +3,12 @@ import { advisoryLabs } from "@/data/labs";
 import { useCases } from "@/data/use-cases";
 import { guides } from "@/app/resources/guides/_data/guides";
 import { SITE_URL } from "@/lib/seo";
+import { consultingServices } from "@/data/consulting-services";
 
 /** Only stable, public, canonical content belongs in the sitemap. */
 const publicPaths = [
   "/",
+  "/services",
   "/our-approach/management-model",
   "/resources/brochures",
   "/resources/brochures/strategic-clarity",
@@ -29,6 +31,7 @@ const publicPaths = [
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
     ...publicPaths,
+    ...consultingServices.map((service) => `/services/${service.slug}`),
     ...advisoryLabs.map((lab) => `/labs/${lab.slug}`),
     ...guides.map((guide) => `/resources/guides/${guide.slug}`),
     ...useCases.map((useCase) => `/use-cases/${useCase.slug}`),

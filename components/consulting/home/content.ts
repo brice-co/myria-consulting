@@ -4,6 +4,7 @@
  * Current site content and data/labs.ts inform these descriptions.
  */
 export const consultingNavigation = [
+  { label: "Services", href: "/services" },
   { label: "Capabilities", href: "#capabilities" },
   { label: "Our approach", href: "/our-approach/management-model" },
   { label: "Discovery Lab", href: "#discovery" },
