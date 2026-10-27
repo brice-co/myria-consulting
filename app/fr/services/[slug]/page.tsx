@@ -1,0 +1,24 @@
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import type { Metadata } from "next";
+import { frenchServices, getFrenchService } from "@/data/consulting-services-fr";
+type Props={params:Promise<{slug:string}>};
+export function generateStaticParams(){return frenchServices.map(s=>({slug:s.slug}));}
+export async function generateMetadata({params}:Props):Promise<Metadata>{
+const {slug}=await params;const s=getFrenchService(slug);
+if(!s)return {robots:{index:false,follow:false}};
+return {title:`${s.title} | Myria Consulting`,description:`${s.intro} Découvrez notre approche et nos services-conseils.`,alternates:{canonical:`/fr/services/${s.slug}`,languages:{"fr-CA":`/fr/services/${s.slug}`,"en-CA":`/services/${s.englishSlug}`,"x-default":`/services/${s.englishSlug}`}},openGraph:{title:`${s.title} | Myria Consulting`,description:s.intro,locale:"fr_CA",url:`/fr/services/${s.slug}`,type:"website"}};
+}
+export default async function FrenchServiceDetail({params}:Props){const {slug}=await params;const s=getFrenchService(slug);if(!s)notFound();
+const schema={"@context":"https://schema.org","@type":"Service",name:s.title,description:s.intro,inLanguage:"fr-CA",areaServed:[{"@type":"Place",name:"Montréal, Québec, Canada"},{"@type":"Country",name:"Canada"}],provider:{"@type":"Organization",name:"Myria Consulting",url:"https://myriaconsulting.com"},url:`https://myriaconsulting.com/fr/services/${s.slug}`};
+return <main lang="fr-CA" className="bg-[#f7f4ee] text-[#142b35]">
+<script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(schema).replace(/</g,"\\u003c")}}/>
+<section className="bg-[#142b35] px-6 pb-24 pt-28 text-white md:pb-32 md:pt-36"><div className="mx-auto max-w-7xl">
+<Link href="/fr/services" className="border-b border-[#e7bd8a] pb-2 text-[#e7bd8a]">Tous les services ↗</Link><p className="mt-14 text-xs font-semibold uppercase tracking-[.22em] text-[#e7bd8a]">MYRIA / {s.name.toUpperCase()}</p>
+<h1 className="mt-7 max-w-5xl font-serif text-5xl font-normal leading-tight md:text-7xl">{s.title}</h1><p className="mt-7 max-w-4xl font-serif text-3xl text-[#e7bd8a]">{s.tagline}</p><p className="mt-8 max-w-3xl text-lg leading-8 text-[#dfe7e5]">{s.intro}</p>
+</div></section>
+<section className="px-6 py-24"><div className="mx-auto grid max-w-7xl gap-12 md:grid-cols-2"><div><p className="text-xs font-semibold uppercase tracking-[.2em] text-[#785330]">LE DÉFI</p><h2 className="mt-6 font-serif text-4xl md:text-5xl">Comprendre ce qui freine la progression.</h2></div><p className="text-xl leading-9 text-[#536166]">{s.challenge}</p></div></section>
+<section className="bg-white px-6 py-24"><div className="mx-auto max-w-7xl"><p className="text-xs font-semibold uppercase tracking-[.2em] text-[#785330]">NOTRE DÉMARCHE</p><h2 className="mt-5 font-serif text-4xl md:text-6xl">Une démarche structurée, orientée vers l’action.</h2><div className="mt-14 grid gap-9 md:grid-cols-3">{s.steps.map((step,i)=><article key={step} className="border-t border-[#a87532] pt-7"><p className="text-sm text-[#785330]">0{i+1} / 03</p><h3 className="mt-6 font-serif text-3xl">{["Comprendre","Structurer","Agir"][i]}</h3><p className="mt-5 leading-8 text-[#536166]">{step}</p></article>)}</div></div></section>
+<section className="px-6 py-24"><div className="mx-auto grid max-w-7xl gap-16 lg:grid-cols-2"><div><p className="text-xs font-semibold uppercase tracking-[.2em] text-[#785330]">QUESTIONS À EXAMINER</p><h2 className="mt-5 font-serif text-4xl">Les bonnes questions avant de décider.</h2><ul className="mt-8 space-y-5">{s.questions.map(q=><li key={q} className="border-b border-[#142b35]/20 pb-4 leading-8">{q}</li>)}</ul></div><div className="bg-[#eae4d9] p-9 md:p-12"><p className="text-xs font-semibold uppercase tracking-[.2em] text-[#785330]">LIVRABLES POSSIBLES</p><h2 className="mt-6 font-serif text-4xl">Des résultats concrets.</h2><ul className="mt-8 space-y-5">{s.deliverables.map(d=><li key={d} className="border-t border-[#142b35]/20 pt-5 leading-8">{d}</li>)}</ul><p className="mt-8 text-sm leading-7 text-[#536166]">Le contenu du mandat et les livrables sont ajustés aux besoins réels de l’organisation.</p></div></div></section>
+<section className="bg-[#142b35] px-6 py-24 text-white"><div className="mx-auto max-w-7xl"><h2 className="max-w-4xl font-serif text-4xl md:text-6xl">Avançons avec une direction claire.</h2><p className="mt-6 max-w-2xl leading-8 text-[#dfe7e5]">Présentez-nous vos priorités et vos enjeux. Nous examinerons ensemble les prochaines étapes possibles.</p><div className="mt-8 flex flex-wrap gap-8"><Link href="/contact-myria" className="rounded-full bg-white px-7 py-3 font-semibold text-[#142b35]">Communiquer avec Myria</Link><Link href={`/services/${s.englishSlug}`} className="self-center border-b border-[#e7bd8a] pb-2 text-[#e7bd8a]">English version ↗</Link></div></div></section>
+</main>}

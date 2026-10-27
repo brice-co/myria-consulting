@@ -10,6 +10,7 @@ import { consultingNavigation } from "@/components/consulting/home/content";
 export function ConsultingHeader() {
   const pathname = usePathname();
   const isHome = pathname === "/";
+  const isFrench = pathname === "/fr" || pathname.startsWith("/fr/");
   const isFullScreenApp = /^\/(portal|workspace|auth|admin)(\/|$)/.test(pathname);
   const [open, setOpen] = useState(false);
   const menuToggleRef = useRef<HTMLButtonElement>(null);
@@ -45,6 +46,7 @@ export function ConsultingHeader() {
               {item.label}
             </Link>
           ))}
+          <Link href={isFrench ? "/" : "/fr"} hrefLang={isFrench ? "en-CA" : "fr-CA"} onClick={() => setOpen(false)}>{isFrench ? "English" : "Français"}</Link>
           <Link className="mc-nav-cta" href="/contact-myria" onClick={() => setOpen(false)}>
             Start a conversation <ArrowUpRight size={16} aria-hidden="true" />
           </Link>
