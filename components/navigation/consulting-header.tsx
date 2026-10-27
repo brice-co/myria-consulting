@@ -41,17 +41,23 @@ export function ConsultingHeader() {
           <span className="mc-brand-name">MYRIA<small>CONSULTING</small></span>
         </Link>
         <nav id="mc-main-navigation" aria-label="Primary navigation" className={open ? "mc-navigation mc-navigation-open" : "mc-navigation"}>
-          {consultingNavigation.map((item) => (
+          {(isFrench ? [
+            { label: "Accueil", href: "/fr" },
+            { label: "Services-conseils", href: "/fr/services" },
+            { label: "Conseil en gestion", href: "/fr/services/conseil-en-gestion" },
+            { label: "Transformation", href: "/fr/services/transformation-organisationnelle" },
+            { label: "Gestion du changement", href: "/fr/services/gestion-du-changement" },
+          ] : consultingNavigation).map((item) => (
             <Link key={item.href} href={item.href.startsWith("#") ? (isHome ? item.href : `/${item.href}`) : item.href} onClick={() => setOpen(false)}>
               {item.label}
             </Link>
           ))}
           <Link href={isFrench ? "/" : "/fr"} hrefLang={isFrench ? "en-CA" : "fr-CA"} onClick={() => setOpen(false)}>{isFrench ? "English" : "Français"}</Link>
           <Link className="mc-nav-cta" href="/contact-myria" onClick={() => setOpen(false)}>
-            Start a conversation <ArrowUpRight size={16} aria-hidden="true" />
+            {isFrench ? "Nous joindre" : "Start a conversation"} <ArrowUpRight size={16} aria-hidden="true" />
           </Link>
           <Link className="mc-portal-link" href="/client-portal" onClick={() => setOpen(false)}>
-            Client portal
+            {isFrench ? "Portail client" : "Client portal"}
           </Link>
         </nav>
         <button

@@ -5,6 +5,7 @@ import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { consultingServices, getConsultingService } from "@/data/consulting-services";
 import { getServiceEditorial } from "@/data/service-editorial";
 import { serviceEvidence } from "@/data/service-evidence";
+import { frenchServices } from "@/data/consulting-services-fr";
 import { publicPageMetadata } from "@/lib/seo";
 
 type Props = { params: Promise<{ slug: string }> };
@@ -17,11 +18,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const service = getConsultingService(slug);
   if (!service) return { robots: { index: false, follow: false } };
-  return publicPageMetadata({
+  const translation = frenchServices.find((item) => item.englishSlug === slug);
+  return {
+    ...publicPageMetadata({
     title: `${service.target} | Myria Consulting`,
     description: `${service.target} from Myria Consulting in Montreal. ${service.intro}`,
     pathname: `/services/${slug}`,
-  });
+    }),
+    ...(translation ? { alternates: { canonical: `/services/${slug}`, languages: { "en-CA": `/services/${slug}`, "fr-CA": `/fr/services/${translation.slug}`, "x-default": `/services/${slug}` } } } : {}),
+  };
 }
 
 function ServiceIllustration({ kind }: { kind: string }) {
