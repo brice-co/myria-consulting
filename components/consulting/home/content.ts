@@ -10,6 +10,7 @@ export const consultingNavigation = [
   { label: "Experience", href: "#experience" },
   { label: "Insights", href: "/insights" },
   { label: "Brochures", href: "/resources/brochures" },
+  { label: "MyriaChat ↗", href: "https://myriachat.com/" },
 ] as const;
 
 export const challenges = [
