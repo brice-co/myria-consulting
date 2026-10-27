@@ -18,7 +18,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!service) return { robots: { index: false, follow: false } };
   return publicPageMetadata({
     title: `${service.target} | Myria Consulting`,
-    description: `${service.intro} Explore Myria's approach to ${service.name.toLowerCase()}.`,
+    description: `${service.target} from Myria Consulting in Montreal. ${service.intro}`,
     pathname: `/services/${slug}`,
   });
 }
@@ -78,7 +78,8 @@ export default async function ServiceDetailPage({ params }: Props) {
           <p className="mt-14 text-xs font-semibold uppercase tracking-[.22em] text-[#e7bd8a]">{editorial.eyebrow}</p>
           <div className="mt-6 grid items-center gap-14 lg:grid-cols-[1.1fr_.9fr]">
             <div>
-              <h1 className="max-w-4xl font-serif text-5xl font-normal leading-[1.05] md:text-7xl">{editorial.hero}</h1>
+              <h1 className="max-w-4xl font-serif text-5xl font-normal leading-[1.05] md:text-7xl">{service.target}</h1>
+              <p className="mt-7 max-w-3xl font-serif text-3xl leading-tight text-[#e7bd8a] md:text-4xl">{editorial.hero}</p>
               <p className="mt-8 max-w-2xl text-lg leading-8 text-[#dfe7e5]">{service.intro}</p>
               <Link href="/contact-myria" className="mt-10 inline-flex items-center gap-3 border-b border-[#e7bd8a] pb-3 font-semibold text-[#e7bd8a]">Discuss your priorities <ArrowUpRight size={17} aria-hidden="true" /></Link>
             </div>
@@ -97,7 +98,7 @@ export default async function ServiceDetailPage({ params }: Props) {
       <section className="bg-white px-6 py-24 md:py-28">
         <div className="mx-auto max-w-7xl">
           <p className="text-xs font-semibold uppercase tracking-[.2em] text-[#785330]">Our advisory approach</p>
-          <h2 className="mt-5 max-w-3xl font-serif text-4xl font-normal md:text-6xl">From understanding to action.</h2>
+          <h2 className="mt-5 max-w-4xl font-serif text-4xl font-normal md:text-6xl">Our approach to {service.name.toLowerCase()}.</h2>
           <div className="mt-16 grid gap-10 md:grid-cols-3">
             {editorial.steps.map(([title, description], index) => (
               <article key={title} className="border-t border-[#a87532] pt-7">
@@ -112,10 +113,10 @@ export default async function ServiceDetailPage({ params }: Props) {
 
       <section className="px-6 py-24 md:py-28">
         <div className="mx-auto grid max-w-7xl gap-16 lg:grid-cols-2">
-          <div><p className="text-xs font-semibold uppercase tracking-[.2em] text-[#785330]">When this service is relevant</p><h2 className="mt-6 font-serif text-4xl font-normal md:text-5xl">Recognize the signals.</h2>
+          <div><p className="text-xs font-semibold uppercase tracking-[.2em] text-[#785330]">When to engage a {service.name.toLowerCase()} advisor</p><h2 className="mt-6 font-serif text-4xl font-normal md:text-5xl">Recognize the signals.</h2>
             <ul className="mt-10 space-y-6">{editorial.signals.map((signal, index) => <li key={signal} className="flex gap-5 border-b border-[#142b35]/15 pb-5"><span className="text-sm text-[#785330]">0{index + 1}</span><span className="text-lg leading-7">{signal}</span></li>)}</ul>
           </div>
-          <div className="bg-[#eae4d9] p-9 md:p-12"><p className="text-xs font-semibold uppercase tracking-[.2em] text-[#785330]">Typical deliverables</p><h3 className="mt-5 font-serif text-4xl">What the work can produce.</h3><ul className="mt-9 space-y-5">{service.outputs.map((output) => <li key={output} className="border-t border-[#142b35]/20 pt-5 leading-8">{output}</li>)}</ul><p className="mt-9 text-sm leading-7 text-[#536166]">Deliverables are defined to fit the organization's scope, priorities and readiness.</p></div>
+          <div className="bg-[#eae4d9] p-9 md:p-12"><p className="text-xs font-semibold uppercase tracking-[.2em] text-[#785330]">Typical deliverables</p><h3 className="mt-5 font-serif text-4xl">{service.name} deliverables.</h3><ul className="mt-9 space-y-5">{service.outputs.map((output) => <li key={output} className="border-t border-[#142b35]/20 pt-5 leading-8">{output}</li>)}</ul><p className="mt-9 text-sm leading-7 text-[#536166]">Deliverables are defined to fit the organization's scope, priorities and readiness.</p></div>
         </div>
       </section>
 

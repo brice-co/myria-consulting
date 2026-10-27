@@ -16,7 +16,7 @@ export default function ServicesPage() {
     <main className="bg-[#f7f4ee] text-[#142b35]">
       <section className="bg-[#142b35] px-6 pb-28 pt-28 text-white md:pb-32 md:pt-36"><div className="mx-auto max-w-7xl">
         <p className="text-xs font-semibold uppercase tracking-[.22em] text-[#e7bd8a]">Myria / Advisory services</p>
-        <h1 className="mt-8 max-w-5xl font-serif text-5xl font-normal leading-[1.04] md:text-7xl lg:text-8xl">Clarity in thinking. Strength in execution.</h1>
+        <h1 className="mt-8 max-w-5xl font-serif text-5xl font-normal leading-[1.04] md:text-7xl lg:text-8xl">Management consulting services for stronger execution.</h1>
         <p className="mt-8 max-w-3xl text-lg leading-8 text-[#dfe7e5]">Myria is a Montreal-based management consulting firm working across strategy, organizational transformation, operations, change management and AI advisory. We help leaders connect business decisions with practical execution.</p>
       </div></section>
       <section className="px-6 py-24 md:py-32"><div className="mx-auto max-w-7xl">
@@ -26,7 +26,8 @@ export default function ServicesPage() {
             const editorial = getServiceEditorial(service);
             return <article key={service.slug} className="border-t border-[#a87532] pt-7">
               <p className="text-xs font-semibold uppercase tracking-[.18em] text-[#785330]">0{index + 1} / {editorial.eyebrow}</p>
-              <h3 className="mt-7 max-w-xl font-serif text-4xl font-normal leading-tight md:text-5xl">{editorial.hero}</h3>
+              <h3 className="mt-7 max-w-xl font-serif text-4xl font-normal leading-tight md:text-5xl">{service.name}</h3>
+              <p className="mt-3 font-serif text-2xl text-[#785330]">{editorial.hero}</p>
               <p className="mt-6 max-w-xl leading-8 text-[#536166]">{service.intro}</p>
               <Link className="mt-8 inline-flex items-center gap-3 border-b border-[#142b35] pb-2 text-sm font-semibold" href={`/services/${service.slug}`}>{service.name} <ArrowUpRight size={17} aria-hidden="true" /></Link>
             </article>;
