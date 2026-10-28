@@ -16,16 +16,15 @@ function SectionIntro({ eyebrow, heading, detail, headingId }: { eyebrow: string
   );
 }
 
-export function ChallengesSection() {
+export function ChallengesSection({ locale = "en" }: { locale?: "en" | "fr" }) {
+  const fr = locale === "fr";
   return (
     <section id="challenges" className="mc-section mc-challenges" aria-labelledby="mc-challenges-title">
       <div className="mc-container">
-        <p className="mc-eyebrow">01 — THE CHALLENGES WE ADDRESS</p>
+        <p className="mc-eyebrow">{fr ? "01 — LES DÉFIS QUE NOUS ABORDONS" : "01 — THE CHALLENGES WE ADDRESS"}</p>
         <div className="mc-two-column-intro">
-          <h2 id="mc-challenges-title">Business complexity deserves connected thinking.</h2>
-          <p>Organizations rarely struggle with one issue in isolation. Strategy, operations, technology,
-            and people influence each other. Our work starts by understanding those relationships
-            and the decisions leaders need to make.</p>
+          <h2 id="mc-challenges-title">{fr ? "La complexité des organisations exige une réflexion intégrée." : "Business complexity deserves connected thinking."}</h2>
+          <p>{fr ? "Les défis organisationnels sont rarement isolés. Stratégie, opérations, technologie et personnes s’influencent mutuellement. Notre démarche examine ces relations et les décisions à prendre." : "Organizations rarely struggle with one issue in isolation. Strategy, operations, technology, and people influence each other. Our work starts by understanding those relationships and the decisions leaders need to make."}</p>
         </div>
         <div className="mc-challenge-grid">
           {challenges.map((item) => (
@@ -33,7 +32,7 @@ export function ChallengesSection() {
               <span className="mc-index">{item.number}</span>
               <h3>{item.title}</h3>
               <p>{item.description}</p>
-              <div className="mc-challenge-response"><span>Where we help</span>{item.response}</div>
+              <div className="mc-challenge-response"><span>{fr ? "Notre contribution" : "Where we help"}</span>{item.response}</div>
             </article>
           ))}
         </div>
@@ -42,13 +41,14 @@ export function ChallengesSection() {
   );
 }
 
-export function CapabilitiesSection() {
+export function CapabilitiesSection({ locale = "en" }: { locale?: "en" | "fr" }) {
+  const fr = locale === "fr";
   return (
     <section className="mc-section mc-capabilities" id="capabilities" aria-labelledby="mc-capabilities-title">
       <div className="mc-container">
         <div>
-          <SectionIntro headingId="mc-capabilities-title" eyebrow="02 — WHAT WE DO" heading="Connected expertise. Practical action."
-            detail="Four complementary advisory disciplines, brought together according to the challenge — not as disconnected service offerings." />
+          <SectionIntro headingId="mc-capabilities-title" eyebrow="{fr ? "02 — NOS EXPERTISES" : "02 — WHAT WE DO"}" heading="{fr ? "Des expertises reliées. Des actions concrètes." : "Connected expertise. Practical action."}"
+            detail="{fr ? "Quatre disciplines complémentaires mobilisées selon les enjeux de l’organisation." : "Four complementary advisory disciplines, brought together according to the challenge — not as disconnected service offerings."}" />
         </div>
         <div className="mc-capabilities-grid">
           {capabilities.map((item, index) => {
@@ -66,19 +66,17 @@ export function CapabilitiesSection() {
   );
 }
 
-export function DifferenceSection() {
+export function DifferenceSection({ locale = "en" }: { locale?: "en" | "fr" }) {
+  const fr = locale === "fr";
   return (
     <section className="mc-section mc-difference" id="difference" aria-labelledby="mc-difference-title">
       <div className="mc-container">
-        <p className="mc-eyebrow">03 — OUR MANAGEMENT PHILOSOPHY</p>
+        <p className="mc-eyebrow">{fr ? "03 — NOTRE PHILOSOPHIE DE GESTION" : "03 — OUR MANAGEMENT PHILOSOPHY"}</p>
         <div className="mc-two-column-intro">
-          <h2 id="mc-difference-title">Human judgment. Intelligent support. Connected execution.</h2>
+          <h2 id="mc-difference-title">{fr ? "Jugement humain. Soutien intelligent. Exécution coordonnée." : "Human judgment. Intelligent support. Connected execution."}</h2>
           <div>
-            <p>Myria brings management consulting and intelligent systems into the same working process.
-              Leaders bring context and accountability. Consultants bring methods and judgment.
-              AI advisors can contribute structured exploration, analysis, and specialist perspectives.</p>
-            <p className="mc-extra-paragraph">Our approach connects what an organization wants to achieve with how
-              its people, decisions, workflows, and technology work together.</p>
+            <p>{fr ? "Myria Conseil réunit l’expertise en gestion et les systèmes intelligents dans un même processus. Les dirigeants apportent leur contexte et leurs responsabilités. Les conseillers apportent leurs méthodes et leur jugement. Les conseillers IA contribuent à l’analyse et à l’exploration de différentes perspectives." : "Myria brings management consulting and intelligent systems into the same working process. Leaders bring context and accountability. Consultants bring methods and judgment. AI advisors can contribute structured exploration, analysis, and specialist perspectives."}</p>
+            <p className="mc-extra-paragraph">{fr ? "Notre approche relie les objectifs de l’organisation à ses personnes, ses décisions, ses processus et ses technologies." : "Our approach connects what an organization wants to achieve with how its people, decisions, workflows, and technology work together."}</p>
           </div>
         </div>
         <div className="mc-philosophy-grid">
@@ -91,43 +89,42 @@ export function DifferenceSection() {
           ))}
         </div>
         <div className="mc-governance"><ShieldCheck size={21} strokeWidth={1.5} aria-hidden="true" />
-          AI strengthens the advisory process; decisions, approvals, and accountability remain with people.
+          {fr ? "L’IA soutient le conseil; les décisions, les approbations et les responsabilités restent humaines." : "AI strengthens the advisory process; decisions, approvals, and accountability remain with people."}
         </div>
         <Link href="/our-approach/management-model" className="mc-management-link">
-          Explore the Myria Management Model <ArrowUpRight size={17} aria-hidden="true" />
+          {fr ? "Explorer le modèle de gestion Myria" : "Explore the Myria Management Model"} <ArrowUpRight size={17} aria-hidden="true" />
         </Link>
       </div>
     </section>
   );
 }
 
-export function DiscoverySection() {
+export function DiscoverySection({ locale = "en" }: { locale?: "en" | "fr" }) {
+  const fr = locale === "fr";
   return (
     <section className="mc-section mc-discovery" id="discovery" aria-labelledby="mc-discovery-title">
       <div className="mc-container mc-discovery-grid">
         <div>
-          <p className="mc-eyebrow mc-eyebrow-light">04 — HOW WE WORK</p>
-          <h2 id="mc-discovery-title">Start with the challenge, not the solution.</h2>
-          <p className="mc-discovery-description">The Discovery Lab is a structured advisory starting point.
-            We examine the business context, surface important questions, and identify where focused work can create value.</p>
+          <p className="mc-eyebrow mc-eyebrow-light">{fr ? "04 — NOTRE DÉMARCHE" : "04 — HOW WE WORK"}</p>
+          <h2 id="mc-discovery-title">{fr ? "Partir du défi, pas de la solution." : "Start with the challenge, not the solution."}</h2>
+          <p className="mc-discovery-description">{fr ? "Le laboratoire de découverte est un point de départ structuré. Nous analysons le contexte d’affaires, formulons les questions importantes et déterminons où concentrer les efforts." : "The Discovery Lab is a structured advisory starting point. We examine the business context, surface important questions, and identify where focused work can create value."}</p>
           <div className="mc-discovery-actions">
-            <Link className="mc-button mc-button-white" href="/labs/discovery">Explore the Discovery Lab <ArrowUpRight size={16} /></Link>
-            <Link className="mc-inline-link" href="/contact-myria">Discuss your challenge <ArrowUpRight size={15} /></Link>
+            <Link className="mc-button mc-button-white" href="/labs/discovery">{fr ? "Explorer le laboratoire" : "Explore the Discovery Lab"} <ArrowUpRight size={16} /></Link>
+            <Link className="mc-inline-link" href={fr ? "/fr/contact" : "/contact-myria"}>{fr ? "Discuter de votre défi" : "Discuss your challenge"} <ArrowUpRight size={15} /></Link>
           </div>
           <div className="mc-governance mc-governance-light"><ShieldCheck size={20} aria-hidden="true" />
-            Specialist AI advisors support exploration; the work remains human-led.
+            {fr ? "Des conseillers IA spécialisés enrichissent l’exploration sous la direction des personnes." : "Specialist AI advisors support exploration; the work remains human-led."}
           </div>
         </div>
-        <div className="mc-stage-list" aria-label="The five Discovery Lab stages">
+        <div className="mc-stage-list" aria-label="{fr ? "Les cinq étapes du laboratoire" : "The five Discovery Lab stages"}">
           {discoveryStages.map((stage) => (
             <div key={stage.number} className="mc-stage">
               <span>{stage.number}</span>
               <div><h3>{stage.title}</h3><p>{stage.description}</p></div>
             </div>
           ))}
-          <div className="mc-stage-result"><strong>What the Lab produces</strong>
-            A structured view of the challenges, key observations, potential opportunities, risks,
-            recommended priorities, and next steps.
+          <div className="mc-stage-result"><strong>{fr ? "Les résultats du laboratoire" : "What the Lab produces"}</strong>
+            {fr ? "Une compréhension structurée des défis, des observations, des occasions, des risques, des priorités et des prochaines étapes." : "A structured view of the challenges, key observations, potential opportunities, risks, recommended priorities, and next steps."}
           </div>
         </div>
       </div>
@@ -135,13 +132,14 @@ export function DiscoverySection() {
   );
 }
 
-export function InsightsSection() {
+export function InsightsSection({ locale = "en" }: { locale?: "en" | "fr" }) {
+  const fr = locale === "fr";
   return (
     <section className="mc-section mc-insights" id="insights" aria-labelledby="mc-insights-title">
       <div className="mc-container">
         <div>
-          <SectionIntro headingId="mc-insights-title" eyebrow="06 — INSIGHTS & EXPERTISE" heading="Ideas grounded in the work."
-            detail="Practical resources for leaders exploring strategy, transformation, and the business use of intelligent systems." />
+          <SectionIntro headingId="mc-insights-title" eyebrow="{fr ? "06 — PERSPECTIVES ET EXPERTISE" : "06 — INSIGHTS & EXPERTISE"}" heading="{fr ? "Des idées fondées sur la pratique." : "Ideas grounded in the work."}"
+            detail="{fr ? "Des ressources concrètes sur la stratégie, la transformation et l’utilisation des systèmes intelligents en entreprise." : "Practical resources for leaders exploring strategy, transformation, and the business use of intelligent systems."}" />
         </div>
         <div className="mc-insight-grid">
           {insights.map((item) => (
@@ -157,18 +155,18 @@ export function InsightsSection() {
   );
 }
 
-export function ContactSection() {
+export function ContactSection({ locale = "en" }: { locale?: "en" | "fr" }) {
+  const fr = locale === "fr";
   return (
     <section className="mc-contact" id="contact" aria-labelledby="mc-contact-title">
       <div className="mc-container mc-contact-layout">
         <div>
-          <p className="mc-eyebrow mc-eyebrow-light">08 — BEGIN HERE</p>
-          <h2 id="mc-contact-title">What challenge is your organization working through?</h2>
+          <p className="mc-eyebrow mc-eyebrow-light">{fr ? "08 — COMMENÇONS ICI" : "08 — BEGIN HERE"}</p>
+          <h2 id="mc-contact-title">{fr ? "Quel défi votre organisation cherche-t-elle à relever?" : "What challenge is your organization working through?"}</h2>
         </div>
         <div className="mc-contact-action">
-          <p>Bring us the business question. We will help you understand the situation,
-            explore the possibilities, and determine a meaningful next step.</p>
-          <Link className="mc-button mc-button-white" href="/contact-myria">Start a conversation <ArrowUpRight size={17} /></Link>
+          <p>{fr ? "Présentez-nous votre enjeu d’affaires. Nous vous aiderons à comprendre la situation, à examiner les possibilités et à déterminer les prochaines étapes." : "Bring us the business question. We will help you understand the situation, explore the possibilities, and determine a meaningful next step."}</p>
+          <Link className="mc-button mc-button-white" href="/contact-myria">{fr ? "Entamer une conversation" : "Start a conversation"} <ArrowUpRight size={17} /></Link>
           <a className="mc-email" href="mailto:info@myriaconsulting.com">info@myriaconsulting.com</a>
         </div>
       </div>
