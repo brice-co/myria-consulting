@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowUpRight, Compass, Layers3, Network, Users, ShieldCheck } from "lucide-react";
 import { challenges, capabilities, philosophy, discoveryStages, insights } from "./content";
+import { frenchHomeContent } from "./content-fr";
 
 const disciplineIcons = [Compass, Layers3, Network, Users];
 
@@ -27,12 +28,12 @@ export function ChallengesSection({ locale = "en" }: { locale?: "en" | "fr" }) {
           <p>{fr ? "Les défis organisationnels sont rarement isolés. Stratégie, opérations, technologie et personnes s’influencent mutuellement. Notre démarche examine ces relations et les décisions à prendre." : "Organizations rarely struggle with one issue in isolation. Strategy, operations, technology, and people influence each other. Our work starts by understanding those relationships and the decisions leaders need to make."}</p>
         </div>
         <div className="mc-challenge-grid">
-          {challenges.map((item) => (
+          {challenges.map((item, index) => (
             <article className="mc-challenge" key={item.number}>
               <span className="mc-index">{item.number}</span>
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
-              <div className="mc-challenge-response"><span>{fr ? "Notre contribution" : "Where we help"}</span>{item.response}</div>
+              <h3>{fr ? frenchHomeContent.challenges[index][0] : item.title}</h3>
+              <p>{fr ? frenchHomeContent.challenges[index][1] : item.description}</p>
+              <div className="mc-challenge-response"><span>{fr ? "Notre contribution" : "Where we help"}</span>{fr ? frenchHomeContent.challenges[index][2] : item.response}</div>
             </article>
           ))}
         </div>
@@ -56,7 +57,7 @@ export function CapabilitiesSection({ locale = "en" }: { locale?: "en" | "fr" })
             return (
               <article className="mc-capability" key={item.number}>
                 <div className="mc-capability-top"><span>{item.number} / 04</span><Icon size={29} strokeWidth={1.4} aria-hidden="true" /></div>
-                <div><h3>{item.title}</h3><p>{item.description}</p><small>{item.examples}</small></div>
+                <div><h3>{fr ? frenchHomeContent.capabilities[index][0] : item.title}</h3><p>{fr ? frenchHomeContent.capabilities[index][1] : item.description}</p><small>{fr ? frenchHomeContent.capabilities[index][2] : item.examples}</small></div>
               </article>
             );
           })}
@@ -80,11 +81,11 @@ export function DifferenceSection({ locale = "en" }: { locale?: "en" | "fr" }) {
           </div>
         </div>
         <div className="mc-philosophy-grid">
-          {philosophy.map((item) => (
+          {philosophy.map((item,index) => (
             <article key={item.number}>
               <span className="mc-index">{item.number}</span>
-              <h3>{item.title}</h3>
-              <p>{item.description}</p>
+              <h3>{fr ? frenchHomeContent.philosophy[index][0] : item.title}</h3>
+              <p>{fr ? frenchHomeContent.philosophy[index][1] : item.description}</p>
             </article>
           ))}
         </div>
@@ -117,10 +118,10 @@ export function DiscoverySection({ locale = "en" }: { locale?: "en" | "fr" }) {
           </div>
         </div>
         <div className="mc-stage-list" aria-label={fr ? "Les cinq étapes du laboratoire" : "The five Discovery Lab stages"}>
-          {discoveryStages.map((stage) => (
+          {discoveryStages.map((stage,index) => (
             <div key={stage.number} className="mc-stage">
               <span>{stage.number}</span>
-              <div><h3>{stage.title}</h3><p>{stage.description}</p></div>
+              <div><h3>{fr ? frenchHomeContent.discoveryStages[index][0] : stage.title}</h3><p>{fr ? frenchHomeContent.discoveryStages[index][1] : stage.description}</p></div>
             </div>
           ))}
           <div className="mc-stage-result"><strong>{fr ? "Les résultats du laboratoire" : "What the Lab produces"}</strong>
