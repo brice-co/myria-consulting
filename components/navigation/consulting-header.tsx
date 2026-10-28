@@ -6,11 +6,13 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowUpRight, Menu, X } from "lucide-react";
 import { consultingNavigation } from "@/components/consulting/home/content";
+import { equivalentLocalePath } from "@/lib/i18n/marketing-routes";
 
 export function ConsultingHeader() {
   const pathname = usePathname();
   const isHome = pathname === "/";
   const isFrench = pathname === "/fr" || pathname.startsWith("/fr/");
+  const alternatePath = equivalentLocalePath(pathname);
   const isFullScreenApp = /^\/(portal|workspace|auth|admin)(\/|$)/.test(pathname);
   const [open, setOpen] = useState(false);
   const menuToggleRef = useRef<HTMLButtonElement>(null);
@@ -34,11 +36,11 @@ export function ConsultingHeader() {
       {isHome && <a className="mc-skip-link" href="#mc-main">Skip to content</a>}
       <header className={isHome ? "mc-header mc-header--overlay" : "mc-header mc-header--solid"}>
       <div className="mc-container mc-header-inner">
-        <Link href={isHome ? "#top" : "/"} className="mc-brand" title="Myria Consulting home" onClick={() => setOpen(false)}>
+        <Link href={isFrench ? "/fr" : (isHome ? "#top" : "/")} className="mc-brand" title={isFrench ? "Myria Conseil – Accueil" : "Myria Consulting home"} onClick={() => setOpen(false)}>
           <span className="mc-brand-logo" aria-hidden="true">
             <Image src="/images/myria-logo.png" alt="" width={52} height={52} priority />
           </span>
-          <span className="mc-brand-name">MYRIA<small>CONSULTING</small></span>
+          <span className="mc-brand-name">MYRIA<small>{isFrench ? "CONSEIL" : "CONSULTING"}</small></span>
         </Link>
         <nav id="mc-main-navigation" aria-label="Primary navigation" className={open ? "mc-navigation mc-navigation-open" : "mc-navigation"}>
           {(isFrench ? [
@@ -52,7 +54,7 @@ export function ConsultingHeader() {
               {item.label}
             </Link>
           ))}
-          <Link href={isFrench ? "/" : "/fr"} hrefLang={isFrench ? "en-CA" : "fr-CA"} onClick={() => setOpen(false)}>{isFrench ? "English" : "Français"}</Link>
+          <Link href={alternatePath} hrefLang={isFrench ? "en-CA" : "fr-CA"} onClick={() => setOpen(false)}>{isFrench ? "English" : "Français"}</Link>
           <Link className="mc-nav-cta" href="/contact-myria" onClick={() => setOpen(false)}>
             {isFrench ? "Nous joindre" : "Start a conversation"} <ArrowUpRight size={16} aria-hidden="true" />
           </Link>

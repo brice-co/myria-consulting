@@ -7,10 +7,10 @@ export function generateStaticParams(){return frenchServices.map(s=>({slug:s.slu
 export async function generateMetadata({params}:Props):Promise<Metadata>{
 const {slug}=await params;const s=getFrenchService(slug);
 if(!s)return {robots:{index:false,follow:false}};
-return {title:`${s.title} | Myria Consulting`,description:`${s.intro} Découvrez notre approche et nos services-conseils.`,alternates:{canonical:`/fr/services/${s.slug}`,languages:{"fr-CA":`/fr/services/${s.slug}`,"en-CA":`/services/${s.englishSlug}`,"x-default":`/services/${s.englishSlug}`}},openGraph:{title:`${s.title} | Myria Consulting`,description:s.intro,locale:"fr_CA",url:`/fr/services/${s.slug}`,type:"website"}};
+return {title:`${s.title} | Myria Conseil`,description:`${s.intro} Découvrez notre approche et nos services-conseils.`,alternates:{canonical:`/fr/services/${s.slug}`,languages:{"fr-CA":`/fr/services/${s.slug}`,"en-CA":`/services/${s.englishSlug}`,"x-default":`/services/${s.englishSlug}`}},openGraph:{title:`${s.title} | Myria Conseil`,description:s.intro,locale:"fr_CA",url:`/fr/services/${s.slug}`,type:"website"}};
 }
 export default async function FrenchServiceDetail({params}:Props){const {slug}=await params;const s=getFrenchService(slug);if(!s)notFound();
-const schema={"@context":"https://schema.org","@type":"Service",name:s.title,description:s.intro,inLanguage:"fr-CA",areaServed:[{"@type":"Place",name:"Montréal, Québec, Canada"},{"@type":"Country",name:"Canada"}],provider:{"@type":"Organization",name:"Myria Consulting",url:"https://myriaconsulting.com"},url:`https://myriaconsulting.com/fr/services/${s.slug}`};
+const schema={"@context":"https://schema.org","@type":"Service",name:s.title,description:s.intro,inLanguage:"fr-CA",areaServed:[{"@type":"Place",name:"Montréal, Québec, Canada"},{"@type":"Country",name:"Canada"}],provider:{"@type":"Organization",name:"Myria Conseil",url:"https://myriaconsulting.com"},url:`https://myriaconsulting.com/fr/services/${s.slug}`};
 return <main lang="fr-CA" className="bg-[#f7f4ee] text-[#142b35]">
 <script type="application/ld+json" dangerouslySetInnerHTML={{__html:JSON.stringify(schema).replace(/</g,"\\u003c")}}/>
 <section className="bg-[#142b35] px-6 pb-24 pt-28 text-white md:pb-32 md:pt-36"><div className="mx-auto max-w-7xl">
