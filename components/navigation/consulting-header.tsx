@@ -10,7 +10,7 @@ import { equivalentLocalePath } from "@/lib/i18n/marketing-routes";
 
 export function ConsultingHeader() {
   const pathname = usePathname();
-  const isHome = pathname === "/";
+  const isHome = pathname === "/" || pathname === "/fr";
   const isFrench = pathname === "/fr" || pathname.startsWith("/fr/");
   const alternatePath = equivalentLocalePath(pathname);
   const isFullScreenApp = /^\/(portal|workspace|auth|admin)(\/|$)/.test(pathname);
@@ -29,6 +29,23 @@ export function ConsultingHeader() {
     return () => document.removeEventListener("keydown", onEscape);
   }, [open]);
 
+  const labelsFr: Record<string, string> = {
+    "/services": "Services-conseils",
+    "#capabilities": "Expertises",
+    "/our-approach/management-model": "Notre approche",
+    "#discovery": "Laboratoire de découverte",
+    "#experience": "Expériences",
+    "/insights": "Perspectives",
+    "/resources/brochures": "Brochures",
+  };
+  const localizedTarget = (href: string) => {
+    if (/^https?:\/\//.test(href)) return href;
+    if (href.startsWith("#")) return `${isHome ? "" : isFrench ? "/fr" : "/"}${href}`;
+    if (!isFrench) return href;
+    const localized: Record<string, string> = { "/services": "/fr/services", "/insights": "/fr/perspectives" };
+    return localized[href] ?? href;
+  };
+
   if (isFullScreenApp) return null;
 
   return (
@@ -42,17 +59,14 @@ export function ConsultingHeader() {
           </span>
           <span className="mc-brand-name">MYRIA<small>{isFrench ? "CONSEIL" : "CONSULTING"}</small></span>
         </Link>
-        <nav id="mc-main-navigation" aria-label="Primary navigation" className={open ? "mc-navigation mc-navigation-open" : "mc-navigation"}>
-          {(isFrench ? [
-            { label: "Accueil", href: "/fr" },
-            { label: "Services-conseils", href: "/fr/services" },
-            { label: "Conseil en gestion", href: "/fr/services/conseil-en-gestion" },
-            { label: "Transformation", href: "/fr/services/transformation-organisationnelle" },
-            { label: "Perspectives", href: "/fr/perspectives" },
-            { label: "Gestion du changement", href: "/fr/services/gestion-du-changement" },
-          ] : consultingNavigation).map((item) => (
-            <Link key={item.href} href={item.href.startsWith("#") ? (isHome ? item.href : `/${item.href}`) : item.href} onClick={() => setOpen(false)}>
-              {item.label}
+        <nav id="mc-main-navigation" aria-label={isFrench ? "Navigation principale" : "Primary navigation"} className={open ? "mc-navigation mc-navigation-open" : "mc-navigation"}>
+          {consultingNavigation.map((item) => (
+            <Link
+              key={item.href}
+              href={localizedTarget(item.href)}
+              onClick={() => setOpen(false)}
+            >
+              {isFrench ? labelsFr[item.href] ?? item.label : item.label}
             </Link>
           ))}
           <Link href={alternatePath} hrefLang={isFrench ? "en-CA" : "fr-CA"} onClick={() => setOpen(false)}>{isFrench ? "English" : "Français"}</Link>
@@ -69,7 +83,7 @@ export function ConsultingHeader() {
           className="mc-menu-button"
           aria-controls="mc-main-navigation"
           aria-expanded={open}
-          aria-label={open ? "Close menu" : "Open menu"}
+          aria-label={isFrench ? (open ? "Fermer le menu" : "Ouvrir le menu") : (open ? "Close menu" : "Open menu")}
           onClick={() => setOpen((current) => !current)}
         >
           {open ? <X size={23} /> : <Menu size={23} />}
