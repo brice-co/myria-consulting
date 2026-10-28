@@ -54,23 +54,23 @@ export function ConsultingHomePage({ locale = "en" }: { locale?: "en" | "fr" }) 
         <div className="mc-container mc-footer-main">
           <a href="#top" className="mc-footer-brand">MYRIA <span>{fr ? "CONSEIL" : "CONSULTING"}</span></a>
           <nav aria-label="Footer links">
-            <a href="#capabilities">Capabilities</a>
-            <Link href="/our-approach/management-model">Management Model</Link>
-            <Link href="/services">Consulting services</Link>
-            <a href="#discovery">Discovery Lab</a>
-            <a href="#experience">Experience</a>
-            <Link href="/resources/brochures">Brochures</Link>
-            <Link href="/insights">Research &amp; insights</Link>
-            <Link href="/resources/playbook">Playbook</Link>
-            <Link href="/client-portal">Client portal</Link>
+            <a href="#capabilities">{fr ? "Expertises" : "Capabilities"}</a>
+            <Link href="/our-approach/management-model">{fr ? "Modèle de gestion" : "Management Model"}</Link>
+            <Link href={fr ? "/fr/services" : "/services"}>{fr ? "Services-conseils" : "Consulting services"}</Link>
+            <a href="#discovery">{fr ? "Laboratoire de découverte" : "Discovery Lab"}</a>
+            <a href="#experience">{fr ? "Expériences" : "Experience"}</a>
+            <Link href="/resources/brochures">{fr ? "Brochures" : "Brochures"}</Link>
+            <Link href={fr ? "/fr/perspectives" : "/insights"}>{fr ? "Recherches et perspectives" : "Research & insights"}</Link>
+            <Link href="/resources/playbook">{fr ? "Guide pratique" : "Playbook"}</Link>
+            <Link href="/client-portal">{fr ? "Portail client" : "Client portal"}</Link>
             <a href="https://myriachat.com/" target="_blank" rel="noopener noreferrer">MyriaChat ↗</a>
-            <Link href="/privacy-policy">Privacy</Link>
-            <Link href="/terms-of-service">Terms</Link>
+            <Link href="/privacy-policy">{fr ? "Confidentialité" : "Privacy"}</Link>
+            <Link href="/terms-of-service">{fr ? "Conditions d’utilisation" : "Terms"}</Link>
           </nav>
         </div>
         <div className="mc-container mc-footer-bottom">
           <span>© {new Date().getFullYear()} {fr ? "Myria Conseil" : "Myria Consulting"}</span>
-          <span>Think deeper. Organize intelligently. Improve continuously.</span>
+          <span>{fr ? "Réfléchir en profondeur. Structurer intelligemment. Améliorer continuellement." : "Think deeper. Organize intelligently. Improve continuously."}</span>
         </div>
       </footer>
     </div>
