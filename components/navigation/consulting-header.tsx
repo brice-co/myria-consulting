@@ -50,7 +50,7 @@ export function ConsultingHeader() {
 
   return (
     <>
-      {isHome && <a className="mc-skip-link" href="#mc-main">Skip to content</a>}
+      {isHome && <a className="mc-skip-link" href="#mc-main">{isFrench ? "Aller au contenu" : "Skip to content"}</a>}
       <header className={isHome ? "mc-header mc-header--overlay" : "mc-header mc-header--solid"}>
       <div className="mc-container mc-header-inner">
         <Link href={isFrench ? "/fr" : (isHome ? "#top" : "/")} className="mc-brand" title={isFrench ? "Myria Conseil – Accueil" : "Myria Consulting home"} onClick={() => setOpen(false)}>
@@ -69,7 +69,7 @@ export function ConsultingHeader() {
               {isFrench ? labelsFr[item.href] ?? item.label : item.label}
             </Link>
           ))}
-          <Link href={alternatePath} hrefLang={isFrench ? "en-CA" : "fr-CA"} onClick={() => setOpen(false)}>{isFrench ? "English" : "Français"}</Link>
+          {alternatePath !== pathname && <Link href={alternatePath} hrefLang={isFrench ? "en-CA" : "fr-CA"} onClick={() => setOpen(false)}>{isFrench ? "English" : "Français"}</Link>}
           <Link className="mc-nav-cta" href={isFrench ? "/fr/contact" : "/contact-myria"} onClick={() => setOpen(false)}>
             {isFrench ? "Nous joindre" : "Start a conversation"} <ArrowUpRight size={16} aria-hidden="true" />
           </Link>

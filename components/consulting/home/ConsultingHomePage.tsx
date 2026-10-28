@@ -53,7 +53,7 @@ export function ConsultingHomePage({ locale = "en" }: { locale?: "en" | "fr" }) 
       <footer className="mc-footer">
         <div className="mc-container mc-footer-main">
           <a href="#top" className="mc-footer-brand">MYRIA <span>{fr ? "CONSEIL" : "CONSULTING"}</span></a>
-          <nav aria-label="Footer links">
+          <nav aria-label={fr ? "Liens de pied de page" : "Footer links"}>
             <a href="#capabilities">{fr ? "Expertises" : "Capabilities"}</a>
             <Link href="/our-approach/management-model">{fr ? "Modèle de gestion" : "Management Model"}</Link>
             <Link href={fr ? "/fr/services" : "/services"}>{fr ? "Services-conseils" : "Consulting services"}</Link>

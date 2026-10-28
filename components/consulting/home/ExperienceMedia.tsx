@@ -23,7 +23,7 @@ export function ExperienceMedia({ experience, locale = "en" }: { experience: Exp
         >
           <source src={videoSrc} type={videoSrc.endsWith(".webm") ? "video/webm" : "video/mp4"} />
           {captionsSrc && (
-            <track src={captionsSrc} kind="captions" srcLang="en" label="English captions" default />
+            <track src={captionsSrc} kind="captions" srcLang="en" label={fr ? "Sous-titres anglais" : "English captions"} default />
           )}
           {fr ? "Votre navigateur ne prend pas en charge la vidéo HTML." : "Your browser does not support HTML video."}
         </video>
@@ -57,16 +57,16 @@ export function ExperienceMedia({ experience, locale = "en" }: { experience: Exp
           <div className="mc-media-team">
             <div className="mc-media-hub"><BrainCircuit size={26} strokeWidth={1.3} /><span>{fr ? "Question commune" : "Shared question"}</span></div>
             <div className="mc-media-roles">
-              <span><CircleDot size={11} /> Strategy</span>
-              <span><Layers3 size={11} /> Operations</span>
-              <span><Network size={11} /> AI & Data</span>
-              <span><Users size={11} /> People & Change</span>
+              <span><CircleDot size={11} /> {fr ? "Stratégie" : "Strategy"}</span>
+              <span><Layers3 size={11} /> {fr ? "Opérations" : "Operations"}</span>
+              <span><Network size={11} /> {fr ? "IA et données" : "AI & Data"}</span>
+              <span><Users size={11} /> {fr ? "Personnes et changement" : "People & Change"}</span>
             </div>
           </div>
         )}
         {id === "workspace" && (
           <div className="mc-media-workspace">
-            <div className="mc-media-meeting-top"><span><i /> Collaborative meeting</span><span className="mc-media-avatars"><b>H</b><b>AI</b></span></div>
+            <div className="mc-media-meeting-top"><span><i /> {fr ? "Séance collaborative" : "Collaborative meeting"}</span><span className="mc-media-avatars"><b>H</b><b>AI</b></span></div>
             <div className="mc-media-workspace-grid">
               <div><small>OBSERVATIONS</small><span>{fr ? "Contexte d’affaires" : "Business context"}</span><span>{fr ? "Défis principaux" : "Key challenges"}</span></div>
               <div><small>{fr ? "DÉCISIONS" : "DECISIONS"}</small><span>{fr ? "Domaines prioritaires" : "Priority areas"}</span><span>{fr ? "Prochaines étapes" : "Next steps"}</span></div>

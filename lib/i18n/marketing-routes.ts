@@ -1,4 +1,4 @@
-/** Approved EN / FR marketing page pairs. Unknown routes fall back to the corresponding language homepage. */
+/** Approved EN / FR marketing page pairs. Untranslated routes stay in their original language. */
 export const localizedRoutes: Record<string, string> = {
   "/": "/fr",
   "/services": "/fr/services",
@@ -14,5 +14,5 @@ export const localizedRoutes: Record<string, string> = {
 export function equivalentLocalePath(pathname: string): string {
   const french = Object.entries(localizedRoutes).find(([, fr]) => fr === pathname);
   if (french) return french[0];
-  return localizedRoutes[pathname] ?? "/fr";
+  return localizedRoutes[pathname] ?? pathname;
 }
