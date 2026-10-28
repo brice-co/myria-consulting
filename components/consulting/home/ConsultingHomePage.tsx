@@ -33,9 +33,9 @@ export function ConsultingHomePage({ locale = "en" }: { locale?: "en" | "fr" }) 
         </section>
         <DifferenceSection locale={locale} />
         <DiscoverySection locale={locale} />
-        <ExperienceSection />
+        <ExperienceSection locale={locale} />
         <InsightsSection locale={locale} />
-        <ResearchSection />
+        <ResearchSection locale={locale} />
         <section aria-labelledby="mc-ecosystem-title" className="bg-[#f0ece3] px-6 py-20 text-[#173039]">
           <div className="mx-auto flex max-w-6xl flex-col items-start justify-between gap-8 md:flex-row md:items-center">
             <div className="max-w-2xl">

@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowUpRight, Compass, Layers3, Network, Users, ShieldCheck } from "lucide-react";
 import { challenges, capabilities, philosophy, discoveryStages, insights } from "./content";
 import { frenchHomeContent } from "./content-fr";
+import { frenchInsightsContent } from "./lower-home-fr";
 
 const disciplineIcons = [Compass, Layers3, Network, Users];
 
@@ -143,11 +144,11 @@ export function InsightsSection({ locale = "en" }: { locale?: "en" | "fr" }) {
             detail={fr ? "Des ressources concrètes sur la stratégie, la transformation et l’utilisation des systèmes intelligents en entreprise." : "Practical resources for leaders exploring strategy, transformation, and the business use of intelligent systems."} />
         </div>
         <div className="mc-insight-grid">
-          {insights.map((item) => (
+          {insights.map((item,index) => (
             <article className="mc-insight" key={item.href}>
-              <small>{item.type}</small>
-              <div><h3>{item.title}</h3><p>{item.summary}</p></div>
-              <Link href={item.href}>{item.linkText} <ArrowUpRight size={17} aria-hidden="true" /></Link>
+              <small>{fr ? frenchInsightsContent[index].type : item.type}</small>
+              <div><h3>{fr ? frenchInsightsContent[index].title : item.title}</h3><p>{fr ? frenchInsightsContent[index].summary : item.summary}</p></div>
+              <Link href={fr ? "/fr/perspectives" : item.href}>{fr ? frenchInsightsContent[index].linkText : item.linkText} <ArrowUpRight size={17} aria-hidden="true" /></Link>
             </article>
           ))}
         </div>
@@ -167,7 +168,7 @@ export function ContactSection({ locale = "en" }: { locale?: "en" | "fr" }) {
         </div>
         <div className="mc-contact-action">
           <p>{fr ? "Présentez-nous votre enjeu d’affaires. Nous vous aiderons à comprendre la situation, à examiner les possibilités et à déterminer les prochaines étapes." : "Bring us the business question. We will help you understand the situation, explore the possibilities, and determine a meaningful next step."}</p>
-          <Link className="mc-button mc-button-white" href="/contact-myria">{fr ? "Entamer une conversation" : "Start a conversation"} <ArrowUpRight size={17} /></Link>
+          <Link className="mc-button mc-button-white" href={fr ? "/fr/contact" : "/contact-myria"}>{fr ? "Entamer une conversation" : "Start a conversation"} <ArrowUpRight size={17} /></Link>
           <a className="mc-email" href="mailto:info@myriaconsulting.com">info@myriaconsulting.com</a>
         </div>
       </div>
