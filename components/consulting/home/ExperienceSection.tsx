@@ -31,7 +31,7 @@ export function ExperienceSection({ locale = "en" }: { locale?: "en" | "fr" }) {
         <div className="mc-experience-grid">
           {myriaExperiences.map((item, index) => (
             <article className="mc-experience-card" key={item.id}>
-              <ExperienceMedia experience={item} />
+              <ExperienceMedia experience={item} locale={locale} />
               <div className="mc-experience-card-copy">
                 <div className="mc-experience-meta">
                   <span>{item.number} / 03</span>
