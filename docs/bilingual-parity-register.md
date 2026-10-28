@@ -20,7 +20,7 @@ Status: working register for draft PR #9. **Do not merge before validation.**
 | Six service detail pages | Shared component, sections and illustrations | French content and evidence prepared | Paired EN/FR URLs | Build/browser validation pending |
 | Contact | Separate EN/FR rendering | French text | Email route needs business verification | Requires layout consolidation |
 | Insights / perspectives | Separate EN/FR rendering | Overview only | Full articles are not translated | Not complete |
-| Management model | English-only | Not started | English-only | Not started |
+| Management model | Shared component | Translated text, shared PDF asset | English/French URL pair | Build and visual validation pending |
 | Resources, guides, playbook | English-only | Not started | English-only | Not started |
 | Discovery Lab and experiences | English-only | Not started | English-only | Not started |
 | About, privacy, terms | English-only | Not started | English-only | Not started |
@@ -47,5 +47,13 @@ Status: working register for draft PR #9. **Do not merge before validation.**
 - [ ] Review Quebec French terminology and the nuance of every evidence example.
 - [ ] Correct root HTML language through future i18n routing refactor.
 
+## Iteration 4 — Our Approach and Management Model
+- [x] Reused the original Management Model layout for English and French.
+- [x] Localized all three management dimensions and surrounding explanation.
+- [x] Localized PDF control labels while retaining the original PDF asset (document itself is not translated).
+- [x] Connected French navigation, homepage link, sitemap, and reciprocal hreflang.
+- [ ] Confirm latest Vercel build and visual parity.
+- [ ] Review French PDF availability, document translation, and document-level HTML language.
+
 ## Next iteration
-Our Approach and Management Model, using shared page components and equal content depth.
+Insights and research articles, using shared article layouts and preserving attribution.

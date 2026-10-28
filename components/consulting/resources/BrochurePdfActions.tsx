@@ -12,9 +12,11 @@ import { Download, ExternalLink } from "lucide-react";
 export function BrochurePdfActions({
   pdf,
   compact = false,
+  locale = "en",
 }: {
   pdf: string;
   compact?: boolean;
+  locale?: "en" | "fr";
 }) {
   if (!/^\/brochures\/[a-z0-9-]+\.pdf$/.test(pdf)) {
     return null;
@@ -25,7 +27,7 @@ export function BrochurePdfActions({
   if (!available) {
     return (
       <p className="mc-pdf-state">
-        PDF preview and download will be available when the source document is published.
+        {locale === "fr" ? "La consultation et le téléchargement du PDF seront possibles lorsque le document sera publié." : "PDF preview and download will be available when the source document is published."}
       </p>
     );
   }
@@ -38,11 +40,11 @@ export function BrochurePdfActions({
         rel="noopener noreferrer"
         className="mc-pdf-button mc-pdf-button--primary"
       >
-        <ExternalLink size={16} aria-hidden="true" /> Preview PDF
-        <span className="sr-only">(opens in a new tab)</span>
+        <ExternalLink size={16} aria-hidden="true" /> {locale === "fr" ? "Consulter le PDF" : "Preview PDF"}
+        <span className="sr-only">{locale === "fr" ? "(s’ouvre dans un nouvel onglet)" : "(opens in a new tab)"}</span>
       </a>
       <a href={pdf} download className="mc-pdf-button mc-pdf-button--secondary">
-        <Download size={16} aria-hidden="true" /> Download
+        <Download size={16} aria-hidden="true" /> {locale === "fr" ? "Télécharger" : "Download"}
       </a>
     </div>
   );

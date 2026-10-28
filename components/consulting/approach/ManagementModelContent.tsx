@@ -49,7 +49,7 @@ export function ManagementModelContent({ locale = "en" }: { locale?: "en" | "fr"
             {fr ? "Une approche intégrée et concrète pour renforcer la clarté, l’alignement et la capacité de l’organisation à s’améliorer et à évoluer dans le temps." : "A practical, integrated approach to strengthening organizational clarity, alignment and the capacity to improve and evolve over time."}
           </p>
           <div className="mc-pdf-on-dark mt-10 max-w-xl">
-            <BrochurePdfActions pdf="/brochures/myria-management-model.pdf" compact />
+            <BrochurePdfActions pdf="/brochures/myria-management-model.pdf" locale={locale} compact />
           </div>
           <Link href="/resources/brochures" className="mt-8 inline-flex items-center gap-3 border-b border-[#e7bd8a] pb-2 text-sm font-semibold text-[#e7bd8a]">
             {fr ? "Explorer nos ressources en gestion" : "Explore our management resources"} <ArrowUpRight size={17} aria-hidden="true" />
