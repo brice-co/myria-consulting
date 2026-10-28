@@ -10,7 +10,7 @@ const headline = [
   { text: "Stronger execution.", accent: true },
 ];
 
-export function ConsultingHero() {
+export function ConsultingHero({ locale = "en" }: { locale?: "en" | "fr" }) {
   // Keep the first server/client render identical before honoring reduced motion.
   const prefersReducedMotion = useReducedMotion();
   const [hasMounted, setHasMounted] = useState(false);
@@ -34,10 +34,10 @@ export function ConsultingHero() {
       </div>
       <div className="mc-container mc-hero-content">
         <motion.p className="mc-eyebrow mc-eyebrow-light" initial={reducedMotion ? false : { opacity: 0, y: 16 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .6 }}>
-          MANAGEMENT ADVISORY / INTELLIGENT SYSTEMS
+          {locale === "fr" ? "CONSEIL EN GESTION / SYSTÈMES INTELLIGENTS" : "MANAGEMENT ADVISORY / INTELLIGENT SYSTEMS"}
         </motion.p>
         <h1 id="mc-hero-title" className="mc-hero-heading">
-          {headline.map((line, i) => (
+          {(locale === "fr" ? [{ text: "De meilleures décisions.", accent: false }, { text: "Une exécution plus solide.", accent: true }] : headline).map((line, i) => (
             <span className="mc-hero-line-clip" key={line.text}>
               <motion.span
                 className={line.accent ? "mc-hero-line mc-hero-accent" : "mc-hero-line"}
@@ -52,17 +52,15 @@ export function ConsultingHero() {
         </h1>
         <motion.div className="mc-hero-bottom" initial={reducedMotion ? false : { opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .75, delay: reducedMotion ? 0 : .75 }}>
           <p>
-            Myria helps leaders solve complex business challenges and turn strategy into operational progress.
-            We combine management expertise, intelligent systems, and AI advisors to connect people, processes,
-            technology, and decisions around the outcomes that matter.
+            {locale === "fr" ? "Myria Conseil accompagne les dirigeants dans la résolution de défis complexes et la transformation de la stratégie en progrès opérationnels. Nous réunissons expertise en gestion, systèmes intelligents et conseillers en IA pour relier personnes, processus, technologies et décisions aux résultats recherchés." : "Myria helps leaders solve complex business challenges and turn strategy into operational progress. We combine management expertise, intelligent systems, and AI advisors to connect people, processes, technology, and decisions around the outcomes that matter."}
           </p>
           <div className="mc-hero-actions">
-            <a className="mc-button mc-button-white" href="#capabilities">Explore our capabilities <ArrowUpRight size={17} /></a>
-            <Link className="mc-button mc-button-ghost" href="/contact-myria">Start a conversation <ArrowUpRight size={17} /></Link>
+            <a className="mc-button mc-button-white" href="#capabilities">{locale === "fr" ? "Explorer nos expertises" : "Explore our capabilities"} <ArrowUpRight size={17} /></a>
+            <Link className="mc-button mc-button-ghost" href={locale === "fr" ? "/fr/contact" : "/contact-myria"}>{locale === "fr" ? "Nous joindre" : "Start a conversation"} <ArrowUpRight size={17} /></Link>
           </div>
         </motion.div>
       </div>
-      <a className="mc-scroll-cue" href="#challenges">Scroll to explore <ArrowDown size={14} aria-hidden="true" /></a>
+      <a className="mc-scroll-cue" href="#challenges">{locale === "fr" ? "Défiler pour explorer" : "Scroll to explore"} <ArrowDown size={14} aria-hidden="true" /></a>
     </section>
   );
 }
