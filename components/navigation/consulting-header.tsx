@@ -48,6 +48,7 @@ export function ConsultingHeader() {
             { label: "Services-conseils", href: "/fr/services" },
             { label: "Conseil en gestion", href: "/fr/services/conseil-en-gestion" },
             { label: "Transformation", href: "/fr/services/transformation-organisationnelle" },
+            { label: "Perspectives", href: "/fr/perspectives" },
             { label: "Gestion du changement", href: "/fr/services/gestion-du-changement" },
           ] : consultingNavigation).map((item) => (
             <Link key={item.href} href={item.href.startsWith("#") ? (isHome ? item.href : `/${item.href}`) : item.href} onClick={() => setOpen(false)}>
@@ -55,7 +56,7 @@ export function ConsultingHeader() {
             </Link>
           ))}
           <Link href={alternatePath} hrefLang={isFrench ? "en-CA" : "fr-CA"} onClick={() => setOpen(false)}>{isFrench ? "English" : "Français"}</Link>
-          <Link className="mc-nav-cta" href="/contact-myria" onClick={() => setOpen(false)}>
+          <Link className="mc-nav-cta" href={isFrench ? "/fr/contact" : "/contact-myria"} onClick={() => setOpen(false)}>
             {isFrench ? "Nous joindre" : "Start a conversation"} <ArrowUpRight size={16} aria-hidden="true" />
           </Link>
           <Link className="mc-portal-link" href="/client-portal" onClick={() => setOpen(false)}>

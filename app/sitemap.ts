@@ -34,6 +34,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...publicPaths,
     "/fr",
     "/fr/services",
+    "/fr/contact",
+    "/fr/perspectives",
     ...frenchServices.map((s) => `/fr/services/${s.slug}`),
     ...consultingServices.map((service) => `/services/${service.slug}`),
     ...advisoryLabs.map((lab) => `/labs/${lab.slug}`),
