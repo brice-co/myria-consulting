@@ -47,8 +47,8 @@ export function CapabilitiesSection({ locale = "en" }: { locale?: "en" | "fr" })
     <section className="mc-section mc-capabilities" id="capabilities" aria-labelledby="mc-capabilities-title">
       <div className="mc-container">
         <div>
-          <SectionIntro headingId="mc-capabilities-title" eyebrow="{fr ? "02 — NOS EXPERTISES" : "02 — WHAT WE DO"}" heading="{fr ? "Des expertises reliées. Des actions concrètes." : "Connected expertise. Practical action."}"
-            detail="{fr ? "Quatre disciplines complémentaires mobilisées selon les enjeux de l’organisation." : "Four complementary advisory disciplines, brought together according to the challenge — not as disconnected service offerings."}" />
+          <SectionIntro headingId="mc-capabilities-title" eyebrow={fr ? "02 — NOS EXPERTISES" : "02 — WHAT WE DO"} heading={fr ? "Des expertises reliées. Des actions concrètes." : "Connected expertise. Practical action."}
+            detail={fr ? "Quatre disciplines complémentaires mobilisées selon les enjeux de l’organisation." : "Four complementary advisory disciplines, brought together according to the challenge — not as disconnected service offerings."} />
         </div>
         <div className="mc-capabilities-grid">
           {capabilities.map((item, index) => {
@@ -116,7 +116,7 @@ export function DiscoverySection({ locale = "en" }: { locale?: "en" | "fr" }) {
             {fr ? "Des conseillers IA spécialisés enrichissent l’exploration sous la direction des personnes." : "Specialist AI advisors support exploration; the work remains human-led."}
           </div>
         </div>
-        <div className="mc-stage-list" aria-label="{fr ? "Les cinq étapes du laboratoire" : "The five Discovery Lab stages"}">
+        <div className="mc-stage-list" aria-label={fr ? "Les cinq étapes du laboratoire" : "The five Discovery Lab stages"}>
           {discoveryStages.map((stage) => (
             <div key={stage.number} className="mc-stage">
               <span>{stage.number}</span>
@@ -138,8 +138,8 @@ export function InsightsSection({ locale = "en" }: { locale?: "en" | "fr" }) {
     <section className="mc-section mc-insights" id="insights" aria-labelledby="mc-insights-title">
       <div className="mc-container">
         <div>
-          <SectionIntro headingId="mc-insights-title" eyebrow="{fr ? "06 — PERSPECTIVES ET EXPERTISE" : "06 — INSIGHTS & EXPERTISE"}" heading="{fr ? "Des idées fondées sur la pratique." : "Ideas grounded in the work."}"
-            detail="{fr ? "Des ressources concrètes sur la stratégie, la transformation et l’utilisation des systèmes intelligents en entreprise." : "Practical resources for leaders exploring strategy, transformation, and the business use of intelligent systems."}" />
+          <SectionIntro headingId="mc-insights-title" eyebrow={fr ? "06 — PERSPECTIVES ET EXPERTISE" : "06 — INSIGHTS & EXPERTISE"} heading={fr ? "Des idées fondées sur la pratique." : "Ideas grounded in the work."}
+            detail={fr ? "Des ressources concrètes sur la stratégie, la transformation et l’utilisation des systèmes intelligents en entreprise." : "Practical resources for leaders exploring strategy, transformation, and the business use of intelligent systems."} />
         </div>
         <div className="mc-insight-grid">
           {insights.map((item) => (
