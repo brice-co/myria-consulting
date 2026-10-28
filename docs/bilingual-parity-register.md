@@ -16,8 +16,8 @@ Status: working register for draft PR #9. **Do not merge before validation.**
 |---|---|---|---|---|
 | Global header / footer | Shared | In progress | In progress; untranslated destinations remain English | Not validated |
 | Home / | Shared core components | Core homepage content translated | Some interactive experiences and resources remain English | Not validated |
-| Services hub | Separate EN/FR rendering | French written | Links to paired consulting pages | Requires layout consolidation |
-| Six service detail pages | Separate EN/FR rendering | French written | Paired EN/FR URLs | Requires layout consolidation |
+| Services hub | Shared component | French written | Paired consulting service pages | Build/browser validation pending |
+| Six service detail pages | Shared component, sections and illustrations | French content and evidence prepared | Paired EN/FR URLs | Build/browser validation pending |
 | Contact | Separate EN/FR rendering | French text | Email route needs business verification | Requires layout consolidation |
 | Insights / perspectives | Separate EN/FR rendering | Overview only | Full articles are not translated | Not complete |
 | Management model | English-only | Not started | English-only | Not started |
@@ -37,5 +37,15 @@ Status: working register for draft PR #9. **Do not merge before validation.**
 - [ ] Implement formal `next-intl` routing and centralized messages, scoped safely around portal/auth routes.
 - [ ] Validate all home interactions and linked experiences in French.
 
+## Iteration 3 — Consulting Services
+- [x] One shared English/French service hub component.
+- [x] One shared English/French service detail component for all six specializations.
+- [x] French explanations, practical scenarios, diagnostic questions, outcomes and metrics available for every service.
+- [x] Service illustrations and related-service links switch to French equivalents.
+- [x] Dedicated metadata and reciprocal language alternates retained.
+- [ ] Latest Vercel build success and browser comparison (desktop/mobile).
+- [ ] Review Quebec French terminology and the nuance of every evidence example.
+- [ ] Correct root HTML language through future i18n routing refactor.
+
 ## Next iteration
-Consolidate service hub and detail page rendering so only content and URL vary by locale.
+Our Approach and Management Model, using shared page components and equal content depth.
