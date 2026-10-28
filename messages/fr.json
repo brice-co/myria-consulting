@@ -1,0 +1,24 @@
+{
+  "brand": {
+    "name": "Myria Conseil"
+  },
+  "navigation": {
+    "services": "Services-conseils",
+    "capabilities": "Expertises",
+    "approach": "Notre approche",
+    "discovery": "Laboratoire de découverte",
+    "experience": "Expériences",
+    "insights": "Perspectives",
+    "brochures": "Brochures",
+    "contact": "Nous joindre",
+    "portal": "Portail client",
+    "language": "English"
+  },
+  "common": {
+    "skip": "Aller au contenu",
+    "explore": "Explorer",
+    "contact": "Entamer une conversation",
+    "download": "Télécharger",
+    "preview": "Consulter le PDF"
+  }
+}
