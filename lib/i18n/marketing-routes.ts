@@ -3,6 +3,7 @@ export const localizedRoutes: Record<string, string> = {
   "/": "/fr",
   "/services": "/fr/services",
   "/contact-myria": "/fr/contact",
+  "/our-approach/management-model": "/fr/notre-approche/modele-de-gestion",
   "/insights": "/fr/perspectives",
   "/services/management-consulting": "/fr/services/conseil-en-gestion",
   "/services/business-transformation": "/fr/services/transformation-organisationnelle",

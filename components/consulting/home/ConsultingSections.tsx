@@ -93,7 +93,7 @@ export function DifferenceSection({ locale = "en" }: { locale?: "en" | "fr" }) {
         <div className="mc-governance"><ShieldCheck size={21} strokeWidth={1.5} aria-hidden="true" />
           {fr ? "L’IA soutient le conseil; les décisions, les approbations et les responsabilités restent humaines." : "AI strengthens the advisory process; decisions, approvals, and accountability remain with people."}
         </div>
-        <Link href="/our-approach/management-model" className="mc-management-link">
+        <Link href={fr ? "/fr/notre-approche/modele-de-gestion" : "/our-approach/management-model"} className="mc-management-link">
           {fr ? "Explorer le modèle de gestion Myria" : "Explore the Myria Management Model"} <ArrowUpRight size={17} aria-hidden="true" />
         </Link>
       </div>

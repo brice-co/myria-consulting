@@ -36,6 +36,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/fr/services",
     "/fr/contact",
     "/fr/perspectives",
+    "/fr/notre-approche/modele-de-gestion",
     ...frenchServices.map((s) => `/fr/services/${s.slug}`),
     ...consultingServices.map((service) => `/services/${service.slug}`),
     ...advisoryLabs.map((lab) => `/labs/${lab.slug}`),

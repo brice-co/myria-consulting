@@ -42,7 +42,7 @@ export function ConsultingHeader() {
     if (/^https?:\/\//.test(href)) return href;
     if (href.startsWith("#")) return `${isHome ? "" : isFrench ? "/fr" : "/"}${href}`;
     if (!isFrench) return href;
-    const localized: Record<string, string> = { "/services": "/fr/services", "/insights": "/fr/perspectives" };
+    const localized: Record<string, string> = { "/services": "/fr/services", "/insights": "/fr/perspectives", "/our-approach/management-model": "/fr/notre-approche/modele-de-gestion" };
     return localized[href] ?? href;
   };
 
