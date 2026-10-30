@@ -177,7 +177,6 @@ function ConferenceStage({ onLeave, onGuestSpeech }: { onLeave: () => void; onGu
           <PhoneOff className="h-4 w-4" /> Leave
         </button>
       </div>
-      {aiListening ? <p className="mt-2 text-xs text-cyan-200">Conference speech sharing enabled.</p> : null}
       {error ? <p role="alert" className="text-xs text-amber-300">{error}</p> : null}
       <p className="text-[11px] leading-5 text-slate-400">Sharing speech with AI is optional. Your browser transcribes your speech and sends final text to the host AI session; this does not route raw LiveKit audio to OpenAI. Use headphones to prevent feedback.</p>
       <RoomAudioRenderer />
@@ -185,7 +184,7 @@ function ConferenceStage({ onLeave, onGuestSpeech }: { onLeave: () => void; onGu
   );
 }
 
-export function ParticipantAudioCall({ sessionId, onGuestSpeech, aiListening, onListeningChange }: { sessionId: string; onGuestSpeech: (speaker: string, text: string) => void; aiListening: boolean; onListeningChange: (listening: boolean) => void }) {
+export function ParticipantAudioCall({ sessionId, onGuestSpeech }: { sessionId: string; onGuestSpeech: (speaker: string, text: string) => void }) {
   const [joined, setJoined] = useState(false);
   const [token, setToken] = useState<string | null>(null);
   const [error, setError] = useState("");
@@ -228,7 +227,7 @@ export function ParticipantAudioCall({ sessionId, onGuestSpeech, aiListening, on
         <LiveKitRoom token={token} serverUrl={serverUrl} connect audio={false} video={false}
           onDisconnected={() => { setJoined(false); setToken(null); }}
           onError={(err) => setError(err.message)}>
-          <ConferenceStage onGuestSpeech={onGuestSpeech} onLeave={() => { setJoined(false); setToken(null); onListeningChange(false); }} />
+          <ConferenceStage onGuestSpeech={onGuestSpeech} onLeave={() => { setJoined(false); setToken(null); }} />
         </LiveKitRoom>
       ) : (
         <button type="button" onClick={() => void join()} disabled={loading}
