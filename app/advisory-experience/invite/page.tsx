@@ -59,10 +59,9 @@ export default async function AdvisoryInvitePage({
     process.env.ADVISORY_WORKSPACE_PATH ??
     "/collaborative-advisory";
 
+  const sessionId = crypto.randomUUID();
   const workspaceUrl =
-    `${workspacePath}?invite=${encodeURIComponent(
-      token!,
-    )}`;
+    `${workspacePath.replace(/\\/$/, "")}/${sessionId}?invite=${encodeURIComponent(token!)}`;
 
   return (
     <main className="min-h-screen bg-[#f6f1e7]">
