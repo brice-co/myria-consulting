@@ -17,7 +17,7 @@ type RecognitionConstructor = new () => Recognition;
 const decoder = new TextDecoder();
 const encoder = new TextEncoder();
 
-function ConferenceStage({ onLeave, onGuestSpeech }: { onLeave: () => void; onGuestSpeech: (speaker: string, text: string) => void }) {
+function ConferenceStage({ onLeave, onGuestSpeech, unified }: { onLeave: () => void; onGuestSpeech: (speaker: string, text: string) => void; unified: boolean }) {
   const room = useRoomContext();
   const participants = useParticipants();
   const { localParticipant, isMicrophoneEnabled, isCameraEnabled, isScreenShareEnabled } = useLocalParticipant();
@@ -167,18 +167,18 @@ function ConferenceStage({ onLeave, onGuestSpeech }: { onLeave: () => void; onGu
           className={`inline-flex items-center gap-2 rounded-full border px-3 py-2 text-xs ${hands[localParticipant.identity] ? "border-amber-400/40 bg-amber-400/10 text-amber-200" : "border-white/15"}`}>
           <Hand className="h-4 w-4" /> {hands[localParticipant.identity] ? "Lower hand" : "Raise hand"}
         </button>
-        <button type="button" onClick={toggleSpeechShare}
+        {!unified ? <button type="button" onClick={toggleSpeechShare}
           aria-pressed={sharingSpeech}
           className={`inline-flex items-center gap-2 rounded-full border px-3 py-2 text-xs ${sharingSpeech ? "border-cyan-400/40 bg-cyan-400/10 text-cyan-200" : "border-white/15"}`}>
           {sharingSpeech ? "Stop sharing speech with AI" : "Share my speech with AI"}
-        </button>
+        </button> : null}
         <button type="button" onClick={onLeave}
           className="inline-flex items-center gap-2 rounded-full border border-red-400/30 bg-red-400/10 px-3 py-2 text-xs text-red-200">
           <PhoneOff className="h-4 w-4" /> Leave
         </button>
       </div>
       {error ? <p role="alert" className="text-xs text-amber-300">{error}</p> : null}
-      <p className="text-[11px] leading-5 text-slate-400">If you cannot hear other participants, use the Enable meeting audio button above when shown. Sharing speech with AI is optional. Your browser transcribes your speech and sends final text to the host AI session; this does not route raw LiveKit audio to OpenAI. Use headphones to prevent feedback.</p>
+      <p className="text-[11px] leading-5 text-slate-400">{unified ? "The AI is a LiveKit participant. Your meeting microphone is the input; no browser speech transcription relay is used." : "If you cannot hear other participants, enable meeting audio. Optional speech transcription sends text to a separate browser AI session."} Use headphones to prevent feedback.</p>
       <StartAudio label="Enable meeting audio" className="rounded-full border border-amber-400/40 bg-amber-400/10 px-4 py-2 text-xs font-semibold text-amber-200" />
       <RoomAudioRenderer />
     </div>
@@ -190,6 +190,27 @@ export function ParticipantAudioCall({ sessionId, onGuestSpeech }: { sessionId: 
   const [token, setToken] = useState<string | null>(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [dispatchState, setDispatchState] = useState<"idle" | "starting" | "requested">("idle");
+  const unified = process.env.NEXT_PUBLIC_ADVISORY_UNIFIED_AGENT_ENABLED === "true";
+
+  async function startSharedAdvisor() {
+    setDispatchState("starting");
+    setError("");
+    try {
+      const invite = new URLSearchParams(window.location.search).get("invite");
+      const response = await fetch("/api/advisory-conference/agent", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sessionId, invite }),
+      });
+      const data = await response.json() as { error?: string };
+      if (!response.ok) throw new Error(data.error || "Unable to start shared advisor.");
+      setDispatchState("requested");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Unable to start shared advisor.");
+      setDispatchState("idle");
+    }
+  }
+
   const serverUrl = process.env.NEXT_PUBLIC_LIVEKIT_URL;
 
   useEffect(() => { setJoined(false); setToken(null); setError(""); }, [sessionId]);
@@ -224,11 +245,12 @@ export function ParticipantAudioCall({ sessionId, onGuestSpeech }: { sessionId: 
         Meet face-to-face in the same advisory session. Join with microphone and camera, raise your hand,
         or present your screen. LiveKit carries the video call; Liveblocks carries the shared findings and comments.
       </p>
+      {unified && joined ? <div className="mb-4 flex flex-wrap items-center gap-3"><button type="button" disabled={dispatchState !== "idle"} onClick={() => void startSharedAdvisor()} className="rounded-full border border-cyan-400/40 bg-cyan-400/10 px-4 py-2 text-xs font-semibold text-cyan-200">{dispatchState === "starting" ? "Requesting AI advisor..." : dispatchState === "requested" ? "AI advisor requested" : "Invite shared AI advisor"}</button><p className="text-xs text-slate-400">All participant microphones use LiveKit. One server AI voice is shared across this room.</p></div> : null}
       {joined && token && serverUrl ? (
         <LiveKitRoom token={token} serverUrl={serverUrl} connect audio={false} video={false}
           onDisconnected={() => { setJoined(false); setToken(null); }}
           onError={(err) => setError(err.message)}>
-          <ConferenceStage onGuestSpeech={onGuestSpeech} onLeave={() => { setJoined(false); setToken(null); }} />
+          <ConferenceStage unified={unified} onGuestSpeech={onGuestSpeech} onLeave={() => { setJoined(false); setToken(null); }} />
         </LiveKitRoom>
       ) : (
         <button type="button" onClick={() => void join()} disabled={loading}
