@@ -329,7 +329,11 @@ export function CollaborativeAdvisoryWorkspace({ sessionId }: Props) {
 
       <div className="mt-6">
         <ParticipantBar />
-        <ParticipantAudioCall sessionId={sessionId} />
+        <ParticipantAudioCall sessionId={sessionId} onGuestSpeech={(speaker, text) => {
+          if (!clientRef.current || (status !== "live" && status !== "muted")) return;
+          clientRef.current.sendMessage(`A conference participant named ${speaker} said: ${text}. Respond to the substance of their contribution as part of the advisory conversation.`);
+          resetActivity();
+        }} />
       </div>
 
       <div className="mt-5 grid gap-5 xl:grid-cols-[1.15fr_.55fr]">
