@@ -190,6 +190,27 @@ export function ParticipantAudioCall({ sessionId, onGuestSpeech }: { sessionId: 
   const [token, setToken] = useState<string | null>(null);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
+  const [dispatchState, setDispatchState] = useState<"idle" | "starting" | "requested">("idle");
+  const unified = process.env.NEXT_PUBLIC_ADVISORY_UNIFIED_AGENT_ENABLED === "true";
+
+  async function startSharedAdvisor() {
+    setDispatchState("starting");
+    setError("");
+    try {
+      const invite = new URLSearchParams(window.location.search).get("invite");
+      const response = await fetch("/api/advisory-conference/agent", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ sessionId, invite }),
+      });
+      const data = await response.json() as { error?: string };
+      if (!response.ok) throw new Error(data.error || "Unable to start shared advisor.");
+      setDispatchState("requested");
+    } catch (err) {
+      setError(err instanceof Error ? err.message : "Unable to start shared advisor.");
+      setDispatchState("idle");
+    }
+  }
+
   const serverUrl = process.env.NEXT_PUBLIC_LIVEKIT_URL;
 
   useEffect(() => { setJoined(false); setToken(null); setError(""); }, [sessionId]);
@@ -224,6 +245,7 @@ export function ParticipantAudioCall({ sessionId, onGuestSpeech }: { sessionId: 
         Meet face-to-face in the same advisory session. Join with microphone and camera, raise your hand,
         or present your screen. LiveKit carries the video call; Liveblocks carries the shared findings and comments.
       </p>
+      {unified && joined ? <div className="mb-4 flex flex-wrap items-center gap-3"><button type="button" disabled={dispatchState !== "idle"} onClick={() => void startSharedAdvisor()} className="rounded-full border border-cyan-400/40 bg-cyan-400/10 px-4 py-2 text-xs font-semibold text-cyan-200">{dispatchState === "starting" ? "Requesting AI advisor..." : dispatchState === "requested" ? "AI advisor requested" : "Invite shared AI advisor"}</button><p className="text-xs text-slate-400">All participant microphones use LiveKit. One server AI voice is shared across this room.</p></div> : null}
       {joined && token && serverUrl ? (
         <LiveKitRoom token={token} serverUrl={serverUrl} connect audio={false} video={false}
           onDisconnected={() => { setJoined(false); setToken(null); }}
