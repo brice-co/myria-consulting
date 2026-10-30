@@ -19,8 +19,8 @@ function ConferenceStage({ onLeave }: { onLeave: () => void }) {
   const [hands, setHands] = useState<Record<string, boolean>>({});
   const [error, setError] = useState("");
   const tracks = useTracks([
-    { source: Track.Source.Camera, withPlaceholder: true },
-    { source: Track.Source.ScreenShare, withPlaceholder: false },
+    Track.Source.Camera,
+    Track.Source.ScreenShare,
   ]);
 
   useEffect(() => {
