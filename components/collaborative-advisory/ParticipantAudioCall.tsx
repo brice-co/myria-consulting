@@ -1,7 +1,7 @@
 "use client";
 
 import {
-  LiveKitRoom, RoomAudioRenderer, VideoTrack, useLocalParticipant,
+  LiveKitRoom, RoomAudioRenderer, StartAudio, VideoTrack, useLocalParticipant,
   useParticipants, useRoomContext, useTracks,
 } from "@livekit/components-react";
 import { Track, RoomEvent, type Participant } from "livekit-client";
@@ -178,7 +178,8 @@ function ConferenceStage({ onLeave, onGuestSpeech }: { onLeave: () => void; onGu
         </button>
       </div>
       {error ? <p role="alert" className="text-xs text-amber-300">{error}</p> : null}
-      <p className="text-[11px] leading-5 text-slate-400">Sharing speech with AI is optional. Your browser transcribes your speech and sends final text to the host AI session; this does not route raw LiveKit audio to OpenAI. Use headphones to prevent feedback.</p>
+      <p className="text-[11px] leading-5 text-slate-400">If you cannot hear other participants, use the Enable meeting audio button above when shown. Sharing speech with AI is optional. Your browser transcribes your speech and sends final text to the host AI session; this does not route raw LiveKit audio to OpenAI. Use headphones to prevent feedback.</p>
+      <StartAudio label="Enable meeting audio" className="rounded-full border border-amber-400/40 bg-amber-400/10 px-4 py-2 text-xs font-semibold text-amber-200" />
       <RoomAudioRenderer />
     </div>
   );
