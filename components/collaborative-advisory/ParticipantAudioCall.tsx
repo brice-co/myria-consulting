@@ -6,18 +6,27 @@ import {
 } from "@livekit/components-react";
 import { Track, RoomEvent, type Participant } from "livekit-client";
 import { Camera, CameraOff, Hand, Mic, MicOff, MonitorUp, Phone, PhoneOff, Users, Volume2 } from "lucide-react";
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 const HAND_TOPIC = "myria-hand";
+const ADVISORY_SPEECH_TOPIC = "myria-advisory-speech";
+type SpeechEvent = { results: ArrayLike<ArrayLike<{ transcript: string }>>; resultIndex: number };
+type Recognition = { continuous: boolean; interimResults: boolean; lang: string; onresult: ((event: SpeechEvent) => void) | null; onerror: (() => void) | null; onend: (() => void) | null; start: () => void; stop: () => void };
+type RecognitionConstructor = new () => Recognition;
+
 const decoder = new TextDecoder();
 const encoder = new TextEncoder();
 
-function ConferenceStage({ onLeave }: { onLeave: () => void }) {
+function ConferenceStage({ onLeave, onGuestSpeech }: { onLeave: () => void; onGuestSpeech: (speaker: string, text: string) => void }) {
   const room = useRoomContext();
   const participants = useParticipants();
   const { localParticipant, isMicrophoneEnabled, isCameraEnabled, isScreenShareEnabled } = useLocalParticipant();
   const [hands, setHands] = useState<Record<string, boolean>>({});
   const [error, setError] = useState("");
+  const [sharingSpeech, setSharingSpeech] = useState(false);
+  const recognitionRef = useRef<Recognition | null>(null);
+  const guestSpeechRef = useRef(onGuestSpeech);
+  useEffect(() => { guestSpeechRef.current = onGuestSpeech; }, [onGuestSpeech]);
   const tracks = useTracks([
     Track.Source.Camera,
     Track.Source.ScreenShare,
@@ -25,6 +34,14 @@ function ConferenceStage({ onLeave }: { onLeave: () => void }) {
 
   useEffect(() => {
     const receive = (payload: Uint8Array, participant?: Participant, _kind?: unknown, topic?: string) => {
+      if (topic === ADVISORY_SPEECH_TOPIC && participant) {
+        try {
+          const value = JSON.parse(decoder.decode(payload)) as { text?: string };
+          const clean = value.text?.trim().slice(0, 1200);
+          if (clean) guestSpeechRef.current(participant.name || "Guest", clean);
+        } catch { /* ignore malformed caption */ }
+        return;
+      }
       if (topic !== HAND_TOPIC || !participant) return;
       try {
         const value = JSON.parse(decoder.decode(payload)) as { raised?: boolean };
@@ -40,6 +57,37 @@ function ConferenceStage({ onLeave }: { onLeave: () => void }) {
       room.off(RoomEvent.ParticipantDisconnected, left);
     };
   }, [room]);
+
+  useEffect(() => () => { recognitionRef.current?.stop(); recognitionRef.current = null; }, []);
+
+  function toggleSpeechShare() {
+    if (recognitionRef.current) {
+      recognitionRef.current.stop(); recognitionRef.current = null;
+      setSharingSpeech(false);
+      return;
+    }
+    const browser = window as Window & { SpeechRecognition?: RecognitionConstructor; webkitSpeechRecognition?: RecognitionConstructor };
+    const Constructor = browser.SpeechRecognition || browser.webkitSpeechRecognition;
+    if (!Constructor) { setError("Speech-to-text sharing requires a browser with SpeechRecognition support (such as Chrome)."); return; }
+    try {
+      const recognition = new Constructor();
+      recognition.continuous = true;
+      recognition.interimResults = false;
+      recognition.lang = document.documentElement.lang === "fr" ? "fr-CA" : "en-CA";
+      recognition.onresult = (event) => {
+        for (let i = event.resultIndex; i < event.results.length; i += 1) {
+          const text = event.results[i]?.[0]?.transcript?.trim();
+          if (text) void localParticipant.publishData(encoder.encode(JSON.stringify({ text: text.slice(0, 1200) })), { reliable: true, topic: ADVISORY_SPEECH_TOPIC }).catch(() => setError("Unable to send speech caption to host."));
+        }
+      };
+      recognition.onerror = () => { setError("Speech recognition stopped or microphone permission was denied."); setSharingSpeech(false); recognitionRef.current = null; };
+      recognition.onend = () => { setSharingSpeech(false); recognitionRef.current = null; };
+      recognitionRef.current = recognition;
+      recognition.start();
+      setSharingSpeech(true);
+      setError("");
+    } catch { setError("Unable to start browser speech recognition."); }
+  }
 
   const toggleHand = useCallback(async () => {
     const next = !hands[localParticipant.identity];
@@ -119,18 +167,25 @@ function ConferenceStage({ onLeave }: { onLeave: () => void }) {
           className={`inline-flex items-center gap-2 rounded-full border px-3 py-2 text-xs ${hands[localParticipant.identity] ? "border-amber-400/40 bg-amber-400/10 text-amber-200" : "border-white/15"}`}>
           <Hand className="h-4 w-4" /> {hands[localParticipant.identity] ? "Lower hand" : "Raise hand"}
         </button>
+        <button type="button" onClick={toggleSpeechShare}
+          aria-pressed={sharingSpeech}
+          className={`inline-flex items-center gap-2 rounded-full border px-3 py-2 text-xs ${sharingSpeech ? "border-cyan-400/40 bg-cyan-400/10 text-cyan-200" : "border-white/15"}`}>
+          {sharingSpeech ? "Stop sharing speech with AI" : "Share my speech with AI"}
+        </button>
         <button type="button" onClick={onLeave}
           className="inline-flex items-center gap-2 rounded-full border border-red-400/30 bg-red-400/10 px-3 py-2 text-xs text-red-200">
           <PhoneOff className="h-4 w-4" /> Leave
         </button>
       </div>
+      {aiListening ? <p className="mt-2 text-xs text-cyan-200">Conference speech sharing enabled.</p> : null}
       {error ? <p role="alert" className="text-xs text-amber-300">{error}</p> : null}
+      <p className="text-[11px] leading-5 text-slate-400">Sharing speech with AI is optional. Your browser transcribes your speech and sends final text to the host AI session; this does not route raw LiveKit audio to OpenAI. Use headphones to prevent feedback.</p>
       <RoomAudioRenderer />
     </div>
   );
 }
 
-export function ParticipantAudioCall({ sessionId }: { sessionId: string }) {
+export function ParticipantAudioCall({ sessionId, onGuestSpeech, aiListening, onListeningChange }: { sessionId: string; onGuestSpeech: (speaker: string, text: string) => void; aiListening: boolean; onListeningChange: (listening: boolean) => void }) {
   const [joined, setJoined] = useState(false);
   const [token, setToken] = useState<string | null>(null);
   const [error, setError] = useState("");
@@ -173,7 +228,7 @@ export function ParticipantAudioCall({ sessionId }: { sessionId: string }) {
         <LiveKitRoom token={token} serverUrl={serverUrl} connect audio={false} video={false}
           onDisconnected={() => { setJoined(false); setToken(null); }}
           onError={(err) => setError(err.message)}>
-          <ConferenceStage onLeave={() => { setJoined(false); setToken(null); }} />
+          <ConferenceStage onGuestSpeech={onGuestSpeech} onLeave={() => { setJoined(false); setToken(null); onListeningChange(false); }} />
         </LiveKitRoom>
       ) : (
         <button type="button" onClick={() => void join()} disabled={loading}
