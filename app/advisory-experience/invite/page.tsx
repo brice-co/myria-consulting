@@ -61,7 +61,7 @@ export default async function AdvisoryInvitePage({
 
   const sessionId = crypto.randomUUID();
   const workspaceUrl =
-    `${workspacePath.replace(/\\/$/, "")}/${sessionId}?invite=${encodeURIComponent(token!)}`;
+    `${${workspacePath.endsWith("/") ? workspacePath.slice(0, -1) : workspacePath}/${sessionId}?invite=${encodeURIComponent(token!)}`;
 
   return (
     <main className="min-h-screen bg-[#f6f1e7]">
