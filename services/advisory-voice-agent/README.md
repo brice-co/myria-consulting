@@ -43,3 +43,16 @@ When these are unset, the previous web-AI path remains active. Do **not** enable
 7. Make sure the agent is not counted against the eight human participant slots when enforcing capacity.
 
 **The branch has not been built or tested in a deployed LiveKit room. Keep PR #15 draft until these checks pass.**
+
+## Automated preflight
+
+GitHub Actions workflow `.github/workflows/advisory-agent-checks.yml` checks Python syntax and speaker-routing logic for pull requests. Run locally with:
+
+```bash
+python -m compileall -q services/advisory-voice-agent
+python -m unittest discover -s services/advisory-voice-agent/tests -p 'test_*.py' -v
+```
+
+The worker uses `RoomInputOptions(close_on_disconnect=False)` so losing the linked participant does not close the entire room's AI conversation. The router filters candidate speakers to current remote participants, keeps an existing active speaker selected, debounces switches, and clears that selection when the speaker departs.
+
+**Caution:** Active-speaker decisions depend on LiveKit's speaker events and a linked-track audio switch. They are not a full multi-microphone mixer. The unit tests do not prove audible conversations, participant diarization, concurrent speech handling, or deployment readiness.
