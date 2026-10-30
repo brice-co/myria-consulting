@@ -1,10 +1,16 @@
-# Myria Advisory — Server Voice Agent (foundation only)
+# Myria Advisory LiveKit agent — integration preview
 
-The existing web-hosted OpenAI Realtime conversation hears only the local browser microphone. LiveKit is used separately for conference participants. A separate LiveKit agent worker lets an agent publish **one shared audible output** in the meeting, but the stock voice session links its **input** to one participant. Therefore **this folder is not a working 4–8 person AI moderator yet**.
+This branch implements a **feature-gated integration path**, not a verified production-ready 4–8 participant AI meeting.
 
-## Setup
+## Components
 
-Run this worker on a long-running LiveKit Agents deployment, Railway, or container service, **not as a Vercel request handler**.
+- Python agent worker `agent.py`: joins LiveKit as an explicit `myria-advisory` dispatch, publishes one shared AI voice, and switches its incoming linked audio to the active room speaker (1.2-second hold-down to reduce rapid switching).
+- Next.js endpoint `POST /api/advisory-conference/agent`: validates the signed invitation and session UUID; checks for an existing dispatch before creating one.
+- Conference interface: `Invite shared AI advisor` control. In unified mode, the browser-hosted OpenAI microphone client and the browser speech transcription relay are hidden.
+
+## Worker
+
+The worker runs in a persistent LiveKit Agents deployment, Railway, or container—not a Vercel request handler.
 
 ```bash
 cd services/advisory-voice-agent
@@ -13,15 +19,27 @@ pip install -r requirements.txt
 python agent.py dev
 ```
 
-The runtime needs `LIVEKIT_URL`, `LIVEKIT_API_KEY`, `LIVEKIT_API_SECRET`, and `OPENAI_API_KEY`. The LiveKit dispatch name is `myria-advisory`. An authorized server-side dispatch to `myria-advisory:<sessionId>` must be implemented before this can join a meeting. Do not put those credentials in the browser.
+Worker variables: `LIVEKIT_URL`, `LIVEKIT_API_KEY`, `LIVEKIT_API_SECRET`, `OPENAI_API_KEY`.
 
-## Production gates (not implemented yet)
+Web server variables: `LIVEKIT_URL` or `NEXT_PUBLIC_LIVEKIT_URL`, `LIVEKIT_API_KEY`, `LIVEKIT_API_SECRET`, `ADVISORY_INVITE_SECRET`.
 
-1. Explicitly dispatch exactly one worker to a validated, authenticated session.
-2. Implement tested multi-participant capture, including correct per-speaker audio routing and interruption behavior. The default linked-participant input is **insufficient**.
-3. Replace browser Realtime microphone and browser SpeechRecognition relay, avoiding duplicate AI replies.
-4. Publish the agent's output once through LiveKit, with participant audio playback unlock and feedback suppression.
-5. Port and test Myria advisory tools and Liveblocks writes with a server-side authorization boundary.
-6. Add session/worker expiry, access revocation, monitoring, and 2-device then 4–8-device end-to-end tests.
+**Only in a test deployment with an active worker**, set both:
 
-This worker is intentionally **not wired into the live frontend**. Shipping it as the active AI without the production gates would repeat the existing failure.
+```env
+ADVISORY_LIVEKIT_AGENT_ENABLED=true
+NEXT_PUBLIC_ADVISORY_UNIFIED_AGENT_ENABLED=true
+```
+
+When these are unset, the previous web-AI path remains active. Do **not** enable just one of the flags. To revert, unset both flags and redeploy.
+
+## Validation and limitations
+
+1. Verify worker Python syntax and package compatibility after installing pinned dependencies; run Next.js TypeScript and build checks.
+2. Dispatch to a valid invite room and assert exactly one agent joins. Confirm server-side entitlement and rate limit before public release; the current signed invitation is not bound to a particular room and the dispatch check is best-effort under concurrency.
+3. Two separate devices: verify human-to-human and AI-to-both audio; test each device speaking to AI in turn. Use headphones.
+4. Test all 4–8 humans; overlapping speech, interruptions, VAD attribution, mute, reconnect, leave/rejoin, and rapid speaker switches. The simple active-speaker switch is not a production-grade floor controller; some speech may be clipped during switches.
+5. Port existing Myria advisory tools and Liveblocks workspace persistence to the worker. These are currently **not integrated**, so real insights/actions will not yet be created by the worker.
+6. Implement durable worker lifecycle, observability, moderation and session authorization before production.
+7. Make sure the agent is not counted against the eight human participant slots when enforcing capacity.
+
+**The branch has not been built or tested in a deployed LiveKit room. Keep PR #15 draft until these checks pass.**
