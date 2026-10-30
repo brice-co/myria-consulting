@@ -5,7 +5,7 @@ A standard AgentSession links to one participant for incoming speech.
 Group speech mixing/speaker routing must be added and tested before production use.
 """
 from dotenv import load_dotenv
-from livekit.agents import Agent, AgentServer, AgentSession, JobContext, RoomInputOptions
+from livekit.agents import Agent, AgentServer, AgentSession, JobContext, room_io
 from speaker_router import SpeakerRouter
 from livekit.plugins import openai
 
@@ -21,7 +21,7 @@ async def advisory_session(ctx: JobContext):
     )
     await session.start(
         room=ctx.room,
-        room_input_options=RoomInputOptions(close_on_disconnect=False),
+        room_options=room_io.RoomOptions(close_on_disconnect=False),
         agent=Agent(
             instructions=(
                 "You are Myria, an advisory facilitator. Speak naturally and briefly, "
