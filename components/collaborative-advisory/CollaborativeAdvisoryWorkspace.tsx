@@ -2,7 +2,9 @@
 
 import { LiveList } from "@liveblocks/client";
 import { useMutation, useMyPresence, useOthers } from "@liveblocks/react/suspense";
-import { Check, Copy, Link2 } from "lucide-react";
+import { Check, Copy, Link2, Plus } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { ParticipantAudioCall } from "./ParticipantAudioCall";
 import { useCallback, useEffect, useRef, useState } from "react";
 
 import { MAX_SESSION_MS } from "@/lib/collaborative-advisory/config";
@@ -35,6 +37,7 @@ function workspaceKey(item: WorkspaceItem) {
 }
 
 export function CollaborativeAdvisoryWorkspace({ sessionId }: Props) {
+  const router = useRouter();
   const [status, setStatus] = useState<VoiceStatus>("idle");
   const [muted, setMuted] = useState(false);
   const [transcript, setTranscript] = useState<TranscriptItem[]>([]);
@@ -221,6 +224,17 @@ export function CollaborativeAdvisoryWorkspace({ sessionId }: Props) {
     resetActivity,
   ]);
 
+  const createNewSession = useCallback(() => {
+    if (status === "live" || status === "muted" || status === "connecting") {
+      if (!window.confirm("End this AI conversation and create a separate empty advisory room? The current room and its findings will be preserved.")) return;
+    }
+    end("idle");
+    const newId = crypto.randomUUID();
+    const invite = new URLSearchParams(window.location.search).get("invite");
+    const query = invite ? `?invite=${encodeURIComponent(invite)}` : "";
+    router.push(`/collaborative-advisory/${newId}${query}`);
+  }, [end, router, status]);
+
   const toggleMute = useCallback(() => {
     const next = !muted;
     clientRef.current?.mute(next);
@@ -288,6 +302,11 @@ export function CollaborativeAdvisoryWorkspace({ sessionId }: Props) {
             {participants.length} participant{participants.length === 1 ? "" : "s"}
           </div>
 
+          <button type="button" onClick={createNewSession}
+            className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-4 py-2 text-[10px] font-semibold text-cyan-200 hover:bg-cyan-400/20">
+            <Plus className="h-3.5 w-3.5" /> New Session
+          </button>
+
           <button
             type="button"
             onClick={copyInviteLink}
@@ -310,6 +329,7 @@ export function CollaborativeAdvisoryWorkspace({ sessionId }: Props) {
 
       <div className="mt-6">
         <ParticipantBar />
+        <ParticipantAudioCall sessionId={sessionId} />
       </div>
 
       <div className="mt-5 grid gap-5 xl:grid-cols-[1.15fr_.55fr]">
