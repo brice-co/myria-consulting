@@ -1,0 +1,24 @@
+{
+  "brand": {
+    "name": "Myria Consulting"
+  },
+  "navigation": {
+    "services": "Services",
+    "capabilities": "Capabilities",
+    "approach": "Our approach",
+    "discovery": "Discovery Lab",
+    "experience": "Experience",
+    "insights": "Insights",
+    "brochures": "Brochures",
+    "contact": "Start a conversation",
+    "portal": "Client portal",
+    "language": "Français"
+  },
+  "common": {
+    "skip": "Skip to content",
+    "explore": "Explore",
+    "contact": "Start a conversation",
+    "download": "Download",
+    "preview": "Preview PDF"
+  }
+}
