@@ -21,6 +21,10 @@ export function OrganizationJsonLd() {
         name: "Myria Consulting",
         url: SITE_URL,
         publisher: { "@id": `${SITE_URL}/#organization` },
+        hasPart: [
+          { "@type": "WebSite", name: "Myria Intelligent Systems", url: "https://systems.myriaconsulting.com/" },
+          { "@type": "WebSite", name: "MyriaChat", url: "https://myriachat.com/" },
+        ],
         inLanguage: "en-CA",
       },
     ],
