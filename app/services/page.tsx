@@ -11,9 +11,22 @@ export const metadata: Metadata = publicPageMetadata({
   pathname: "/services",
 });
 
+const serviceListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Myria Consulting services",
+  itemListElement: consultingServices.map((service, index) => ({
+    "@type": "ListItem",
+    position: index + 1,
+    name: service.name,
+    url: `https://myriaconsulting.com/services/${service.slug}`,
+  })),
+};
+
 export default function ServicesPage() {
   return (
     <main className="bg-[#f7f4ee] text-[#142b35]">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceListSchema).replace(/</g, "\\u003c") }} />
       <section className="bg-[#142b35] px-6 pb-28 pt-28 text-white md:pb-32 md:pt-36"><div className="mx-auto max-w-7xl">
         <p className="text-xs font-semibold uppercase tracking-[.22em] text-[#e7bd8a]">Myria / Advisory services</p>
         <h1 className="mt-8 max-w-5xl font-serif text-5xl font-normal leading-[1.04] md:text-7xl lg:text-8xl">Management consulting services for stronger execution.</h1>
