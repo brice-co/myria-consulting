@@ -12,6 +12,10 @@ export function OrganizationJsonLd() {
         url: SITE_URL,
         logo: `${SITE_URL}/images/myria-logo.png`,
         email: "info@myriaconsulting.com",
+        sameAs: [
+          "https://www.linkedin.com/company/myria-consulting/",
+          "https://www.facebook.com/MyriaConsulting/",
+        ],
         description:
           "Management consulting and intelligent systems advisory focused on strategy, operations, organizational change and practical AI adoption.",
       },
