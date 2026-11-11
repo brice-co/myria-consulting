@@ -55,13 +55,12 @@ export default async function AdvisoryInvitePage({
     );
   }
 
-  const workspacePath =
-    process.env.ADVISORY_WORKSPACE_PATH ??
-    "/collaborative-advisory";
-
+  // Always use the actual Next.js route. An older ADVISORY_WORKSPACE_PATH
+  // setting may contain the literal [sessionId] placeholder or a stale URL.
+  // This must not be appended to when creating a room.
   const sessionId = crypto.randomUUID();
   const workspaceUrl =
-    `${workspacePath.endsWith("/") ? workspacePath.slice(0, -1) : workspacePath}/${sessionId}?invite=${encodeURIComponent(token!)}`;
+    `/collaborative-advisory/${sessionId}?invite=${encodeURIComponent(token!)}`;
 
   return (
     <main className="min-h-screen bg-[#f6f1e7]">
