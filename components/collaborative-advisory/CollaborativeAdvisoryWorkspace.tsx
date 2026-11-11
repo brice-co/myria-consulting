@@ -38,6 +38,7 @@ function workspaceKey(item: WorkspaceItem) {
 
 export function CollaborativeAdvisoryWorkspace({ sessionId }: Props) {
   const router = useRouter();
+  const unifiedConferenceAI = process.env.NEXT_PUBLIC_ADVISORY_UNIFIED_AGENT_ENABLED === "true";
   const [status, setStatus] = useState<VoiceStatus>("idle");
   const [muted, setMuted] = useState(false);
   const [transcript, setTranscript] = useState<TranscriptItem[]>([]);
@@ -330,6 +331,7 @@ export function CollaborativeAdvisoryWorkspace({ sessionId }: Props) {
       <div className="mt-6">
         <ParticipantBar />
         <ParticipantAudioCall sessionId={sessionId} onGuestSpeech={(speaker, text) => {
+          if (unifiedConferenceAI) return;
           if (!clientRef.current || (status !== "live" && status !== "muted")) return;
           clientRef.current.sendMessage(`A conference participant named ${speaker} said: ${text}. Respond to the substance of their contribution as part of the advisory conversation.`);
           resetActivity();
@@ -337,7 +339,7 @@ export function CollaborativeAdvisoryWorkspace({ sessionId }: Props) {
       </div>
 
       <div className="mt-5 grid gap-5 xl:grid-cols-[1.15fr_.55fr]">
-        <VoicePanel
+        {!unifiedConferenceAI ? <VoicePanel
           status={status}
           muted={muted}
           transcript={transcript}
@@ -345,7 +347,7 @@ export function CollaborativeAdvisoryWorkspace({ sessionId }: Props) {
           onStart={start}
           onMute={toggleMute}
           onEnd={() => end("idle")}
-        />
+        /> : <div className="rounded-3xl border border-cyan-400/20 bg-white/[0.035] p-6"><h2 className="text-lg font-semibold text-white">Shared AI advisor</h2><p className="mt-3 text-sm leading-6 text-slate-400">Join the LiveKit meeting and select Invite shared AI advisor. The advisor is hosted separately and publishes audio into the same conference; the browser microphone-based AI session is disabled in this mode.</p></div>}
 
         <AdvisoryTeamPanel activeAgent={activeAgent} />
       </div>
