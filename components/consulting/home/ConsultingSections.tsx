@@ -20,20 +20,17 @@ export function ChallengesSection() {
   return (
     <section id="challenges" className="mc-section mc-challenges" aria-labelledby="mc-challenges-title">
       <div className="mc-container">
-        <p className="mc-eyebrow">01 — THE CHALLENGES WE ADDRESS</p>
+        <p className="mc-eyebrow">THE VALUE WE CREATE</p>
         <div className="mc-two-column-intro">
-          <h2 id="mc-challenges-title">Business complexity deserves connected thinking.</h2>
-          <p>Organizations rarely struggle with one issue in isolation. Strategy, operations, technology,
-            and people influence each other. Our work starts by understanding those relationships
-            and the decisions leaders need to make.</p>
+          <h2 id="mc-challenges-title">How we create business value.</h2>
+          <p>We help organizations improve how they perform, make decisions, execute priorities, and adapt to change. Our work considers how strategy, operations, people, and technology influence one another.</p>
         </div>
         <div className="mc-challenge-grid">
           {challenges.map((item) => (
             <article className="mc-challenge" key={item.number}>
-              <span className="mc-index">{item.number}</span>
               <h3>{item.title}</h3>
               <p>{item.description}</p>
-              <div className="mc-challenge-response"><span>Where we help</span>{item.response}</div>
+              <div className="mc-challenge-response"><span>How we help</span>{item.response}</div>
             </article>
           ))}
         </div>
@@ -47,15 +44,15 @@ export function CapabilitiesSection() {
     <section className="mc-section mc-capabilities" id="capabilities" aria-labelledby="mc-capabilities-title">
       <div className="mc-container">
         <div>
-          <SectionIntro headingId="mc-capabilities-title" eyebrow="02 — WHAT WE DO" heading="Connected expertise. Practical action."
-            detail="Four complementary advisory disciplines, brought together according to the challenge — not as disconnected service offerings." />
+          <SectionIntro headingId="mc-capabilities-title" eyebrow="OUR EXPERTISE" heading="Integrated expertise. Practical execution."
+            detail="We bring together management, operations, organizational transformation, and intelligent systems to address business needs in their broader context." />
         </div>
         <div className="mc-capabilities-grid">
           {capabilities.map((item, index) => {
             const Icon = disciplineIcons[index];
             return (
               <article className="mc-capability" key={item.number}>
-                <div className="mc-capability-top"><span>{item.number} / 04</span><Icon size={29} strokeWidth={1.4} aria-hidden="true" /></div>
+                <div className="mc-capability-top"><Icon size={29} strokeWidth={1.4} aria-hidden="true" /></div>
                 <div><h3>{item.title}</h3><p>{item.description}</p><small>{item.examples}</small></div>
               </article>
             );
@@ -70,21 +67,17 @@ export function DifferenceSection() {
   return (
     <section className="mc-section mc-difference" id="difference" aria-labelledby="mc-difference-title">
       <div className="mc-container">
-        <p className="mc-eyebrow">03 — OUR MANAGEMENT PHILOSOPHY</p>
+        <p className="mc-eyebrow">OUR APPROACH</p>
         <div className="mc-two-column-intro">
-          <h2 id="mc-difference-title">Human judgment. Intelligent support. Connected execution.</h2>
+          <h2 id="mc-difference-title">Think deeper. Organize intelligently. Improve continuously.</h2>
           <div>
-            <p>Myria brings management consulting and intelligent systems into the same working process.
-              Leaders bring context and accountability. Consultants bring methods and judgment.
-              AI advisors can contribute structured exploration, analysis, and specialist perspectives.</p>
-            <p className="mc-extra-paragraph">Our approach connects what an organization wants to achieve with how
-              its people, decisions, workflows, and technology work together.</p>
+            <p>Guided by in-depth thinking, we challenge assumptions, deepen understanding, and identify opportunities for improvement.</p>
+            <p className="mc-extra-paragraph">We rethink organizational structures, design better ways of working, and align people, processes, technology, information, and decision-making around shared business objectives—supporting implementation and continuous improvement.</p>
           </div>
         </div>
         <div className="mc-philosophy-grid">
           {philosophy.map((item) => (
             <article key={item.number}>
-              <span className="mc-index">{item.number}</span>
               <h3>{item.title}</h3>
               <p>{item.description}</p>
             </article>
@@ -106,10 +99,9 @@ export function DiscoverySection() {
     <section className="mc-section mc-discovery" id="discovery" aria-labelledby="mc-discovery-title">
       <div className="mc-container mc-discovery-grid">
         <div>
-          <p className="mc-eyebrow mc-eyebrow-light">04 — HOW WE WORK</p>
-          <h2 id="mc-discovery-title">Start with the challenge, not the solution.</h2>
-          <p className="mc-discovery-description">The Discovery Lab is a structured advisory starting point.
-            We examine the business context, surface important questions, and identify where focused work can create value.</p>
+          <p className="mc-eyebrow mc-eyebrow-light">HOW WE WORK</p>
+          <h2 id="mc-discovery-title">Start with understanding.</h2>
+          <p className="mc-discovery-description">Our Discovery Lab offers a structured way to examine a business challenge, question assumptions, and identify practical next steps before committing to a solution.</p>
           <div className="mc-discovery-actions">
             <Link className="mc-button mc-button-white" href="/labs/discovery">Explore the Discovery Lab <ArrowUpRight size={16} /></Link>
             <Link className="mc-inline-link" href="/contact-myria">Discuss your challenge <ArrowUpRight size={15} /></Link>
@@ -121,7 +113,6 @@ export function DiscoverySection() {
         <div className="mc-stage-list" aria-label="The five Discovery Lab stages">
           {discoveryStages.map((stage) => (
             <div key={stage.number} className="mc-stage">
-              <span>{stage.number}</span>
               <div><h3>{stage.title}</h3><p>{stage.description}</p></div>
             </div>
           ))}
@@ -140,7 +131,7 @@ export function InsightsSection() {
     <section className="mc-section mc-insights" id="insights" aria-labelledby="mc-insights-title">
       <div className="mc-container">
         <div>
-          <SectionIntro headingId="mc-insights-title" eyebrow="06 — INSIGHTS & EXPERTISE" heading="Ideas grounded in the work."
+          <SectionIntro headingId="mc-insights-title" eyebrow="INSIGHTS & EXPERTISE" heading="Ideas grounded in the work."
             detail="Practical resources for leaders exploring strategy, transformation, and the business use of intelligent systems." />
         </div>
         <div className="mc-insight-grid">
@@ -162,12 +153,11 @@ export function ContactSection() {
     <section className="mc-contact" id="contact" aria-labelledby="mc-contact-title">
       <div className="mc-container mc-contact-layout">
         <div>
-          <p className="mc-eyebrow mc-eyebrow-light">08 — BEGIN HERE</p>
-          <h2 id="mc-contact-title">What challenge is your organization working through?</h2>
+          <p className="mc-eyebrow mc-eyebrow-light">START A CONVERSATION</p>
+          <h2 id="mc-contact-title">Let's discuss your priorities.</h2>
         </div>
         <div className="mc-contact-action">
-          <p>Bring us the business question. We will help you understand the situation,
-            explore the possibilities, and determine a meaningful next step.</p>
+          <p>Whether you're improving operations, managing transformation, or exploring new opportunities, we can help you evaluate the options and define a practical way forward.</p>
           <Link className="mc-button mc-button-white" href="/contact-myria">Start a conversation <ArrowUpRight size={17} /></Link>
           <a className="mc-email" href="mailto:info@myriaconsulting.com">info@myriaconsulting.com</a>
         </div>
