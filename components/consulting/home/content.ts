@@ -17,27 +17,27 @@ export const consultingNavigation = [
 export const challenges = [
   {
     number: "01",
-    title: "Strategy without clear priorities",
-    description: "Competing initiatives and limited resources make it difficult to agree on where to focus and what decisions matter most.",
-    response: "Strategic choices, decision criteria, and a focused direction.",
+    title: "Make better decisions",
+    description: "Bring clarity to priorities, evaluate alternatives, and strengthen the decisions that guide performance.",
+    response: "Clearer direction, informed choices, and accountable decisions.",
   },
   {
     number: "02",
-    title: "Operations that slow execution",
-    description: "Fragmented workflows, unclear responsibilities, and unnecessary handoffs create friction and reduce performance.",
-    response: "Process visibility, operating model improvements, and accountable execution.",
+    title: "Improve performance",
+    description: "Improve productivity, reduce operational friction, and make better use of resources.",
+    response: "Simpler workflows, stronger coordination, and more effective operations.",
   },
   {
     number: "03",
-    title: "AI opportunities without a business case",
-    description: "Promising technologies are difficult to prioritize when the operational value, readiness, and governance are not established.",
-    response: "Value-led opportunities, practical sequencing, and responsible adoption.",
+    title: "Use technology purposefully",
+    description: "Apply data, automation, and AI where they can strengthen operations and support meaningful business outcomes.",
+    response: "Business-led opportunities, responsible integration, and measurable progress.",
   },
   {
     number: "04",
-    title: "Change that struggles to take hold",
-    description: "New strategies and systems deliver limited value when people lack the clarity, involvement, and support to adopt them.",
-    response: "Change readiness, stakeholder alignment, and sustainable capabilities.",
+    title: "Make change last",
+    description: "Align stakeholders, develop capabilities, and support the adoption of better ways of working.",
+    response: "Stronger readiness, sustained adoption, and organizational learning.",
   },
 ] as const;
 
@@ -45,25 +45,25 @@ export const capabilities = [
   {
     number: "01",
     title: "Strategy & direction",
-    description: "Clarify strategic choices, assess opportunities, align leadership priorities, and establish a practical path forward.",
+    description: "Examine the business context, question assumptions, and turn strategic priorities into informed decisions and practical direction.",
     examples: "Strategic priorities · Decision frameworks · Roadmaps",
   },
   {
     number: "02",
     title: "Operations & performance",
-    description: "Improve how work gets done by connecting operating models, processes, decision rights, and performance measures.",
+    description: "Rethink operating models, simplify workflows, clarify responsibilities, and strengthen how performance is managed.",
     examples: "Operating models · Process improvement · Performance",
   },
   {
     number: "03",
     title: "AI, data & intelligent systems",
-    description: "Connect AI and data capabilities to business problems through opportunities, workflows, architecture, and governance.",
+    description: "Apply intelligent systems and AI-powered tools to relevant business needs, with appropriate human oversight and governance.",
     examples: "AI opportunity assessment · Intelligent workflows · Governance",
   },
   {
     number: "04",
     title: "People & change",
-    description: "Prepare leaders and teams for transformation with engagement, capability development, adoption, and ongoing improvement.",
+    description: "Align leaders and teams, build readiness for change, and establish the capabilities needed to sustain improvement.",
     examples: "Change strategy · Organizational alignment · Adoption",
   },
 ] as const;
@@ -72,17 +72,17 @@ export const philosophy = [
   {
     number: "01",
     title: "Think deeper.",
-    description: "Understand the real challenge, examine the evidence, and test assumptions before choosing a direction.",
+    description: "Look beyond immediate symptoms, challenge assumptions, and develop a deeper understanding of how the organization functions.",
   },
   {
     number: "02",
     title: "Organize intelligently.",
-    description: "Connect people, decisions, processes, data, and technology around shared objectives.",
+    description: "Rethink structures and ways of working, aligning people, processes, information, technology, and decision-making around shared objectives.",
   },
   {
     number: "03",
     title: "Improve continuously.",
-    description: "Use feedback and measurable results to build stronger organizational capabilities over time.",
+    description: "Connect insight with implementation, strengthening organizational learning, adaptability, and lasting capabilities.",
   },
 ] as const;
 
