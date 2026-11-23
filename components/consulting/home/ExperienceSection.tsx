@@ -13,18 +13,16 @@ export function ExperienceSection() {
       <div className="mc-container">
         <div className="mc-experience-heading">
           <div>
-            <p className="mc-eyebrow">05 — EXPERIENCE HOW MYRIA WORKS</p>
+            <p className="mc-eyebrow">EXPERIENCE & PERSPECTIVE</p>
             <h2 id="mc-experience-title">
-              See how the work <em>comes together.</em>
+              Experience informs <em>how we work.</em>
             </h2>
           </div>
           <div className="mc-experience-intro">
             <p>
-              The way we work is part of what makes Myria different.
-              Explore how structured advisory sessions, specialist AI advisors
-              and collaborative environments contribute to better decisions.
+              Our approach draws on professional experience in organizational transformation, operational improvement, and technology implementation. Explore the tools and collaborative practices that support this work.
             </p>
-            <span>Human-led. Intelligence-enabled. Focused on execution.</span>
+            <span>Informed judgment. Practical execution. Continuous improvement.</span>
           </div>
         </div>
 
@@ -34,7 +32,6 @@ export function ExperienceSection() {
               <ExperienceMedia experience={item} />
               <div className="mc-experience-card-copy">
                 <div className="mc-experience-meta">
-                  <span>{item.number} / 03</span>
                   <span>{item.format}</span>
                 </div>
                 <h3>{item.title}</h3>
