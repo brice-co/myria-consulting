@@ -10,7 +10,7 @@ export function ResearchSection() {
       <div className="mc-container">
         <div className="mc-research-heading">
           <div>
-            <p className="mc-eyebrow">07 — RESEARCH WE ARE READING</p>
+            <p className="mc-eyebrow">RESEARCH & PERSPECTIVES</p>
             <h2 id="mc-research-title">Good decisions start with evidence.</h2>
           </div>
           <div className="mc-research-intro">
