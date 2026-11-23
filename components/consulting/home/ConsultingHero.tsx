@@ -52,12 +52,11 @@ export function ConsultingHero() {
         </h1>
         <motion.div className="mc-hero-bottom" initial={reducedMotion ? false : { opacity: 0, y: 18 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: .75, delay: reducedMotion ? 0 : .75 }}>
           <p>
-            Myria helps leaders solve complex business challenges and turn strategy into operational progress.
-            We combine management expertise, intelligent systems, and AI advisors to connect people, processes,
-            technology, and decisions around the outcomes that matter.
+            We combine management expertise, intelligent systems, and proprietary AI-powered tools to develop informed
+            strategies, improve operations, and create measurable business value.
           </p>
           <div className="mc-hero-actions">
-            <a className="mc-button mc-button-white" href="#capabilities">Explore our capabilities <ArrowUpRight size={17} /></a>
+            <a className="mc-button mc-button-white" href="#challenges">Explore how we can help <ArrowUpRight size={17} /></a>
             <Link className="mc-button mc-button-ghost" href="/contact-myria">Start a conversation <ArrowUpRight size={17} /></Link>
           </div>
         </motion.div>
